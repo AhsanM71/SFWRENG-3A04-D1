@@ -1,0 +1,314 @@
+\documentclass[]{article}
+
+% Imported Packages
+%------------------------------------------------------------------------------
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{geometry}
+%------------------------------------------------------------------------------
+
+% Header and Footer
+%------------------------------------------------------------------------------
+\pagestyle{plain}  
+\renewcommand\headrulewidth{0.4pt}                                       
+\renewcommand\footrulewidth{0.4pt}                                    
+%------------------------------------------------------------------------------
+
+% Title Details
+%------------------------------------------------------------------------------
+\title{Deliverable \#1 Template : Software Requirement Specification (SRS)}
+\author{SE 3A04: Software Design II -- Large System Design}
+\date{}
+                            
+%------------------------------------------------------------------------------
+
+% Document
+%------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle	
+\noindent{\bf Tutorial Number:} T0x\\
+{\bf Group Number:} Gx \\
+{\bf Group Members:} 
+\begin{itemize}
+    \item Group Member Name (as listed in Avenue)
+    \item You do not need to use student \#s or macid (keep those private).
+\end{itemize}
+
+\newpage
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Purpose}
+\label{sub:purpose}
+This SRS outlines the functional and non-functional requirements for the DealCheck app, detailing the system's design, features, and use cases. The intended audience includes internal stakeholders, such as project managers, software developers, product designers, marketing, customer support, executives, and investors. The document is written to be easily understood by all involved parties, with no prior readings needed.
+
+\subsection{Scope}
+\label{sub:scope}
+DealCheck is a mobile application that will allow users to request from the system a check on a car deal by providing any necessary data (car year, make, model, mileage, listing price, etc.) and optional data (images, text description, etc.), which provides them with a rating of the car deal. 
+
+Users are required to register an account on DealCheck to get access to all the features of the mobile application system. The users can make requests by filling out a “form” that captures all the data of a certain car to measure the fairness of the deal through the integrated experts.
+
+An objective of the system is to provide users with an easy and reliable way to get accurate estimates on the fairness of a car deal. Many people across the world are looking to buy a car, but are not very knowledgeable in the field. The DealCheck system acts as a guiding hand throughout the process of the user's search for their “perfect” car.
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\label{sub:definitions_acronyms_and_abbreviations}
+\begin{itemize}
+    \item \textbf{DealCheck}: The name of the mobile application being proposed.
+    \item \textbf{API}: Application Programming Interface, used to retrieve pricing data from external sources.
+    \item \textbf{AI}: Artificial Intelligence, for analyzing images and/or text input.
+    \item \textbf{SRS}: Software Requirements Specification document.
+    \item \textbf{Account Management Database}: A supporting entity that stores user login information and car valuation reports.
+\end{itemize}
+
+\subsection{References}
+\label{sub:references}
+N/A
+
+\subsection{Overview}
+\label{sub:overview}
+Section 2 discusses the overall product description focusing on the product perspective, product functions, user characteristics, assumptions and dependencies, and apportioning of requirements. Section 3 contains the use case diagram illustrating the scenario of a user requesting a deal check on a car. Section 4 highlights the functional requirements, main business events, and viewpoints. Section 5 provides the non-functional requirements talking about look and feel requirements, usability and humanity requirements, performance requirements, operational and environmental requirements, maintainability and support requirements, security requirements, cultural and political requirements, and legal requirements. Section 6 holds the division of labour. Lastly, Section 7 discusses the innovative design feature.
+
+\newpage
+\section{Overall Product Description}
+\label{sec:overall_description}
+
+\subsection{Product Perspective}
+\label{sub:product_perspective}
+DealCheck is a mobile app that will serve as a center for car pricing information. Similar to market products such as AutoTrader and CarGurus, DealCheck will offer users the ability to ensure the price of a vehicle is both accurate and fair. The application will achieve this through a variety of sources such as generative artificial intelligence (AI), existing databases of car price information (for example, the Kelley Blue Book), and a custom algorithm to provide a score for the deal. Users will first login to an account, and then will be able to submit multi-modal information about the vehicle, such as text descriptions and images. This will allow for a more in-depth analysis, considering factors such as mileage, crash history, and current market data. Users will also be able to view their existing reports and query history in order to access previously-searched-for information easily and quickly.
+
+In terms of external interactions, this application will consult with an external large-language model (for example, ChatGPT) in order to source recommendations. Additionally, it will consult via API an existing database of car price records to show users historical pricing for the vehicle they are considering.
+
+\subsection{Product Functions}
+\label{sub:product_functions}
+\textbf{Innovative feature}: Prompt AI with background information and have it recommend what car to buy, the maximum price to pay for it, and the first offer you should send the seller.
+
+\textbf{Modules and Functions:}
+\begin{itemize}
+    \item \textbf{Algorithm Service}: Answer post requests based on the dropdown (if the forum distributes to it).
+    \item \textbf{Forum Service}: Accept inquiry, store inquiry, distribute inquiry responsibility, return solution.
+    \item \textbf{Account Management}: Create login, update account, login.
+    \item \textbf{AI Service}: Answer post requests based on dropdown, picture, or description.
+    \item \textbf{Redbook Database}: Determine if a deal is good based on car model and year.
+\end{itemize}
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \textbf{Modules} & \textbf{Functions} \\ 
+        \hline
+        Algorithm Service & Answer Post Requests based on the dropdown (if the forum distributes to it) \\ 
+        \hline
+        Forum Service & 
+        \begin{itemize}
+            \item Accept Inquiry
+            \item Store Inquiry
+            \item Distribute Inquiry responsibility
+            \item Return solution
+        \end{itemize} \\ 
+        \hline
+        Account Management & 
+        \begin{itemize}
+            \item Create login
+            \item Update Account
+            \item Login
+        \end{itemize} \\ 
+        \hline
+        AI Service & Answer Post Requests based on the dropdown, picture, or description (if the forum distributes to it) \\ 
+        \hline
+        Redbook Database & Determine if a deal is good based on car model and year (if the forum distributes to it) \\ 
+        \hline
+    \end{tabular}
+    \caption{Modules and Functions}
+    \label{tab:modules_functions}
+\end{table}
+
+
+\subsection{User Characteristics}
+\label{sub:user_characteristics}
+TBD
+
+\subsection{Constraints}
+\label{sub:constraints}
+\begin{itemize}
+    \item Time Limit: The system must provide the final valuation result within 5 seconds of receiving input.
+    \item Data Privacy: The app must comply with local data protection laws such as GDPR or PIPEDA.
+    \item Target Audience: The system must cater to both novice and experienced car buyers.
+    \item Project Timeline: The project schedule will impact feature implementation.
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+\label{sub:assumptions_and_dependencies}
+TBD
+
+\subsection{Apportioning of Requirements}
+\label{sub:apportioning_of_requirements}
+\begin{itemize}
+    \item \textbf{Support for additional car value APIs}: The system will initially integrate with a limited set of car value APIs. Future versions will support additional car value APIs to expand data sources and improve valuation accuracy.
+    \item \textbf{Multi-language support}: The system will initially be available in English only. Future versions will include support for additional languages to cater to users in different regions and expand the user base.
+    \item \textbf{Support for electric/hybrid vehicle assessments}: The system will initially focus on gas-powered vehicles. Future versions will support specialized electric/hybrid assessments which consider factors like battery health.
+\end{itemize}
+
+\newpage
+\section{Highlights of Functional Requirements}
+\label{sec:functional_requirements}
+
+\subsection{Business Events}
+\begin{itemize}
+    \item BE1. User requests deal valuation based on drop-down menu.
+    \item BE2. User requests deal valuation based on image + required text.
+    \item BE3. User requests deal valuation with text description.
+    \item BE4. User requests depreciation curve for a previous car deal report.
+    \item BE5. User requests deal valuation based on text + drop-down + image.
+    \item BE6. User requests a car recommendation based on text information provided.
+    \item BE7. User requests a comparison between two or more car deals.
+    \item BE8. User requests to create a new account.
+    \item BE9. User requests to log in to their account.
+\end{itemize}
+
+\subsection{Viewpoints}
+\begin{itemize}
+    \item VP1. Users
+    \item VP2. Customer Support (DealCheck)
+    \item VP3. Marketing (DealCheck)
+    \item VP4. Car Manufacturers
+    \item VP5. Car Dealerships
+\end{itemize}
+
+\subsection{Global Scenarios}
+\textbf{BE2: User requests deal valuation based on image + text}
+\begin{itemize}
+    \item Precondition: User does not have an ongoing request. User has provided an image and required textual input but has not filled out optional drop-down fields.
+    \item System processes image and text input using AI.
+    \item System queries a points-based algorithm and historical database.
+    \item System compiles results into a comprehensive valuation.
+    \item System returns valuation results to the user.
+\end{itemize}
+
+\textbf{BE4: User requests depreciation curve for a previous car deal report}
+\begin{itemize}
+    \item Precondition: User has previously requested and saved a car deal report.
+    \item System retrieves historical depreciation data.
+    \item System generates a depreciation curve based on past trends.
+    \item System displays the depreciation curve to the user.
+\end{itemize}
+
+\textbf{BE6: User requests a car recommendation based on text information provided}
+\begin{itemize}
+    \item Precondition: User has an existing account.
+    \item System consults with the AI model.
+    \item System generates car recommendations and prices.
+    \item System returns results to the user.
+\end{itemize}
+
+
+
+\section{Look and Feel Requirements (AM)}
+
+\subsection{Appearance Requirements}
+\begin{itemize}
+    \item \textbf{LF - A1}: The system shall use a neutral, professional color scheme that is not tied to any specific car brand. \\ 
+    \textit{Rationale}: Ensures a consistent and professional appearance. Neutral colors (e.g., soft blues, grays, and whites) prevent brand bias and enhance usability.
+    
+    \item \textbf{LF - A2}: The system shall have a clean, modern, and minimalistic design. \\ 
+    \textit{Rationale}: Enhances usability, reduces visual clutter, and improves focus on key actions.
+    
+    \item \textbf{LF - A3}: The system shall use consistent, easy-to-read fonts across the application. \\ 
+    \textit{Rationale}: Enhances readability and usability. Suggested fonts include Garamond, Oswald, or Open Sans \cite{nngroup2022}.
+    
+    \item \textbf{LF - A4}: Buttons and interactive elements must be visually distinct, using uniform colors and shapes with sufficient contrast. \\ 
+    \textit{Rationale}: High contrast improves visibility, aiding navigation and usability.
+    
+    \item \textbf{LF - A5}: The system must avoid bright or overly saturated background colors. \\ 
+    \textit{Rationale}: Bright colors can be distracting; neutral tones enhance focus.
+\end{itemize}
+
+\subsection{Style Requirements}
+\begin{itemize}
+    \item \textbf{LF - S1}: The system shall display a clear processing indicator (e.g., spinner, progress bar). \\ 
+    \textit{Rationale}: Helps users understand that their request is being processed.
+    
+    \item \textbf{LF - S2}: The system must provide feedback on car deal valuation results (e.g., “Good Deal,” “Fair Deal,” “Bad Deal”). \\ 
+    \textit{Rationale}: Ensures clarity and user-friendly evaluation feedback.
+    
+    \item \textbf{LF - S3}: The system must be responsive across mobile, tablet, and desktop devices. \\ 
+    \textit{Rationale}: Ensures a consistent experience across screen sizes.
+    
+    \item \textbf{LF - S4}: The system should provide clear navigation cues for the next steps. \\ 
+    \textit{Rationale}: Enhances usability by guiding users intuitively through input steps.
+\end{itemize}
+
+\section{Usability and Humanity Requirements (RD)}
+\subsection{Understandability and Politeness Requirements}
+\begin{itemize}
+    \item \textbf{UH-UP1}: Notifications and system messages should be polite, friendly, and encouraging. \\ 
+    \textit{Rationale}: Improves user engagement and fosters a positive experience.
+\end{itemize}
+
+\subsection{Accessibility Requirements}
+\begin{itemize}
+    \item \textbf{UH-A1}: The system must offer color contrast settings for visually impaired users. \\ 
+    \textit{Rationale}: Ensures accessibility for users with vision challenges.
+    
+    \item \textbf{UH-A2}: The system must provide text-to-speech functionality. \\ 
+    \textit{Rationale}: Supports users with visual impairments or reading difficulties.
+\end{itemize}
+
+\section{Performance Requirements (AM)}
+\subsection{Speed and Latency Requirements}
+\begin{itemize}
+    \item \textbf{PR-SL1}: API response time must not exceed 5 seconds in the worst case. \\ 
+    \textit{Rationale}: Ensures a smooth user experience and minimizes frustration due to delays.
+    
+    \item \textbf{PR-SL2}: Image uploads for AI processing should complete within 5 seconds. \\ 
+    \textit{Rationale}: Enhances user experience by ensuring quick image processing.
+\end{itemize}
+
+\subsection{Precision or Accuracy Requirements}
+\begin{itemize}
+    \item \textbf{PR-PA1}: The car deal valuation must achieve at least 90\% accuracy. \\ 
+    \textit{Rationale}: Ensures reliability and builds user trust.
+    
+    \item \textbf{PR-PA2}: Numerical values must be displayed with up to two decimal places. \\ 
+    \textit{Rationale}: Ensures precision in financial calculations.
+\end{itemize}
+
+\section{Security Requirements (AA)}
+\subsection{Access Requirements}
+\begin{itemize}
+    \item \textbf{SR-AC1}: User authentication is required to access system features. \\ 
+    \textit{Rationale}: Protects user data and ensures security.
+\end{itemize}
+
+\subsection{Privacy Requirements}
+\begin{itemize}
+    \item \textbf{SR-P1}: The app must provide users with a legally adequate privacy policy. \\ 
+    \textit{Rationale}: Ensures compliance with data protection regulations \cite{googleprivacy2025, appleterms2025}.
+\end{itemize}
+
+\section{Legal Requirements (EW)}
+\subsection{Compliance Requirements}
+\begin{itemize}
+    \item \textbf{LR-COMP1}: The system must protect user data at all times, adhering to PIPEDA standards. \\ 
+    \textit{Rationale}: Ensures compliance with data privacy laws.
+\end{itemize}
+
+\begin{thebibliography}{9}
+    \bibitem{nngroup2022} W. L. in R.-B. U. Experience, \textit{Best Font for Online Reading: No Single Answer}, Nielsen Norman Group, Apr. 24, 2022. \url{https://www.nngroup.com/articles/best-font-for-online-reading/}.
+    \bibitem{googleprivacy2025} Google, \textit{Google Play Developer Distribution Agreement}. \url{https://play.google/developer-distribution-agreement.html}.
+    \bibitem{appleterms2025} Apple, \textit{Apple Developer Terms}. \url{https://developer.apple.com/support/terms/}.
+\end{thebibliography}
+
+\end{document}
