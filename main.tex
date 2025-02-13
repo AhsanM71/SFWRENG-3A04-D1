@@ -14,6 +14,8 @@
 %\usepackage{setspace}
 %\usepackage{xcolor}
 \usepackage{color}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
 %------------------------------------------------------------------------------
 
 % Header and Footer
@@ -89,21 +91,25 @@
 \label{sub:definitions_acronyms_and_abbreviations}
 % Begin SubSection
 \begin{itemize}
-	\item Provide the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS.
-	\item This should be in alphabetical order.
+    \item \textbf{API}: Application Programming Interface, used to retrieve pricing data from external sources.
+    \item \textbf{AI}: Artificial Intelligence, for analyzing images and/or text input.
+    \item \textbf{Account Management Database}: A supporting entity that stores user login information and car valuation reports.
+    \item \textbf{DealCheck}: The name of the mobile application being proposed.
+    \item \textbf{Expert}: A software component that will process the data and provide a result on whether it thinks the car deal is good or not based on the expert’s algorithm.
+    \item \textbf{OS}: Operating System.
+    \item \textbf{SRS}: Software Requirements Specification document.
 \end{itemize}
 % End SubSection
 
 \subsection{References}
 \label{sub:references}
-% Begin SubSection
-\begin{itemize}
-	\item Provide a complete list of all documents referenced elsewhere in the SRS.
-	\item Identify each document by title, report number (if applicable), date, and publishing organization.
-	\item Specify the sources from which the references can be obtained.
-	\item Order this list in some sensible manner (alphabetical by author, or something else that makes more sense).
-\end{itemize}
-% End SubSection
+\begin{enumerate}
+    \item [\textbf{[1]}] W. L. in R.-B. U. Experience, “Best Font for Online Reading: No Single Answer,” Nielsen Norman Group, Apr. 24, 2022. Available at: \url{https://www.nngroup.com/articles/best-font-for-online-reading/}.
+    
+    \item [\textbf{[2]}] satyendra, “The Top 5 Web Scraping Challenges: Best Practices and Solutions,” Rayobyte, Aug. 03, 2023. Available at: \url{https://rayobyte.com/blog/web-scraping-solutions/} (accessed Feb. 02, 2025).
+    
+    \item [\textbf{[3]}] R. Lai, “The SOLID Principles: Writing Scalable \& Maintainable Code,” Medium, Jun. 28, 2023. Available at: \url{https://forreya.medium.com/the-solid-principles-writing-scalable-maintainable-code-13040ada3bca} (accessed Feb. 02, 2025).
+\end{enumerate}
 
 \subsection{Overview}
 \label{sub:overview}
@@ -170,7 +176,10 @@
 \label{sub:constraints}
 % Begin SubSection
 \begin{itemize}
-	\item Provide a general description of any constraints that will limit the developer's options
+    \item \textbf{Data Privacy Constraint}: The app must comply with local data protection laws such as GDPR or PIPEDA.
+    \item \textbf{Project Timeline}: The amount of time allocated for the project will influence the number of additional features that can be implemented. It also impacts the overall development schedule and the resources available for the project.
+    \item \textbf{Target Audience Constraint}: The system must be designed to cater to both novice and experienced car buyers.
+    \item \textbf{Time Limit for Car Deal Valuation}: The system must provide the final valuation result (e.g., "Good Deal," "Bad Deal") within 5 seconds of receiving input.
 \end{itemize}
 % End SubSection
 
@@ -208,15 +217,16 @@
 % End SubSection
 
 % End Section
+\newpage
 \section{Use Case Diagram}
 \label{sec:use_case_diagram}
 % Begin Section
-\begin{itemize}
-	\item Provide the use case diagram for the system being developed.
-	\item You do not need to provide the textual description of any of the use cases here (these will be specified under "Highlights of Functional Requirements").
-%	\item Provide \emph{one} use case diagram for the most important Business Event.
-%	\item The text of all use cases will be specified under "Highlights of Functional Requirements"
-\end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{Images/UseCase.png}
+	\textbf{\caption{Use Case Diagram}}
+	\label{fig:example}
+\end{figure}
 %In this section, select the most important Business Event that your system responds to and give its use case diagram.  Only one use case diagram is needed.  Give a brief textual description of the use case without repeating what is in the scenarios of the corresponding Business Event.
 
 %
@@ -395,15 +405,134 @@
 	{\bf Global Scenario:}\\
 	\textcolor{red}{Insert Scenario Here}
 
-	\item Business Event Name \#2
+	\item User Requests Depreciation Curve for a Previous Car Deal Report \#4
+	
+	{\bf Precondition:} User doesn't have an ongoing request within the system. Furthermore, the user has previously requested and saved a car deal report, and the system 
+	has access to relevant data sources to determine the depreciation data.
+
 	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
+		\item User \#1 \\
+		{\bf Main Success Scenario}
+		\begin{enumerate}[1.]
+			\item User opens the DealCheck application.
+			\item System requires the user to log in and displays the log-in fields.
+			\item User enters login details.
+			\item System successfully authenticates the user and showcases the homepage of DealCheck.
+			\item User navigates to "Saved Reports."
+			\item System showcases the previous car deal report.
+			\item User selects a previous car deal report.
+			\item System displays the car deal details along with an option to request a depreciation curve.
+			\item User selects "View Depreciation Curve."
+			\item System retrieves historical depreciation data for the selected car (make, model, year).
+			\item System processes the depreciation curve using the AI service.
+			\item System generates a depreciation curve based on past market trends and future projections.
+			\item System displays the depreciation curve to the user, showing estimated price drops over time.
+			\item System prompts the user with an option to save the depreciation curve for future reference.
+			\item User selects to save the depreciation curve.
+		\end{enumerate}
 	\end{enumerate}
+		{\bf Secondary Scenario}
+		\begin{description}
+			\item[6i.] User has no saved car deal reports.
+			\begin{description}
+				\item[6i.1] System notifies the user that no previous reports exist.
+				\item[6i.2] System suggests checking recent car valuation requests or starting a new one.
+			\end{description}
+			
+			\item[7i.] User selects the wrong car deal report.
+			\begin{description}
+				\item[7i.1] System allows the user to go back and select the correct report.
+				\item[7i.2] System suggests filtering or searching reports by date, car model, or price.
+			\end{description}
+			
+			\item[9i.] User wants depreciation data for a different region or country.
+			\begin{description}
+				\item[9i.1] System detects location settings and warns if data is unavailable for the selected region.
+				\item[9i.2] System provides alternative data based on the closest available market.
+			\end{description}
+		\end{description}  
+		
+		\textbf{VP2.} Customer Support (DealCheck)
+
+		\begin{description}
+			\item[4i.] System fails to authenticate the user.
+			\begin{description}
+				\item[4i.1] System prompts the user to re-enter login details.
+				\item[4i.2] If authentication continues to fail, system provides a link to Customer Support.
+			\end{description}
+
+			\item[10i.] System cannot retrieve depreciation data from external sources.
+			\begin{description}
+				\item[10i.1] System notifies the user that real-time data is unavailable.
+				\item[10i.2] System suggests trying again later or using cached data.
+				\item[10i.3] System provides a link to Customer Support.
+			\end{description}
+		\end{description}
+
+		\textbf{VP3.} Marketing (DealCheck) \\ N/A  
+
+		\textbf{VP4.} Car Manufacturers \\ N/A  
+
+		\textbf{VP5.} Car Dealerships \\ N/A  
+	
 	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
+	{\bf Precondition:} User doesn't have an ongoing request within the system. Furthermore, the user has previously requested and saved a car deal report, and the system 
+	has access to relevant data sources to determine the depreciation data. \\
+
+	{\bf Main Success Scenario}
+	\begin{enumerate}[1.]
+		\item User opens the DealCheck application.
+		\item System requires the user to log in and displays the log-in fields.
+		\item User enters login details.
+		\item System successfully authenticates the user and showcases the homepage of DealCheck.
+		\item User navigates to "Saved Reports."
+		\item System showcases the previous car deal report.
+		\item User selects a previous car deal report.
+		\item System displays the car deal details along with an option to request a depreciation curve.
+		\item User selects "View Depreciation Curve."
+		\item System retrieves historical depreciation data for the selected car (make, model, year).
+		\item System processes the depreciation curve using the AI service.
+		\item AI service evaluates price trends and vehicle lifespan data, taking into account market fluctuations, mileage impact, and overall condition factors.
+		\item System displays the depreciation curve to the user, showing estimated price drops over time and comparisons to similar vehicles, if data is available.
+		\item System prompts the user with an option to save the depreciation curve for future reference.
+		\item User selects to save the depreciation curve for future reference.
+		\item System confirms that the depreciation curve has been saved and is accessible under "Saved Reports" for that specific car.
+	\end{enumerate}
+
+	\textbf{Secondary Scenario}
+
+	\begin{description}
+		\item[4i.] System fails to authenticate the user.
+		\begin{description}
+			\item[4i.1] System prompts the user to re-enter login details.
+			\item[4i.2] If authentication continues to fail, system provides a link to Customer Support.
+		\end{description}
+
+		\item[6i.] User has no saved car deal reports.
+		\begin{description}
+			\item[6i.1] System notifies the user that no previous reports exist.
+			\item[6i.2] System suggests checking recent car valuation requests or starting a new one.
+		\end{description}
+
+		\item[7i.] User selects the wrong car deal report.
+		\begin{description}
+			\item[7i.1] System allows the user to go back and select the correct report.
+			\item[7i.2] System suggests filtering or searching reports by date, car model, or price.
+		\end{description}
+
+		\item[9i.] User wants depreciation data for a different region or country.
+		\begin{description}
+			\item[9i.1] System detects location settings and warns if data is unavailable for the selected region.
+			\item[9i.2] System provides alternative data based on the closest available market.
+		\end{description}
+
+		\item[10i.] System cannot retrieve depreciation data from external sources.
+		\begin{description}
+			\item[10i.1] System notifies the user that real-time data is unavailable.
+			\item[10i.2] System suggests trying again later or using cached data.
+			\item[10i.3] System provides a link to Customer Support.
+		\end{description}
+	\end{description}
 
 	\item Request a deal valuation based on text, drop down, and image input \#5 \\
 
@@ -738,25 +867,41 @@
 % Begin Section
 \subsection{Look and Feel Requirements}
 \label{sub:look_and_feel_requirements}
-% Begin SubSection
 
 \subsubsection{Appearance Requirements}
 \label{ssub:appearance_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{LF-A}1. ]
-	\item 
+\begin{enumerate}[{LF-A}1.]
+    \item The system shall use a neutral, professional color scheme that is not tied to any specific car brand. \\
+    \textbf{Rationale:} The app must maintain a consistent and professional appearance regardless of the car brand being evaluated. A neutral color scheme (e.g., soft blues, grays, and whites) helps to provide a cohesive look and ensures the focus remains on the functionality of the app, not any specific brand. This approach avoids overwhelming the user with brand-specific colors and keeps the interface easy to navigate for multiple car brands.
+    
+    \item The system shall have a clean, modern, and minimalistic design.  \\
+    \textbf{Rationale:} A minimalistic approach improves usability, avoids visual clutter, and ensures the user can focus on key actions without unnecessary distractions.
+
+    \item The system shall use consistent, easy-to-read fonts across the entire application. \\ 
+    \textbf{Rationale:} Consistent fonts make the app easier to navigate and read, creating a professional and cohesive look that enhances usability. Fonts that may be good options include (Garamond, Oswald, or Open Sans) [1].
+
+    \item  Buttons and interactive elements must be visually distinct, use uniform colors, shapes, and must have sufficient contrast with the background. \\ 
+    \textbf{Rationale:} High contrast improves visibility, making it easier for users to distinguish interactive elements, such as buttons, from the rest of the interface.
+
+    \item The system must avoid using bright or overly saturated colors as background elements on any screen.  \\
+    \textbf{Rationale:} Bright colors could be visually distracting, making it harder for users to focus on content. Neutral or soft colors will keep the interface calm and allow the user to focus on the core tasks.
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Style Requirements}
 \label{ssub:style_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{LF-S}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
+\begin{enumerate}[{LF-S}1.]
+    \item The system shall display a clear indicator for the user when the app is processing their input (e.g., a loading spinner, progress bar). \\
+    \textbf{Rationale:} This informs users that the app is actively processing their input and preparing a result. While the user won't know which expert is being consulted, they will understand that the app is working on their request.
+    
+    \item The system must provide the user with feedback on the final result of their car deal valuation (e.g., “Good Deal,” “Fair Deal,” “Bad Deal”).  \\
+    \textbf{Rationale:} Regardless of which expert was consulted, the user should be presented with clear feedback about the car deal. This feedback should be easy to understand and actionable.
 
-% End SubSection
+    \item  The system must scale and adjust its layout responsively for mobile, tablet, and desktop devices.  \\
+    \textbf{Rationale:} A responsive layout ensures users can interact with the app seamlessly, regardless of their device. This guarantees a consistent experience across different screen sizes and resolutions.
+
+    \item The system should provide clear navigational cues so that the user can easily find the next step, whether that involves uploading an image, entering a textual description, or selecting from dropdowns.  \\
+    \textbf{Rationale:} Clear navigation guides users to provide the necessary input for valuation without confusion. This uniformity allows users to interact with the app fluidly, even though the backend experts may vary.
+\end{enumerate}
 
 \subsection{Usability and Humanity Requirements}
 \label{sub:usability_and_humanity_requirements}
@@ -806,73 +951,83 @@
 
 \subsection{Performance Requirements}
 \label{sub:performance_requirements}
-% Begin SubSection
 
 \subsubsection{Speed and Latency Requirements}
 \label{ssub:speed_and_latency_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-SL}1. ]
-	\item 
+\begin{enumerate}[{PR-SL}1.]
+    \item The response time of all external APIs (such as web scraping or third-party services) used in the app should not exceed 5 seconds in the worst case, with an expected response time of 2 seconds and an ideal response time of 1 second.  \\
+    \textbf{Rationale:} Given that the app fetches car deal information from external sources and processes user input, response times should ideally be under 3 seconds to ensure a seamless user experience. Delays beyond this may cause user frustration, especially when scraping external data, and could lead to abandonment if the delay exceeds 5 seconds.
+
+    \item The system must allow users to upload car images (for AI processing) with a maximum upload time of 5 seconds.  \\
+    \textbf{Rationale:} Image uploads for AI analysis must be fast, as delays in uploading images can negatively affect the user experience. A 5 second max delay ensures that users don't feel frustrated waiting for their image to be processed.
+
+    \item When scraping external data for similar car deals, the system should have an average response time of 3 seconds per request. The system will use asynchronous programming, prioritize essential data collection, schedule scraping during off-peak hours, and utilize rotating proxies to reduce server load. Caching frequently accessed data will minimize unnecessary requests.  \\
+    \textbf{Rationale:} Efficient web scraping is key to maintaining a smooth user experience. Limiting simultaneous requests and using asynchronous programming allows for faster, concurrent data retrieval without overloading external sources. Scheduling scraping tasks during off-peak hours optimizes resource usage, while caching and rotating proxies help reduce server strain and avoid redundant requests, ensuring quicker response times and improved efficiency [2].
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Safety-Critical Requirements}
 \label{ssub:safety_critical_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-SC}1. ]
-	\item 
+\begin{enumerate}[{PR-SC}1.]
+    \item \textbf{N/A}
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Precision or Accuracy Requirements}
 \label{ssub:precision_or_accuracy_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-PA}1. ]
-	\item 
+\begin{enumerate}[{PR-PA}1.]
+    \item The app must provide car deal valuations with an accuracy rate of at least 90\% when compared to industry-standard pricing models or real-world data (Autotrader). \\ 
+    \textbf{Rationale:} The car deal valuation needs to be highly accurate to build trust with users. A 90\% accuracy target ensures that users are provided with reliable assessments, which will encourage them to use the app for car deal decisions.
+
+    \item The app must display numerical values (e.g., price, mileage, accident history) with an accuracy of up to two decimal places in the final report.  \\
+    \textbf{Rationale:} Precision in price and car details is essential for user decision-making. Displaying up to two decimal places ensures that values align with standard financial practices.
+
+    \item The car deal valuation score (e.g., "Good Deal", "Fair Deal", "Bad Deal") must be clearly communicated with a confidence level, showing the percentage of certainty in the valuation.  \\
+    \textbf{Rationale:} Showing the level of confidence in the valuation helps users understand the reliability of the result, building trust in the app's decisions.
+
+    \item The app must provide a prediction of the car's depreciation curve over the next 5 years based on factors like make, model, mileage, and accident history.  \\
+    \textbf{Rationale:} Depreciation prediction is crucial for car buyers to understand the long-term value of their investment. The system must consider various factors to provide an accurate estimation of the car's depreciation curve, helping users make informed decisions. The depreciation prediction should be presented with a margin of error of no more than 10\%.
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Reliability and Availability Requirements}
 \label{ssub:reliability_and_availability_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-RA}1. ]
-	\item 
+\begin{enumerate}[{PR-RA}1.]
+    \item The system must have an availability of 99.9\% except when the external web scraping sources or APIs are temporarily unavailable.  \\
+    \textbf{Rationale:} High availability is crucial for ensuring the app is always accessible for users to check car deals. A 99.9\% uptime is achievable and competitive within the industry, provided the app is not dependent on external sources that may experience downtime. 
+
+    \item The system must create backups of all user input data and valuation results/reports and store them in a database.  \\
+    \textbf{Rationale:} Backups ensure that user-generated data and valuations are not lost in case of a system failure. This adds an additional layer of reliability and prevents loss of critical data and adheres to the ACID principles of database design.
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Robustness or Fault-Tolerance Requirements}
 \label{ssub:robustness_or_fault_tolerance_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-RFT}1. ]
-	\item 
+\begin{enumerate}[{PR-RFT}1.]
+    \item The system should handle incomplete or erroneous user inputs (e.g., missing car details or invalid images) without crashing.  \\
+    \textbf{Rationale:} Even if the user provides incomplete or incorrect data, the app should not crash. Instead, it should prompt the user to correct their input or handle the error with appropriate feedback.
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Capacity Requirements}
 \label{ssub:capacity_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-C}1. ]
-	\item 
+\begin{enumerate}[{PR-C}1.]
+    \item The system must be able to handle up to 10 simultaneous users querying car deal valuations.  \\
+    \textbf{Rationale:} Given the 3-month development timeline, it's important to focus on ensuring that the system works well with a limited number of users. Handling 10 concurrent users is a reasonable target for an initial MVP (Minimum Viable Product) and will allow you to focus on optimizing the app's core features before scaling it up.
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Scalability or Extensibility Requirements}
 \label{ssub:scalability_or_extensibility_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-SE}1. ]
-	\item 
+\begin{enumerate}[{PR-SE}1.]
+    \item The code for the system must adhere to SOLID and GRASP Design Principles and make use of appropriate GoF Design Patterns to facilitate scalability and maintainability.  \\
+    \textbf{Rationale:} Following SOLID and GRASP principles and GoF design patterns ensures that the app's code is modular, maintainable, and extensible. This makes it easier to add new features or adapt to future requirements without compromising the codebase [3].
 \end{enumerate}
-% End SubSubSection
 
 \subsubsection{Longevity Requirements}
 \label{ssub:longevity_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR-L}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
+\begin{enumerate}[{PR-L}1.]
+    \item The system must be able to support updates for new car models (electric cars in the future), market trends, and depreciation algorithms without requiring a major redesign every year.  \\
+    \textbf{Rationale:} This ensures that the app remains relevant and up-to-date with industry changes and continues to provide accurate valuations over time.
 
-% End SubSection
+    \item The system must be able to handle an increasing number of car models, prices, and external data points as the app grows in use, without degrading performance.  \\
+    \textbf{Rationale:} Over time, more car models and data points will need to be integrated into the system, and the app should be able to handle this growth without performance issues.
+\end{enumerate}
+
 
 \subsection{Operational and Environmental Requirements}
 \label{sub:operational_and_environmental_requirements}
@@ -1051,6 +1206,14 @@
 % End SubSection
 
 % End Section
+
+\section{Innovative Features}
+\label{sec:innovative_features}
+The chosen innovative feature to implement is the AI-powered car recommendation system in DealCheck. This feature allows users to receive personalized vehicle suggestions based on their \textit{age, financial status, and location}. By leveraging a generative AI model, the system analyzes user input and provides car recommendations along with approximate prices. This feature enhances user convenience, making it easier for individuals to find a suitable car based on their needs. It also has the potential to increase user engagement, as personalized recommendations encourage users to explore more vehicle options. Additionally, integrating this feature with partnered dealerships can help drive business growth by connecting users with nearby dealers offering recommended cars at competitive prices. We also explored several other innovative features, which are listed below:
+\begin{itemize}
+    \item Request car deal comparison valuation
+    \item Request depreciation curve from previous car deal reports
+\end{itemize}
 
 \appendix
 \section{Division of Labour}
