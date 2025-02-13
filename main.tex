@@ -231,13 +231,38 @@
 	\item Red text below is just to highlight where you need to insert a scenario - don't actually write it all in red.
 \end{itemize}
 
-\noindent {\bf Main Business Events:} List out all the main business events you are presenting. If you sub-divided into smaller ones, you don't need to include the smaller ones in this list.\\
+\noindent {\bf Main Business Events:} \\
 
-\noindent {\bf Viewpoints:} List out all the viewpoints you will be considering.\\
+\noindent The business events considered include:
 
-\noindent {\bf Interpretation:} Specify any liberties you took in interpreting business events, if necessary.\\
+\begin{itemize}
+	\item BE1 Request a deal valuation based on drop down menu input
+	\item BE2 Request a deal valuation based on image and required text input
+	\item BE3 Request a deal valuation with text description
+	\item BE4 Request a depreciation curve for a previous car deal report
+	\item BE5 Request a deal valuation based on text, drop down, and image input
+	\item BE6 Request a car recommendation based on text information provided
+	\item BE7 Request comparison between two or more car deals
+	\item BE8 Account creation
+	\item BE9 Account login
+\end{itemize}
 
-\begin{enumerate}[{\bf BE1.}]
+\noindent {\bf Viewpoints:} \\
+
+\noindent The viewpoints considered include:
+
+\begin{itemize}
+	\item VP1 Users
+	\item VP2 Customer Support (DealCheck)
+	\item VP3 Marketing (DealCheck)
+	\item VP4 Car Manufacturers
+	\item VP5 Car Dealerships
+\end{itemize}
+
+\noindent {\bf Interpretation:} Specify any liberties you took in interpreting business events, if necessary. \\
+
+\begin{enumerate}[{\bf {BE}1.}]
+
 	\item Business Event Name \#1
 		\begin{enumerate}[{\bf VP1.}]
 			\item Viewpoint Name \#1 \\
@@ -247,6 +272,7 @@
 		\end{enumerate}
 		{\bf Global Scenario:}\\
 		\textcolor{red}{Insert Scenario Here}
+
 	\item Business Event Name \#2
 	\begin{enumerate}[{\bf VP1.}]
 		\item Viewpoint Name \#1 \\
@@ -256,6 +282,230 @@
 	\end{enumerate}
 	{\bf Global Scenario:}\\
 	\textcolor{red}{Insert Scenario Here}
+
+	\item Business Event Name \#2
+	\begin{enumerate}[{\bf VP1.}]
+		\item Viewpoint Name \#1 \\
+		\textcolor{red}{Insert Scenario Here}
+		\item Viewpoint Name \#2 \\
+		\textcolor{red}{Insert Scenario Here}
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	\textcolor{red}{Insert Scenario Here}
+
+	\item Business Event Name \#2
+	\begin{enumerate}[{\bf VP1.}]
+		\item Viewpoint Name \#1 \\
+		\textcolor{red}{Insert Scenario Here}
+		\item Viewpoint Name \#2 \\
+		\textcolor{red}{Insert Scenario Here}
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	\textcolor{red}{Insert Scenario Here}
+
+	\item Request a deal valuation based on text, drop down, and image input \#5 \\
+
+	{\bf Precondition:} User does not have an ongoing request within the system. Additionally, 
+	the user has completed the input form fully. This means that an image, 
+	text description, and drop-down text-based inputs have been provided.
+	\begin{enumerate}[{\bf VP1.}]
+		\item User \#1 \\
+		{\bf Main Success Scenario}
+		\begin{enumerate}[1.]
+			\item User opens DealCheck application
+			\item User logs in to account
+			\item User selects “Check New Vehicle”
+			\item User enters relevant drop-down information (make, model, year, location)
+			\item User uploads image of vehicle
+			\item User provides textual description of any issues with the vehicle as well as any additional relevant information not requested via the drop-downs.
+			\item User presses the ‘Submit’ button
+			\item System consults with the generative AI model, a points-based algorithm, and a database of historical data.
+			\item System compiles results from 3 sources into one, comprehensive valuation of the vehicle.
+			\item System returns results to the user.
+			\item User saves the query by pressing ‘Save information’.
+		\end{enumerate}
+		{\bf Secondary Scenario} \\
+		3i. User does not fill out drop-down inputs.
+		\begin{enumerate}[{3i}.1]
+			\item User neglects to fill out all drop-down inputs.
+			\item Query failed.
+		\end{enumerate}
+		5i. User provides insufficient textual description.
+		\begin{enumerate}[{5i}.1]
+			\item System does not attempt to find common phrases inside the textual description nor prompt a large language model with it.
+			\item System notifies the user that textual input was insufficient.
+		\end{enumerate}
+		6i. System loses internet connection upon form submission.
+		\begin{enumerate}[{6i}.1]
+			\item System is unable to perform the request and must stop.
+			\item System fails.
+		\end{enumerate}
+		7i. System is unable to reach the generative AI model.
+		\begin{enumerate}[{7i}.1]
+			\item System queries the points-based algorithm and the database.
+			\item System notifies the user that the AI model was unavailable, therefore the image was not analyzed.
+		\end{enumerate}
+		7ii. System is unable to interpret the image submitted by the user.
+		\begin{enumerate}[{7ii}.1]
+			\item System instead queries the points-based algorithm and the database.
+			\item System fails image analysis.
+		\end{enumerate}
+		\item Customer Support (DealCheck) \#2 \\
+			6i. System should provide an error page to indicate loss of internet connection.
+
+			7i. System provides notification to users that the AI agent was unable to be contacted and recommends trying at another time.
+			
+			7ii. System should provide users with guidelines for proper image submission.
+		\item Marketing (DealCheck) \#3 \\
+			9i. System should provide suggestions of similar vehicles that have historically better prices.
+		\item Car Manufacturers \#4 \\
+			NA
+		\item Car dealership staff \#5 \\
+			NA
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	{\bf Precondition:} User does not have an ongoing request within the system. Additionally, 
+	the user has completed the input form fully. This means that an image, 
+	text description, and drop-down text-based inputs have been provided.
+
+	{\bf Main Success Scenario}
+		\begin{enumerate}[1.]
+			\item User opens DealCheck application
+			\item User logs in to account
+			\item User selects “Check New Vehicle”
+			\item User enters relevant drop-down information (make, model, year, location)
+			\item User uploads image of vehicle
+			\item User provides textual description of any issues with the vehicle as well as any additional relevant information not requested via the drop-downs.
+			\item User presses the ‘Submit’ button
+			\item System consults with the generative AI model, a points-based algorithm, and a database of historical data.
+			\item System compiles results from 3 sources into one, comprehensive valuation of the vehicle.
+			\item System returns results to the user.
+			\item User saves the query by pressing ‘Save information’.
+		\end{enumerate}
+		{\bf Secondary Scenario} \\
+		3i. User does not fill out drop-down inputs.
+		\begin{enumerate}[{3i}.1]
+			\item User neglects to fill out all drop-down inputs.
+			\item Query failed.
+		\end{enumerate}
+		5i. User provides insufficient textual description.
+		\begin{enumerate}[{5i}.1]
+			\item System does not attempt to find common phrases inside the textual description nor prompt a large language model with it.
+			\item System notifies the user that textual input was insufficient.
+		\end{enumerate}
+		6i. System loses internet connection upon form submission.
+		\begin{enumerate}[{6i}.1]
+			\item System is unable to perform the request and must stop.
+			\item System fails.
+		\end{enumerate}
+		7i. System is unable to reach the generative AI model.
+		\begin{enumerate}[{7i}.1]
+			\item System queries the points-based algorithm and the database.
+			\item System notifies the user that the AI model was unavailable, therefore the image was not analyzed.
+			System recommends attempting the AI analysis at another time due to the LLM being unavailable. 
+		\end{enumerate}
+		7ii. System is unable to interpret the image submitted by the user.
+		\begin{enumerate}[{7ii}.1]
+			\item System instead queries the points-based algorithm and the database.
+			\item System notifies the user that the image was not able to be interpreted, and prompts the user with the guidelines for proper image submission (e.g. entire vehicle is within the photo)
+		\end{enumerate}
+
+	\item Business Event Name \#2
+	\begin{enumerate}[{\bf VP1.}]
+		\item Viewpoint Name \#1 \\
+		\textcolor{red}{Insert Scenario Here}
+		\item Viewpoint Name \#2 \\
+		\textcolor{red}{Insert Scenario Here}
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	\textcolor{red}{Insert Scenario Here}
+
+	\item Business Event Name \#2
+	\begin{enumerate}[{\bf VP1.}]
+		\item Viewpoint Name \#1 \\
+		\textcolor{red}{Insert Scenario Here}
+		\item Viewpoint Name \#2 \\
+		\textcolor{red}{Insert Scenario Here}
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	\textcolor{red}{Insert Scenario Here}
+
+	\item Login \#8 \\
+
+	{\bf Precondition:} User has an existing account with the DealCheck application. 
+	User is not currently logged in or authenticated to the DealCheck application.
+	\begin{enumerate}[{\bf VP1.}]
+		\item User \#1 \\
+		{\bf Main Success Scenario}
+		\begin{enumerate}[1.]
+			\item User opens DealCheck application
+			\item User presses the “Login” button.
+			\item User enters username.
+			\item User enters password.
+			\item User submits the form.
+			\item System authenticates the user.
+			\item System admits the user to the application.
+		\end{enumerate}
+		{\bf Secondary Scenario} \\
+		3i. User forgets username
+		\begin{enumerate}[{3i}.1]
+			\item System prompts the user to input their email they signed up with.
+			\item System sends email to the user containing a username reset link.
+			\item User resets username and re-attempts login.
+		\end{enumerate}
+		4i. User forgets password.
+		\begin{enumerate}[{4i}.1]
+			\item System prompts the user to input their email they signed up with.
+			\item System sends email to the user containing a password reset link.
+			\item User resets password and re-attempts login.
+		\end{enumerate}
+		6i. System loses internet connection upon form submission.
+		\begin{enumerate}[{6i}.1]
+			\item System is unable to perform the request and must stop.
+			\item System fails.
+		\end{enumerate}
+		\item Customer Support (DealCheck) \#2 \\
+			4i. System should prompt the user to create a secure password when resetting their password.
+		\item Marketing (DealCheck) \#3 \\
+			7i. The system should alert user of new features once they have logged in to inform them of anything that may have changed.
+		\item Car Manufacturers \#4 \\
+			NA
+		\item Car dealership staff \#5 \\
+			NA
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	{\bf Precondition:} User has an existing account with the DealCheck application. User is not currently logged in or authenticated to the DealCheck application.
+
+	{\bf Main Success Scenario}
+		\begin{enumerate}[1.]
+			\item User opens DealCheck application
+			\item User presses the “Login” button.
+			\item User enters username.
+			\item User enters password.
+			\item User submits the form.
+			\item System authenticates the user.
+			\item System admits the user to the application.
+			\item System notifies user regarding new features of the application if they exist.
+		\end{enumerate}
+		{\bf Secondary Scenario} \\
+		3i. User forgets username
+		\begin{enumerate}[{3i}.1]
+			\item System prompts the user to input their email they signed up with.
+			\item System sends email to the user containing a username reset link.
+			\item User resets username and re-attempts login.
+		\end{enumerate}
+		4i. User forgets password.
+		\begin{enumerate}[{4i}.1]
+			\item System prompts the user to input their email they signed up with.
+			\item System sends email to the user containing a password reset link.
+			\item System prompts user to create a secure password.
+			\item User resets password and re-attempts login.
+		\end{enumerate}
+		6i. System loses internet connection upon form submission.
+		\begin{enumerate}[{6i}.1]
+			\item System is unable to perform the request and must stop.
+			\item System fails.
+		\end{enumerate}
 \end{enumerate}
 
 %	Below, we organize by Business Event.
@@ -373,15 +623,15 @@
 \label{sec:non-functional_requirements}
 
 
-\begin{itemize}
-	\item For each non-functional requirement, provide a justification/rationale for it.\\
-	{\bf Example:} \\
-	SC1. \emph{The device should not explode in a customer’s pocket.}\\
-	{\bf Rationale:} Other companies have had issues with the batteries they used in their phones randomly exploding [insert citation]. This causes a safety issue, as the phone is often carried in a person's hand or pocket.	
-	\item If you need to make a guess because you couldn't really talk to stakeholders, you can say "We imagined stakeholders would want...because..."
-	\item Each requirement should have a unique label/number for it.
-	\item In the list below, if a particular section doesn't apply, just write N/A so we know you considered it.
-\end{itemize}
+%\begin{itemize}
+%	\item For each non-functional requirement, provide a justification/rationale for it.\\
+%	{\bf Example:} \\
+%	SC1. \emph{The device should not explode in a customer’s pocket.}\\
+%	{\bf Rationale:} Other companies have had issues with the batteries they used in their phones randomly exploding [insert citation]. This causes a safety issue, as the phone is often carried in a person's hand or pocket.	
+%	\item If you need to make a guess because you couldn't really talk to stakeholders, you can say "We imagined stakeholders would want...because..."
+%	\item Each requirement should have a unique label/number for it.
+%	\item In the list below, if a particular section doesn't apply, just write N/A so we know you considered it.
+%\end{itemize}
 
 % Begin Section
 \subsection{Look and Feel Requirements}
@@ -666,7 +916,13 @@
 \label{ssub:compliance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR-COMP}1. ]
-	\item 
+	\item Any information collected from a user of the application must be kept protected at all times. This requirement is even more elevated when considering the storage of personal information and other highly-sensitive data. Rationale: (Pipeda-1, Accountability)
+	\item The application shall not collect any unneeded information from users, and there shall be a strict set of data collected that will be communicated with the user. Rationale: (Pipeda-2, Purpose Identification)
+	\item The application shall provide users with a comprehensive list of all personal data the application holds. Rationale: (Pipeda-2, Purpose Identification)
+	\item The application shall request that the user agree to the data policy of the application prior to any use of the application.Rationale: (Pipeda-3, Valid, Informed Consent)
+	\item The application shall have a standard for disposal of personal information after a given period of time. Additionally, the application shall limit disclosure of user data to any necessary third parties. Finally, the application shall not disclose data to any non-authorized third parties. Rationale: (Pipeda-5, Limit disclosure, use, retention)
+	\item All personal data with an associated sensitivity risk (e.g. passwords) shall be stored in an encrypted fashion to limit any risk of loss or theft. Rationale: (Pipeda-7, Use appropriate safeguards)
+	\item  The privacy policy of the application shall be explained in clear language and not be of extreme length. There shall be a concise list of all data and connections to other services the application requires that will be provided to all users upon account creation. Rationale: (Pipeda-8, Be open)
 \end{enumerate}
 % End SubSubSection
 
@@ -674,7 +930,10 @@
 \label{ssub:standards_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR-STD}1. ]
-	\item 
+	\item The application should meet the color contrast, image and media alternatives, and other relevant accessibility requirements as set out by the W3C. [SOURCE]
+	\item The application shall conform with the screen reader guidelines set out by Google in their Android instructions in order for accessibility for visually impaired users.
+	\item The application shall follow standard navigation practices for mobile apps - such as a standard back arrow - as outlined by Google in their Android development instructions. This will ensure users are able to easily use the application.
+	\item The application shall conform to Google’s standards for notifications. This includes managing notification priority, ensuring notifications are not used for advertisements, and grouping similar notifications together.
 \end{enumerate}
 % End SubSubSection
 
