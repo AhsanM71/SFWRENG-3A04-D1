@@ -36,12 +36,16 @@
 \begin{document}
 
 \maketitle	
-\noindent{\bf Tutorial Number:} T0x\\
-{\bf Group Number:} Gx \\
+\noindent{\bf Tutorial Number:} T1\\
+{\bf Group Number:} G2 \\
 {\bf Group Members:} 
 \begin{itemize}
-	\item Group Member Name (as listed in Avenue)
-	\item You do not need to use student \#s or macid (keep those private).
+	\item Alqashqish, Abdallah
+	\item Di Filippo, Rebecca
+	\item Finlay, Jake
+	\item Karo, Omer
+	\item Muzammil, Ahsan
+	\item Walsh, Ethan
 \end{itemize}
 
 \section*{IMPORTANT NOTES}
@@ -131,12 +135,22 @@
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-\begin{itemize}
-	\item Put the product into perspective with other related products, i.e., context
-	\item If the product is independent and totally self-contained, it should be stated here
-	\item If the SRS defines a product that is a component of a larger system, then this subsection should relate the requirements of that larger system to the functionality of the software being developed. Identify interfaces between that larger system and the software to be developed.
-	\item A block diagram showing the major components of the larger system, interconnections, and external interfaces can be helpful
-\end{itemize}
+DealCheck is a mobile app that will serve as a center for car pricing information. Similar to market products such as AutoTrader and CarGurus, DealCheck 
+will offer users the ability to ensure the price of a vehicle is both accurate and fair. The application will achieve this through a variety of sources 
+such as generative artificial intelligence (AI), existing databases of car price information (for example, the Kelley Blue Book), and a custom algorithm 
+to provide a score for the deal. Users will first login to an account, and then will be able to submit multi-modal information about the vehicle, such as 
+text descriptions, images, and drop-downs. This will allow for a more in-depth analysis, considering factors such as mileage, crash history, and current 
+market data. Users will also be able to view their existing reports and query history in order to access previously-searched-for information quickly. \newline
+
+\noindent In terms of external interactions, this application will consult with an external large-language model (for example, ChatGPT) in order to source recommendations. 
+Additionally, it will consult, via API, an existing database of car price records to show users historical pricing for the vehicle they are considering.
+
+\begin{figure}[htb!]
+	\centering
+	\includegraphics[scale=0.5]{system_block_diagram.png}
+	\caption{Block Diagram of the System}\label{Fig:2.1}
+\end{figure}
+
 % End SubSection
 
 \subsection{Product Functions}
