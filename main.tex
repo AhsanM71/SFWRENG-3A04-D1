@@ -333,22 +333,24 @@ Other assumptions that if changed, requirements may need to be updated:
         \end{enumerate}
         
         {\bf Secondary Scenario} \\
-        6i. User does not provide all mandatory fields:
-        \begin{enumerate}[{6i}.1]
-            \item The system does not allow the user to submit the request until all mandatory fields have been provided.
-        \end{enumerate}
-    
-        6ii. System loses internet connection upon form submission.
-        \begin{enumerate}[{6ii}.1]
-            \item System is unable to perform the request.
-            \item System displays an error message.
-        \end{enumerate}
-    
-        6iii. User provides an insufficient textual description.
-        \begin{enumerate}[{6iii}.1]
-            \item System does not attempt to analyze the text or generate insights.
-            \item System notifies the user that the input is insufficient and prompts for additional details.
-        \end{enumerate}
+		\begin{description}
+			\item [6i.] User does not provide all mandatory fields:
+			\begin{description}
+				\item [6i.1] The system does not allow the user to submit the request until all mandatory fields have been provided.
+			\end{description}
+		
+			\item [6ii.] System loses internet connection upon form submission.
+			\begin{description}
+				\item [6ii.1] System is unable to perform the request.
+				\item [6ii.2] System displays an error message.
+			\end{description}
+		
+			\item [6iii.] User provides an insufficient textual description.
+			\begin{description}
+				\item [6iii.1] System does not attempt to analyze the text or generate insights.
+				\item [6iii.2] System notifies the user that the input is insufficient and prompts for additional details.
+			\end{description}
+		\end{description}
     
         \item Customer Support (DealCheck) \#2 \\
             7i. System should notify users when expert analysis is unavailable and recommend retrying later.
@@ -386,52 +388,33 @@ Other assumptions that if changed, requirements may need to be updated:
         \end{enumerate}
         
         {\bf Secondary Scenario} \\
-        6i. User does not provide all mandatory fields:
-        \begin{enumerate}[{6i}.1]
-            \item The system does not allow the user to submit the request until all mandatory fields have been provided.
-        \end{enumerate}
-    
-        6ii. System loses internet connection upon form submission.
-        \begin{enumerate}[{6ii}.1]
-            \item System is unable to perform the request.
-            \item System displays an error message.
-        \end{enumerate}
-    
-        6iii. User provides an insufficient textual description.
-        \begin{enumerate}[{6iii}.1]
-            \item System does not attempt to analyze the text or generate insights.
-            \item System notifies the user that the input is insufficient and prompts for additional details.
-        \end{enumerate}
+        \begin{description}
+			\item [6i.] User does not provide all mandatory fields:
+			\begin{description}
+				\item [6i.1] The system does not allow the user to submit the request until all mandatory fields have been provided.
+			\end{description}
+		
+			\item [6ii.] System loses internet connection upon form submission.
+			\begin{description}
+				\item [6ii.1] System is unable to perform the request.
+				\item [6ii.2] System displays an error message.
+			\end{description}
+		
+			\item [6iii.] User provides an insufficient textual description.
+			\begin{description}
+				\item [6iii.1] System does not attempt to analyze the text or generate insights.
+				\item [6iii.2] System notifies the user that the input is insufficient and prompts for additional details.
+			\end{description}
 
-        7i. System should notify users when expert analysis is unavailable and recommend retrying later.
+			\item [7i.] System should notify users when expert analysis is unavailable and recommend retrying later.
 
-        9i. System should suggest similar vehicles with better historical prices.
-    
-\item Business Event Name \#2
-    \begin{enumerate}[{\bf VP1.}]
-        \item Viewpoint Name \#1 \\
-        \textcolor{red}{Insert Scenario Here}
-        \item Viewpoint Name \#2 \\
-        \textcolor{red}{Insert Scenario Here}
-    \end{enumerate}
-    {\bf Global Scenario:}\\
-    \textcolor{red}{Insert Scenario Here}
+        	\item [9i.] System should suggest similar vehicles with better historical prices.
+		\end{description}
 
-	\item Business Event Name \#2
-	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
-	\end{enumerate}
-	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
+\item User Requests Depreciation Curve for a Previous Car Deal Report \#4
 
-	\item User Requests Depreciation Curve for a Previous Car Deal Report \#4
-	
-	{\bf Precondition:} User doesn't have an ongoing request within the system. Furthermore, the user has previously requested and saved a car deal report, and the system 
+{\bf Precondition:} User doesn't have an ongoing request within the system. Furthermore, the user has previously requested and saved a car deal report, and the system 
 	has access to relevant data sources to determine the depreciation data.
-
 	\begin{enumerate}[{\bf VP1.}]
 		\item User \#1 \\
 		{\bf Main Success Scenario}
@@ -700,43 +683,45 @@ Other assumptions that if changed, requirements may need to be updated:
         
     \end{enumerate}
     {\bf Secondary Scenario} \\
-    6i. Device loses connection to the internet once form submitted
-    \begin{enumerate}[{6i}.1]
-        \item System informs user that the device has lost connection to the internet
-        \item System requests to check connection and try again
-        \item User tries to submit the registration form again
-        \item Back to BE8-6
-    \end{enumerate}
+	\begin{description}
+		\item [6i.] Device loses connection to the internet once form submitted
+		\begin{description}
+			\item [6i.1] System informs user that the device has lost connection to the internet
+			\item [6i.2] System requests to check connection and try again
+			\item [6i.3] User tries to submit the registration form again
+			\item [6i.4] Back to BE8-6
+		\end{description}
 
-    6ii. System user system is unavailable or down
-    \begin{enumerate}[{6ii}.1]
-        \item System informs user that they cannot be authenticated and to try again later
-        \item User submit the form at a later time
-        \item Back to BE8-6
-    \end{enumerate}
+		\item [6ii.] System user system is unavailable or down
+		\begin{description}
+			\item [6ii.1] System informs user that they cannot be authenticated and to try again later
+			\item [6ii.2] User submit the form at a later time
+			\item [6ii.3] Back to BE8-6
+		\end{description}
 
-    7i.  Submitted username already exists
-    \begin{enumerate}[{7i}.1]
-        \item System informs user that the username is unavailable
-        \item System requests user to enter another username
-        \item User enters a new username
-        \item User resubmits the registration form
-        \item Back to BE8-7
-    \end{enumerate}
+		\item [7i.] Submitted username already exists
+		\begin{description}
+			\item [7i.1] System informs user that the username is unavailable
+			\item [7i.2] System requests user to enter another username
+			\item [7i.3] User enters a new username
+			\item [7i.4] User resubmits the registration form
+			\item [7i.5] Back to BE8-7
+		\end{description}
 
-    7ii. Submitted email already exists
-    \begin{enumerate}[{7ii}.1]
-        \item System informs the user that the email is unavailable and already being used
-        \item System requests user to enter another email
-        \item User enters a new email
-        \item User resubmits the registration form
-        \item Back to BE8-7
-    \end{enumerate}
+		\item [7ii.] Submitted email already exists
+		\begin{description}
+			\item [7ii.1] System informs the user that the email is unavailable and already being used
+			\item [7ii.2] System requests user to enter another email
+			\item [7ii.3] User enters a new email
+			\item [7ii.4] User resubmits the registration form
+			\item [7ii.5] Back to BE8-7
+		\end{description}
+	\end{description}
 
     \item Customer Support (DealCheck) \#2 \\
-        7i. User Account given unique id for the purpose of tracing any possible issues.
+        \textbf{7i.} User Account given unique id for the purpose of tracing any possible issues.
     \item Marketing (DealCheck) \#3 \\
-        7i. User’s email is signed up to the application newsletter list.
+		\textbf{7i.} User’s email is signed up to the application newsletter list.
     \item Car Manufacturers \#4 \\
         NA
     \item Car dealership staff \#5 \\
@@ -758,42 +743,44 @@ Other assumptions that if changed, requirements may need to be updated:
     \end{enumerate}
     
     {\bf Secondary Scenario} \\
-    6i. Device loses connection to the internet once form submitted
-    \begin{enumerate}[{6i}.1]
-        \item System informs user that the device has lost connection to the internet
-        \item System requests to check connection and try again
-        \item User tries to submit the registration form again
-        \item Back to BE8-6
-    \end{enumerate}
+    \begin{description}
+		\item [6i.] Device loses connection to the internet once form submitted
+		\begin{description}
+			\item [6i.1] System informs user that the device has lost connection to the internet
+			\item [6i.2] System requests to check connection and try again
+			\item [6i.3] User tries to submit the registration form again
+			\item [6i.4] Back to BE8-6
+		\end{description}
 
-    6ii. System user system is unavailable or down
-    \begin{enumerate}[{6ii}.1]
-        \item System informs user that they cannot be authenticated and to try again later
-        \item User submit the form at a later time
-        \item Back to BE8-6
-    \end{enumerate}
+		\item [6ii.] System user system is unavailable or down
+		\begin{description}
+			\item [6ii.1] System informs user that they cannot be authenticated and to try again later
+			\item [6ii.2] User submit the form at a later time
+			\item [6ii.3] Back to BE8-6
+		\end{description}
 
-    7i.  Submitted username already exists
-    \begin{enumerate}[{7i}.1]
-        \item System informs user that the username is unavailable
-        \item System requests user to enter another username
-        \item User enters a new username
-        \item User resubmits the registration form
-        \item Back to BE8-7
-    \end{enumerate}
+		\item [7i.] Submitted username already exists
+		\begin{description}
+			\item [7i.1] System informs user that the username is unavailable
+			\item [7i.2] System requests user to enter another username
+			\item [7i.3] User enters a new username
+			\item [7i.4] User resubmits the registration form
+			\item [7i.5] Back to BE8-7
+		\end{description}
 
-    7ii. Submitted email already exists
-    \begin{enumerate}[{7ii}.1]
-        \item System informs the user that the email is unavailable and already being used
-        \item System requests user to enter another email
-        \item User enters a new email
-        \item User resubmits the registration form
-        \item Back to BE8-7
-    \end{enumerate}
+		\item [7ii.] Submitted email already exists
+		\begin{description}
+			\item [7ii.1] System informs the user that the email is unavailable and already being used
+			\item [7ii.2] System requests user to enter another email
+			\item [7ii.3] User enters a new email
+			\item [7ii.4] User resubmits the registration form
+			\item [7ii.5] Back to BE8-7
+		\end{description}
+		
+		\item [7iii.] User Account given unique id for the purpose of tracing any possible issues.
     
-    7iii. User Account given unique id for the purpose of tracing any possible issues.
-    
-    7iv. User’s email is signed up to the application newsletter list.
+		\item [7iv.] User’s email is signed up to the application newsletter list.
+	\end{description}
 
 	\item Login \#9 \\
 
