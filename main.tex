@@ -284,15 +284,106 @@
 		{\bf Global Scenario:}\\
 		\textcolor{red}{Insert Scenario Here}
 
-	\item Business Event Name \#2
-	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
-	\end{enumerate}
-	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
+  \item User requests a deal valuation based on an image and text \#2
+    \begin{enumerate}[{\bf VP1.}]
+      \item Users \#1 \\
+        \textbf{Main Success Scenario}
+        \begin{enumerate}[1.]
+          \item User opens the DealCheck application.
+          \item System displays the home screen with options for vehicle valuation.
+          \item User selects ``Check New Vehicle''.
+          \item System prompts the user to provide inputs.
+          \item User fills in the required drop-down menus.
+          \item User uploads an image of the vehicle.
+          \item User provides a textual description.
+          \item User enters their own guess for the deal in the guess check text box.
+          \item User presses the ``Submit'' button.
+          \item System processes the image and text input using a generative AI model.
+          \item System queries a points-based algorithm and a historical data database to supplement the valuation.
+          \item System compiles results from the three sources into a comprehensive vehicle valuation.
+          \item System returns the valuation results to the user.
+          \item User saves the query by pressing ``Save information''.
+        \end{enumerate}
+        \textbf{Secondary Scenarios}
+        \begin{enumerate}
+          \item[6i.] System is unable to interpret the submitted image.
+          \begin{enumerate}
+            \item[6i.1] System queries only the points-based algorithm and the database.
+            \item[6i.2] System notifies the user that the image could not be analyzed and provides guidelines for proper image submission.
+          \end{enumerate}
+          \item[9i.] User provides an insufficient textual description.
+          \begin{enumerate}
+            \item[9i.1] System does not attempt to analyze the text or generate insights.
+            \item[9i.2] System notifies the user that the input is insufficient and prompts for additional details.
+          \end{enumerate}
+          \item[9ii.] System loses internet connection upon form submission.
+          \begin{enumerate}
+            \item[9ii.1] System is unable to process the request.
+            \item[9ii.2] System fails.
+          \end{enumerate}
+          \item[10i.] System is unable to reach the generative AI model.
+          \begin{enumerate}
+            \item[10i.1] System queries the points-based algorithm and the database instead.
+            \item[10i.2] System notifies the user that the AI model was unavailable, and the image was not analyzed.
+            \item[10i.3] System recommends retrying later for full AI analysis.
+          \end{enumerate}
+        \end{enumerate}
+      \item Customer Support (DealCheck) \#2
+        \begin{enumerate}
+          \item[9ii.] System should provide an error page indicating loss of internet connection.
+          \item[10ii.] System should notify users when AI analysis is unavailable and recommend retrying later.
+          \item[6ii.] System should provide image submission guidelines to users.
+        \end{enumerate}
+      \item Marketing (DealCheck) \#3
+        \begin{enumerate}
+          \item[13i.] System should suggest similar vehicles with better historical prices.
+        \end{enumerate}
+      \item Car Manufacturers \\ N/A
+      \item Car Dealerships \\ N/A
+    \end{enumerate}
+    {\bf Global Scenario:}\\
+    \textbf{Precondition:} User does not have an ongoing request within the system. User has provided an image and required textual input but has not filled out optional drop-down fields.\\
+    \textbf{Main Success Scenario}
+    \begin{enumerate}[1.]
+      \item User opens the DealCheck application.
+      \item System displays the home screen with options for vehicle valuation.
+      \item User selects ``Check New Vehicle''.
+      \item System prompts the user to provide inputs.
+      \item User fills in the required drop-down menus.
+      \item User uploads an image of the vehicle.
+      \item User provides a textual description.
+      \item User enters their own guess for the deal in the guess check text box.
+      \item User presses the ``Submit'' button.
+      \item System processes the image and text input using a generative AI model.
+      \item System queries a points-based algorithm and a historical data database to supplement the valuation.
+      \item System compiles results from the three sources into a comprehensive vehicle valuation.
+      \item System returns the valuation results to the user.
+      \item User saves the query by pressing `Save information''.
+    \end{enumerate}
+    \textbf{Secondary Scenarios}
+    \begin{enumerate}
+      \item[6i.] System is unable to interpret the submitted image.
+      \begin{enumerate}
+        \item[6i.1] System queries only the points-based algorithm and the database.
+        \item[6i.2] System notifies the user that the image could not be analyzed and provides guidelines for proper image submission.
+      \end{enumerate}
+      \item[9i.] User provides an insufficient textual description.
+      \begin{enumerate}
+        \item[9i.1] System does not attempt to analyze the text or generate insights.
+        \item[9i.2] System notifies the user that the input is insufficient and prompts for additional details.
+      \end{enumerate}
+      \item[9ii.] System loses internet connection upon form submission.
+      \begin{enumerate}
+        \item[9ii.1] System is unable to perform the request.
+        \item[9ii.2] System displays an error message.
+      \end{enumerate}
+      \item[10i.] System is unable to reach the generative AI model.
+      \begin{enumerate}
+        \item[10i.1] System queries the points-based algorithm and the database instead.
+        \item[10i.2] System notifies the user that the AI model was unavailable, and the image was not analyzed.
+        \item[10i.3] System recommends retrying later for full AI analysis.
+      \end{enumerate}
+    \end{enumerate}
 
 	\item Business Event Name \#2
 	\begin{enumerate}[{\bf VP1.}]
