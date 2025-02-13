@@ -1,1 +1,29 @@
 ._*
+
+# LaTeX intermediate files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.blg
+*.bbl
+*.synctex.gz
+*.fdb_latexmk
+*.xdv
+
+# Output files
+*.pdf
+*.dvi
+*.ps
+
+# Editor-specific files
+*~ 
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+*.md
