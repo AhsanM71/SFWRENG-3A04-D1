@@ -70,10 +70,7 @@
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-\begin{itemize}
-	\item Specify the purpose of the SRS.
-	\item Specify the intended audience for the SRS.
-\end{itemize}
+This SRS outlines the functional and non-functional requirements for the DealCheck app, detailing the system's design, features, and use cases. The intended audience includes internal stakeholders of DealCheck, such as project managers, software developers, product designers, marketing, customer support, executives, and investors. The document is written to be easily understood by all involved parties, with no prior technical expertise required.
 % End SubSection
 
 \subsection{Scope}
@@ -114,11 +111,7 @@
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-\begin{itemize}
-	\item Describe what the remainder of the document/SRS contains.\\
-	(e.g. "Section 2 discusses...Section 3...")
-%	\item Explain how the SRS is organized
-\end{itemize}
+Section 2 discusses the overall product description focusing on the product perspective, product functions,user characteristics, assumptions and dependencies, and apportioning of requirements. Section 3 contains the use case diagram illustrating the scenario of a user requesting a deal check on a car. Section 4 highlights the functional requirements, main business events and viewpoints. Section 5 provides the non-functional requirements talking about look and feel requirements, usability and humanity requirements, performance requirements, operational and environmental requirements, maintainability and support requirements, security requirements, cultural and political requirements and legal requirements. Section 6 holds the division of labour. Lastly, Section 7 discusses the innovative design feature.
 % End SubSection
 
 % End Section
@@ -165,10 +158,16 @@
 \subsection{User Characteristics}
 \label{sub:user_characteristics}
 % Begin SubSection
+	The DealCheck app is designed to be accessible and user-friendly for a wide range of users. It has the following expected qualifications for its users:
 \begin{itemize}
-	\item Describe those general characteristics of the intended users of the product including educational level, experience, and technical expertise 
-	\item Since there will be many users, you may wish to divide into different user types or personas
-%	\item Do not state specific requirements, but rather provide the reasons why certain specific requirements are later specified
+    \item \textbf{Education Level:} Basic Literacy Skills\\
+    Users with basic literacy skills in reading and writing should have no trouble navigating and using the app to evaluate car prices and request deal checks.
+    
+    \item \textbf{Technical Expertise:} Basic Knowledge of Smartphone Usage\\
+    Users who are familiar with basic smartphone functions (such as navigating through apps, selecting options, and inputting text and images) should be able to easily use the app without requiring specialized technical knowledge.
+    
+    \item \textbf{Age Group:} 18+\\
+    The app is aimed at adult users who are interested in buying or selling cars, meaning users are expected to be 18 years old or older. The interface is designed to be simple enough for all adult users to access and understand.
 \end{itemize}
 % End SubSection
 
@@ -284,15 +283,71 @@
 
 \begin{enumerate}[{\bf {BE}1.}]
 
-	\item Business Event Name \#1
-		\begin{enumerate}[{\bf VP1.}]
-			\item Viewpoint Name \#1 \\
-				\textcolor{red}{Insert Scenario Here}
-			\item Viewpoint Name \#2 \\
-				\textcolor{red}{Insert Scenario Here}
-		\end{enumerate}
-		{\bf Global Scenario:}\\
-		\textcolor{red}{Insert Scenario Here}
+    \item User requests deal valuation based on drop-down menu \\    
+	\textbf{Precondition:} User does not have an ongoing request within the system. The user must also be logged into their account on the app. The user must also know the basic information about their car (make, model, year, location).
+    \begin{enumerate}[{\bf VP1.}]
+      \item User \#1
+        \textbf{Main Success Scenario}
+        \begin{enumerate}[1.]
+          \item User opens the DealCheck application.
+          \item User selects “Check New Vehicle”.
+          \item User enters relevant drop-down information (make, model, year, location).
+          \item User enters their own guess for the deal in the guess check text box.
+          \item User presses the ‘Submit’ button.
+          \item System consults with the points-based algorithm.
+          \item System compiles results from the algorithm.
+          \item System returns results to the user and lets the user know if they were right or not.
+          \item User saves the query by pressing ‘Save information’.
+        \end{enumerate}
+        \textbf{Secondary Scenario}
+        \begin{enumerate}
+          \item[4i.] User does not fill out drop-down inputs.
+          \begin{enumerate}
+            \item[4i.1] User neglects to fill out all drop-down inputs.
+            \item[4i.2] Query failed.
+          \end{enumerate}
+        \end{enumerate}
+      \item Customer Support (DealCheck) \#2
+        \begin{enumerate}
+          \item[6i.] System should provide an error page to indicate loss of internet connection and recommend trying again.
+          \item[7ii.] System should provide users with guidelines for proper drop-down submission.
+        \end{enumerate}
+      \item Marketing (DealCheck) \#3
+        \begin{enumerate}
+          \item[9i.] System should provide suggestions of similar vehicles that have historically better prices.
+        \end{enumerate}
+      \item Car Manufacturers \#4 - N/A.
+      \item Car Dealerships Staff \#5 - N/A.
+    \end{enumerate}
+    
+    \textbf{Global Scenario:} \\
+    \textbf{Precondition:} User does not have an ongoing request within the system. The user must also be logged into their account on the app. The user must also know the basic information about their car (make, model, year, location).
+    \begin{enumerate}[{\bf 1.}]
+      \item User opens the DealCheck application.
+      \item User selects “Check New Vehicle”.
+      \item User enters relevant drop-down information (make, model, year, location).
+      \item User enters their own guess for the deal in the guess check text box.
+      \item User presses the ‘Submit’ button.
+      \item System consults with the points-based algorithm.
+      \item System compiles results from the algorithm.
+      \item System returns results to the user and lets the user know if they were right or not.
+      \item User saves the query by pressing ‘Save information’.
+    \end{enumerate}
+    \textbf{Secondary Scenario}
+    \begin{enumerate}
+      \item[5i.] System loses internet connection upon form submission.
+      \begin{enumerate}
+        \item[5i.1] System is unable to perform the request.
+        \item[5i.2] System fails.
+      \end{enumerate}
+      \item[4i.] User does not fill out drop-down inputs.
+      \begin{enumerate}
+        \item[4i.1] User neglects to fill out all drop-down inputs.
+        \item[4i.2] Query failed.
+        \item[4i.3] System should provide users with guidelines for proper drop-down submission.
+      \end{enumerate}
+    \end{enumerate}
+
 
   \item User requests a deal valuation based on an image and text \#2
     \begin{enumerate}[{\bf VP1.}]
@@ -903,15 +958,15 @@
     \textbf{Rationale:} Clear navigation guides users to provide the necessary input for valuation without confusion. This uniformity allows users to interact with the app fluidly, even though the backend experts may vary.
 \end{enumerate}
 
-\subsection{Usability and Humanity Requirements}
-\label{sub:usability_and_humanity_requirements}
-% Begin SubSection
-
 \subsubsection{Ease of Use Requirements}
 \label{ssub:ease_of_use_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{UH-EOU}1. ]
-	\item 
+    \item The system must allow users to submit general feedback on their experience through an in-app feedback form.\\
+    \textbf{Rationale:} Gathering user feedback helps developers understand user preferences and areas that require improvement, increasing the overall quality of the app.
+    \item The system shall minimize user prompts, only requesting input for critical actions such as confirming decisions or verifying important tasks.\\
+    \textbf{Rationale:} Reducing the frequency of prompts ensures that users can interact with the app seamlessly, without non-essential and overly confusing prompts.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -919,7 +974,13 @@
 \label{ssub:personalization_and_internationalization_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{UH-PI}1. ]
-	\item 
+    \item The system must allow users to choose their preferred currency for car prices (e.g., USD, EUR, CAD).\\
+    \textbf{Rationale:} Enabling users to view car prices in their local currency makes it easier for them to assess and compare prices, improving overall user experience.
+    \item The system shall allow users to select their preferred language for the interface.\\
+    \textbf{Rationale:} Offering multiple language options allows a broader audience to use the app comfortably, improving accessibility and usability.
+    \item The system shall allow users to customize accessibility features such as text size, text-to-speech functionality, and color schemes (e.g., high-contrast mode).\\
+    \textbf{Rationale:} Providing customizable accessibility features ensures that users with varying needs, including those with visual impairments or reading difficulties, can use the app comfortably and effectively.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -927,7 +988,10 @@
 \label{ssub:learning_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{UH-L}1. ]
-	\item 
+    \item New users shall be able to navigate the app and check car prices within 10 minutes of first use.\\
+    \textbf{Rationale:} A smooth onboarding experience with easy-to-understand features will encourage users to quickly learn how to use the app, ensuring they are not deterred by complexity.
+    \item The system shall provide tooltips or brief explanations for key features on the first use.\\
+    \textbf{Rationale:} Offering quick guidance helps new users understand the purpose of certain buttons or functions, reducing the learning curve without overwhelming them with instructions.
 \end{enumerate}
 % End SubSubSection
 
@@ -935,7 +999,9 @@
 \label{ssub:understandability_and_politeness_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{UH-UP}1. ]
-	\item 
+    \item Notifications and system messages should be polite, friendly, and encouraging.\\
+    \textbf{Rationale:} Polite and friendly language fosters a positive relationship with the user, making them more likely to return and engage with the app again.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -943,7 +1009,9 @@
 \label{ssub:accessibility_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{UH-A}1. ]
-	\item 
+    \item The system must offer color contrast, text-to-speech, and text size settings to accommodate users with visual impairments.\\
+    \textbf{Rationale:} Users with vision challenges should be able to distinguish elements of the app clearly, ensuring they can navigate and use the app properly.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -1160,7 +1228,9 @@
 \label{ssub:cultural_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{CP-C}1. ]
-	\item 
+    \item The system shall prevent users from creating accounts or submitting any text or images that contain discriminatory language or content related to race, religion, ethnicity, gender, sexual orientation, or socioeconomic status.\\
+    \textbf{Rationale:} Ensuring a safe and inclusive environment for all users.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -1168,7 +1238,9 @@
 \label{ssub:political_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{CP-P}1. ]
-	\item 
+    \item The system shall restrict the use of political ideologies in usernames, images, or other text content.\\
+    \textbf{Rationale:} Maintaining a neutral and unbiased platform free from political discourse.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -1236,6 +1308,18 @@ Include a Division of Labour sheet which indicates the contributions of each tea
         \includegraphics[scale=0.1]{Images/ahsan.jpeg}
     \end{center}
 \end{itemize}
+
+\subsection{Rebecca Di Filippo}
+
+\begin{itemize}
+    \item Section 1.1: Purpose.
+    \item Section 1.5: Overview.
+    \item Section 2.3: User characteristics.
+    \item Business Event 1: User requests deal check through drop-down.
+    \item Section 5.2: Usability and Humanity Requirements.
+    \item Section 5.7: Cultural and Political Requirements.
+\end{itemize}
+
 
 
 
