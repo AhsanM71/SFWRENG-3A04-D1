@@ -76,21 +76,31 @@
 
 \subsection{Scope}
 \label{sub:scope}
-% Begin SubSection
-\begin{itemize}
-	\item Identify the software product(s) to be produced, and name each (e.g., Host DBMS, Report Generator, etc.)
-	\item Explain what the software product(s) will do (and, if necessary, also state what they will not do).
-	\item Describe the application of the software being specified, including relevant benefits, objectives, and goals.
+
+DealCheck is a mobile application that will allow users to request from the system a check on a car deal by providing any necessary data (car year, make, model, mileage, listing price, etc) and optional data (images, text description, etc.), which provides them with a rating of the car deal.
+\hfill
+\break
+
+\noindent{Users are required to register an account on DealCheck to get access to all the features of the mobile application system. The users can make requests by filling out a “form” that captures all the data of a certain car to measure the fairness of the deal through the integrated experts. Furthermore, users can request recommendations for a car through the system by providing a description of their preferences (looks, engine, etc.) and requirements (price range, fuel efficiency, etc) for their car.}
+\hfill
+\break
+
+\noindent{An objective of the system is to provide users with an easy and reliable way to get accurate estimates on the fairness of a car deal. Many people across the world are looking to buy a car, but are not very knowledgeable in the field. The DealCheck system acts as a guiding hand throughout the process of the user's search for their “perfect” car.}
+
 %	\item Be consistent with similar statements in higher-level specifications (e.g., the system requirements specification), if they exist
-\end{itemize}
 % End SubSection
 
 \subsection{Definitions, Acronyms, and Abbreviations}
 \label{sub:definitions_acronyms_and_abbreviations}
 % Begin SubSection
 \begin{itemize}
-	\item Provide the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS.
-	\item This should be in alphabetical order.
+\item \textbf{DealCheck:} The name of the mobile application being proposed.
+\item \textbf{API:} Application Programming Interface, used to retrieve pricing data from external sources.
+\item \textbf{AI:} Artificial Intelligence, for analyzing images and/or text input.
+\item \textbf{SRS:} Software Requirements Specification document 
+\item \textbf{Account Management Database:} A supporting entity that stores user login information and car valuation reports. 
+\item \textbf{OS:} Operating System.
+\item \textbf{Expert:} A software component that will process the data and provide a result to whether it thinks the car deal is good or not based on the experts algorithm.
 \end{itemize}
 % End SubSection
 
@@ -177,34 +187,30 @@
 \subsection{Assumptions and Dependencies}
 \label{sub:assumptions_and_dependencies}
 % Begin SubSection
-\begin{itemize}
-	\item List any assumptions you made in interpreting what the software being developed is aiming to achieve
-	\item List any other assumptions you made that, if it fails to hold, could require you to change the requirements
-	%\item List each of the factors that affect the requirements stated in the SRS
-	%\item These factors are not design constraints on the software but are, rather, any changes to them that can affect the requirements in the SRS
-	\begin{itemize}
-		\item \textbf{Example}: An assumption may be that a specific operating system will be available on the hardware designated for the software product. If, in fact, the operating system is not available, the SRS would then have to change accordingly.
-	\end{itemize}
+\begin{enumerate}
+\item Assume that when a user posts a request for a deal check that all required input is provided before being processed
+\item Innovative Feature: Users can request a car recommendation based on a provided description and set of requirements.
+\item Assume data provided by the user is accurate.
+\item The app requires an internet connection.
+\item Assume the features of the app are only accessed by authenticated users.
+\item Assume data from external sources is reliable and up-to-date.
+\item Assume external APIs are available and reliable.
+\item This app will only be used within Canada
 \end{itemize}
+
+Other assumptions that if changed, requirements may need to be updated:
+\begin{enumerate}
+\item The app shall work on the latest release of the Android OS.
+\item Assume users of the system are looking to evaluate a car deal and not misuse the system.
+\end{enumerate}
 % End SubSection
 
 \subsection{Apportioning of Requirements}
 \label{sub:apportioning_of_requirements}
 % Begin SubSection
-\begin{enumerate}
-	\item Support for additional car value APIs
-	\begin{itemize}
-    \item The system will initially integrate with a limited set of car value APIs. Future versions will support additional car value APIs to expand data sources and improve valuation accuracy.
-  \end{itemize}
-	\item Multi-language support
-	\begin{itemize}
-    \item The system will initially be available in English only. Future versions will include support for additional languages to cater to users in different regions and expand the user base.
-  \end{itemize}
-	\item Support for electric/hybrid vehicle assessments
-	\begin{itemize}
-    \item The system will initially focus on gas-powered vehicles. Future versions will support specialized electric/hybrid assessments which consider factors like battery health.
-  \end{itemize} 
-\end{enumerate}
+\begin{itemize}
+	\item Identify requirements that may be delayed until future versions of the system
+\end{itemize}
 % End SubSection
 
 % End Section
@@ -284,128 +290,129 @@
 		{\bf Global Scenario:}\\
 		\textcolor{red}{Insert Scenario Here}
 
-  \item User requests a deal valuation based on an image and text \#2
+	\item Business Event Name \#2
+	\begin{enumerate}[{\bf VP1.}]
+		\item Viewpoint Name \#1 \\
+		\textcolor{red}{Insert Scenario Here}
+		\item Viewpoint Name \#2 \\
+		\textcolor{red}{Insert Scenario Here}
+	\end{enumerate}
+	{\bf Global Scenario:}\\
+	\textcolor{red}{Insert Scenario Here}
+
+\item Request a deal valuation with text description \#3 \\
+    {\bf Precondition:} User does not have an ongoing request within the system. User is authenticated and logged into their account (as described in BE9).
     \begin{enumerate}[{\bf VP1.}]
-      \item Users \#1 \\
-        \textbf{Main Success Scenario}
+        \item User \#1 \\
+        {\bf Main Success Scenario}
         \begin{enumerate}[1.]
-          \item User opens the DealCheck application.
-          \item System displays the home screen with options for vehicle valuation.
-          \item User selects ``Check New Vehicle''.
-          \item System prompts the user to provide inputs.
-          \item User fills in the required drop-down menus.
-          \item User uploads an image of the vehicle.
-          \item User provides a textual description.
-          \item User enters their own guess for the deal in the guess check text box.
-          \item User presses the ``Submit'' button.
-          \item System processes the image and text input using a generative AI model.
-          \item System queries a points-based algorithm and a historical data database to supplement the valuation.
-          \item System compiles results from the three sources into a comprehensive vehicle valuation.
-          \item System returns the valuation results to the user.
-          \item User saves the query by pressing ``Save information''.
+            \item User opens the DealCheck application.
+            \item User selects to start a new deal check request.
+            \item System requests user to enter mandatory fields.
+            \begin{itemize}
+                \item Car Price.
+                \item Car model year.
+                \item Car make.
+                \item Car model.
+                \item Car Mileage.
+                \item Users' opinion on whether they think this deal is a good or bad deal.
+            \end{itemize}
+            \item System requests user to enter optional fields:
+            \begin{itemize}
+                \item Text Description.
+            \end{itemize}
+            \item User inserts mandatory and optional fields.
+            \item User submits request.
+            \item System provides submitted data to experts.
+            \item System aggregates and displays report of expert results.
         \end{enumerate}
-        \textbf{Secondary Scenarios}
-        \begin{enumerate}
-          \item[6i.] System is unable to interpret the submitted image.
-          \begin{enumerate}
-            \item[6i.1] System queries only the points-based algorithm and the database.
-            \item[6i.2] System notifies the user that the image could not be analyzed and provides guidelines for proper image submission.
-          \end{enumerate}
-          \item[9i.] User provides an insufficient textual description.
-          \begin{enumerate}
-            \item[9i.1] System does not attempt to analyze the text or generate insights.
-            \item[9i.2] System notifies the user that the input is insufficient and prompts for additional details.
-          \end{enumerate}
-          \item[9ii.] System loses internet connection upon form submission.
-          \begin{enumerate}
-            \item[9ii.1] System is unable to process the request.
-            \item[9ii.2] System fails.
-          \end{enumerate}
-          \item[10i.] System is unable to reach the generative AI model.
-          \begin{enumerate}
-            \item[10i.1] System queries the points-based algorithm and the database instead.
-            \item[10i.2] System notifies the user that the AI model was unavailable, and the image was not analyzed.
-            \item[10i.3] System recommends retrying later for full AI analysis.
-          \end{enumerate}
+        
+        {\bf Secondary Scenario} \\
+        6i. User does not provide all mandatory fields:
+        \begin{enumerate}[{6i}.1]
+            \item The system does not allow the user to submit the request until all mandatory fields have been provided.
         \end{enumerate}
-      \item Customer Support (DealCheck) \#2
-        \begin{enumerate}
-          \item[9ii.] System should provide an error page indicating loss of internet connection.
-          \item[10ii.] System should notify users when AI analysis is unavailable and recommend retrying later.
-          \item[6ii.] System should provide image submission guidelines to users.
+    
+        6ii. System loses internet connection upon form submission.
+        \begin{enumerate}[{6ii}.1]
+            \item System is unable to perform the request.
+            \item System displays an error message.
         \end{enumerate}
-      \item Marketing (DealCheck) \#3
-        \begin{enumerate}
-          \item[13i.] System should suggest similar vehicles with better historical prices.
+    
+        6iii. User provides an insufficient textual description.
+        \begin{enumerate}[{6iii}.1]
+            \item System does not attempt to analyze the text or generate insights.
+            \item System notifies the user that the input is insufficient and prompts for additional details.
         \end{enumerate}
-      \item Car Manufacturers \\ N/A
-      \item Car Dealerships \\ N/A
+    
+        \item Customer Support (DealCheck) \#2 \\
+            7i. System should notify users when expert analysis is unavailable and recommend retrying later.
+        \item Marketing (DealCheck) \#3 \\
+            9i. System should suggest similar vehicles with better historical prices.
+        \item Car Manufacturers \#4 \\
+            NA
+        \item Car dealership staff \#5 \\
+            NA
     \end{enumerate}
     {\bf Global Scenario:}\\
-    \textbf{Precondition:} User does not have an ongoing request within the system. User has provided an image and required textual input but has not filled out optional drop-down fields.\\
-    \textbf{Main Success Scenario}
-    \begin{enumerate}[1.]
-      \item User opens the DealCheck application.
-      \item System displays the home screen with options for vehicle valuation.
-      \item User selects ``Check New Vehicle''.
-      \item System prompts the user to provide inputs.
-      \item User fills in the required drop-down menus.
-      \item User uploads an image of the vehicle.
-      \item User provides a textual description.
-      \item User enters their own guess for the deal in the guess check text box.
-      \item User presses the ``Submit'' button.
-      \item System processes the image and text input using a generative AI model.
-      \item System queries a points-based algorithm and a historical data database to supplement the valuation.
-      \item System compiles results from the three sources into a comprehensive vehicle valuation.
-      \item System returns the valuation results to the user.
-      \item User saves the query by pressing `Save information''.
+    {\bf Precondition:} User does not have an ongoing request within the system. User is authenticated and logged into their account (as described in BE9).
+    
+    {\bf Main Success Scenario}
+        \begin{enumerate}[1.]
+            \item User opens the DealCheck application.
+            \item User selects to start a new deal check request.
+            \item System requests user to enter mandatory fields.
+            \begin{itemize}
+                \item Car Price.
+                \item Car model year.
+                \item Car make.
+                \item Car model.
+                \item Car Mileage.
+                \item Users' opinion on whether they think this deal is a good or bad deal.
+            \end{itemize}
+            \item System requests user to enter optional fields:
+            \begin{itemize}
+                \item Text Description.
+            \end{itemize}
+            \item User inserts mandatory and optional fields.
+            \item User submits request.
+            \item System provides submitted data to experts.
+            \item System aggregates and displays report of expert results.
+        \end{enumerate}
+        
+        {\bf Secondary Scenario} \\
+        6i. User does not provide all mandatory fields:
+        \begin{enumerate}[{6i}.1]
+            \item The system does not allow the user to submit the request until all mandatory fields have been provided.
+        \end{enumerate}
+    
+        6ii. System loses internet connection upon form submission.
+        \begin{enumerate}[{6ii}.1]
+            \item System is unable to perform the request.
+            \item System displays an error message.
+        \end{enumerate}
+    
+        6iii. User provides an insufficient textual description.
+        \begin{enumerate}[{6iii}.1]
+            \item System does not attempt to analyze the text or generate insights.
+            \item System notifies the user that the input is insufficient and prompts for additional details.
+        \end{enumerate}
+
+        7i. System should notify users when expert analysis is unavailable and recommend retrying later.
+
+        9i. System should suggest similar vehicles with better historical prices.
+    
+\item Business Event Name \#2
+    \begin{enumerate}[{\bf VP1.}]
+        \item Viewpoint Name \#1 \\
+        \textcolor{red}{Insert Scenario Here}
+        \item Viewpoint Name \#2 \\
+        \textcolor{red}{Insert Scenario Here}
     \end{enumerate}
-    \textbf{Secondary Scenarios}
-    \begin{enumerate}
-      \item[6i.] System is unable to interpret the submitted image.
-      \begin{enumerate}
-        \item[6i.1] System queries only the points-based algorithm and the database.
-        \item[6i.2] System notifies the user that the image could not be analyzed and provides guidelines for proper image submission.
-      \end{enumerate}
-      \item[9i.] User provides an insufficient textual description.
-      \begin{enumerate}
-        \item[9i.1] System does not attempt to analyze the text or generate insights.
-        \item[9i.2] System notifies the user that the input is insufficient and prompts for additional details.
-      \end{enumerate}
-      \item[9ii.] System loses internet connection upon form submission.
-      \begin{enumerate}
-        \item[9ii.1] System is unable to perform the request.
-        \item[9ii.2] System displays an error message.
-      \end{enumerate}
-      \item[10i.] System is unable to reach the generative AI model.
-      \begin{enumerate}
-        \item[10i.1] System queries the points-based algorithm and the database instead.
-        \item[10i.2] System notifies the user that the AI model was unavailable, and the image was not analyzed.
-        \item[10i.3] System recommends retrying later for full AI analysis.
-      \end{enumerate}
-    \end{enumerate}
+    {\bf Global Scenario:}\\
+    \textcolor{red}{Insert Scenario Here}
 
-	\item Business Event Name \#2
-	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
-	\end{enumerate}
-	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
-
-	\item Business Event Name \#2
-	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
-	\end{enumerate}
-	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
-
-	\item Request a deal valuation based on text, drop down, and image input \#5 \\
+\item Request a deal valuation based on text, drop down, and image input \#5 \\
 
 	{\bf Precondition:} User does not have an ongoing request within the system. Additionally, 
 	the user has completed the input form fully. This means that an image, 
@@ -532,7 +539,119 @@
 	{\bf Global Scenario:}\\
 	\textcolor{red}{Insert Scenario Here}
 
-	\item Login \#8 \\
+\item Account Creation \#8 \\
+{\bf Precondition:} User does not have an account with the DealCheck application. User is not logged into any account.
+\begin{enumerate}[{\bf VP1.}]
+    \item User \#1 \\
+    {\bf Main Success Scenario}
+    \begin{enumerate}[1.]
+        \item User opens DealCheck application
+        \item User presses the Register/Create Account button.
+        \item System requests Email.
+        \item System requests Username.
+        \item System requests Password.
+        \item User presses the button to complete the registration process.
+        \item System verifies and registers user account.
+        \item System admits the user to the application.
+        
+    \end{enumerate}
+    {\bf Secondary Scenario} \\
+    6i. Device loses connection to the internet once form submitted
+    \begin{enumerate}[{6i}.1]
+        \item System informs user that the device has lost connection to the internet
+        \item System requests to check connection and try again
+        \item User tries to submit the registration form again
+        \item Back to BE8-6
+    \end{enumerate}
+
+    6ii. System user system is unavailable or down
+    \begin{enumerate}[{6ii}.1]
+        \item System informs user that they cannot be authenticated and to try again later
+        \item User submit the form at a later time
+        \item Back to BE8-6
+    \end{enumerate}
+
+    7i.  Submitted username already exists
+    \begin{enumerate}[{7i}.1]
+        \item System informs user that the username is unavailable
+        \item System requests user to enter another username
+        \item User enters a new username
+        \item User resubmits the registration form
+        \item Back to BE8-7
+    \end{enumerate}
+
+    7ii. Submitted email already exists
+    \begin{enumerate}[{7ii}.1]
+        \item System informs the user that the email is unavailable and already being used
+        \item System requests user to enter another email
+        \item User enters a new email
+        \item User resubmits the registration form
+        \item Back to BE8-7
+    \end{enumerate}
+
+    \item Customer Support (DealCheck) \#2 \\
+        7i. User Account given unique id for the purpose of tracing any possible issues.
+    \item Marketing (DealCheck) \#3 \\
+        7i. User’s email is signed up to the application newsletter list.
+    \item Car Manufacturers \#4 \\
+        NA
+    \item Car dealership staff \#5 \\
+        NA
+\end{enumerate}
+{\bf Global Scenario:}\\
+{\bf Precondition:} User does not have an account with the DealCheck application. User is not logged into any account.
+
+{\bf Main Success Scenario}
+    \begin{enumerate}[1.]
+        \item User opens the DealCheck application.
+        \item User presses the Register/Create Account button.
+        \item System requests Email.
+        \item System requests Username.
+        \item System requests Password.
+        \item User presses the button to complete the registration process.
+        \item System verifies and registers user account.
+        \item System admits the user to the application.
+    \end{enumerate}
+    
+    {\bf Secondary Scenario} \\
+    6i. Device loses connection to the internet once form submitted
+    \begin{enumerate}[{6i}.1]
+        \item System informs user that the device has lost connection to the internet
+        \item System requests to check connection and try again
+        \item User tries to submit the registration form again
+        \item Back to BE8-6
+    \end{enumerate}
+
+    6ii. System user system is unavailable or down
+    \begin{enumerate}[{6ii}.1]
+        \item System informs user that they cannot be authenticated and to try again later
+        \item User submit the form at a later time
+        \item Back to BE8-6
+    \end{enumerate}
+
+    7i.  Submitted username already exists
+    \begin{enumerate}[{7i}.1]
+        \item System informs user that the username is unavailable
+        \item System requests user to enter another username
+        \item User enters a new username
+        \item User resubmits the registration form
+        \item Back to BE8-7
+    \end{enumerate}
+
+    7ii. Submitted email already exists
+    \begin{enumerate}[{7ii}.1]
+        \item System informs the user that the email is unavailable and already being used
+        \item System requests user to enter another email
+        \item User enters a new email
+        \item User resubmits the registration form
+        \item Back to BE8-7
+    \end{enumerate}
+    
+    7iii. User Account given unique id for the purpose of tracing any possible issues.
+    
+    7iv. User’s email is signed up to the application newsletter list.
+
+	\item Login \#9 \\
 
 	{\bf Precondition:} User has an existing account with the DealCheck application. 
 	User is not currently logged in or authenticated to the DealCheck application.
@@ -920,10 +1039,7 @@
 \label{ssub:maintenance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{MS-M}1. ]
-	\item The system must undergo regular software updates at least once a month to address bug fixes.\\
-	\textbf{Rationale:} Consistent updates ensure the system remains stable, secure, and functional. Pushing updates monthly helps to maintain optimal performance and address any issues promptly.
-	\item The system must utilize a version control system to manage all changes and updates to the software, with proper tagging and release notes.\\
-	\textbf{Rationale:} Version control ensures a clear history of all software changes, allowing for efficient tracking, rollback, and collaboration. Release notes help document updates, making it easier for developers to understand changes and for users to stay informed.
+	\item 
 \end{enumerate}
 % End SubSubSection
 
@@ -931,10 +1047,7 @@
 \label{ssub:supportability_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{MS-S}1. ]
-	\item The system must provide in-app access to a help section that guides users through common tasks and troubleshooting steps.\\
-	\textbf{Rationale:} A comprehensive help section ensures that users can find solutions to common problems or tasks independently, improving the overall experience with the app.
-	\item The system must include a contact form for users to reach customer support via email.\\
-	\textbf{Rationale:} A contact form ensures users can report more complicated issues or inquiries, while customer support can provide detailed and personalized responses.
+	\item 
 \end{enumerate}
 % End SubSubSection
 
@@ -942,10 +1055,7 @@
 \label{ssub:adaptability_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{MS-A}1. ]
-	\item The system shall be able to integrate with new car value APIs as they become available.\\
-	\textbf{Rationale:} The ability to integrate with additional car value APIs ensures the system remains up-to-date with the latest and most accurate sources of data.
-	\item The system shall support multiple operating systems, including iOS, Android, and web platforms.\\
-	\textbf{Rationale:} Supporting multiple platforms ensures the app can reach a wider audience and provides a seamless experience regardless of a user's preferred device.
+	\item 
 \end{enumerate}
 % End SubSubSection
 
@@ -959,7 +1069,15 @@
 \label{ssub:access_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-AC}1. ]
-	\item 
+\item The app must allow the user access to the features of the system if and only if the user has been authenticated through the correct credentials.
+    \begin{itemize}
+        \item \textbf{Rationale:} Ensures that only registered users can access the system.
+    \end{itemize}
+
+\item The app must allow the user access to the user's account information if and only if the user has been authenticated through the correct credentials.
+    \begin{itemize}
+        \item \textbf{Rationale:} Ensures that each user can only access their account and data with the correct credentials of their account.
+    \end{itemize}
 \end{enumerate}
 % End SubSubSection
 
@@ -967,7 +1085,15 @@
 \label{ssub:integrity_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-INT}1. ]
-	\item 
+\item Data transmitted within the system should be encrypted.
+    \begin{itemize}
+        \item \textbf{Rationale:} Ensures that data is correct and has not been played with before it arrives at the system data storage.
+    \end{itemize}
+
+\item Any text input must be verified to avoid any expert result anomalies.
+    \begin{itemize}
+        \item \textbf{Rationale:} Verifies text input is valid for processing without opening any backdoors, or providing inadequate responses.
+    \end{itemize}
 \end{enumerate}
 % End SubSubSection
 
@@ -975,7 +1101,20 @@
 \label{ssub:privacy_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-P}1. ]
-	\item 
+\item The app must provide users with a legally adequate privacy policy, and ensure that users accept the policy before using the mobile application.
+    \begin{itemize}
+        \item \textbf{Rationale:} A requirement of the Google Play Developer Distribution Agreement and the iOS Distribution Requirements.
+    \end{itemize}
+
+\item The app must provide users with a readily available way of deleting their account and data, whether within or outside the mobile application.
+    \begin{itemize}
+        \item \textbf{Rationale:} A requirement of the Google Play Data Deletion Policy and the iOS Account Deletion Requirement.
+    \end{itemize}
+
+\item The app must protect user posts on the system to only be viewable by the authenticated user. No other authenticated or unauthenticated user can view these posts.
+    \begin{itemize}
+        \item \textbf{Rationale:} To ensure the privacy of the users posts, only the user can view their posts.
+    \end{itemize}
 \end{enumerate}
 % End SubSubSection
 
@@ -983,7 +1122,15 @@
 \label{ssub:audit_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-AU}1. ]
-	\item 
+\item The system shall collect user app usage analytics data
+    \begin{itemize}
+        \item \textbf{Rationale:} Collecting user analytics allows detecting/fixing bugs early. Also allows the system to evolve based on user usage and activity.
+    \end{itemize}
+
+\item The app store reviews shall be collected and analyzed on a regular bases
+    \begin{itemize}
+        \item \textbf{Rationale:} Allows the app to stay up to date with user trends and to catch bugs/issues early on.
+    \end{itemize}
 \end{enumerate}
 % End SubSubSection
 
@@ -991,7 +1138,15 @@
 \label{ssub:immunity_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-IM}1. ]
-	\item 
+\item The app must not accept unexpected/invalid input from the user
+    \begin{itemize}
+        \item \textbf{Rationale:} To avoid any attempts to breach/hack the system (SQL Injection, Code Injection, Remote Code Execution (RCE))
+    \end{itemize}
+    
+\item The app must limit the number of login attempts per IP Address
+    \begin{itemize}
+        \item \textbf{Rationale:} To avoid any attempts to breach/hack a users account
+    \end{itemize}
 \end{enumerate}
 % End SubSubSection
 
