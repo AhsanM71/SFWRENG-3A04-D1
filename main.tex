@@ -16,6 +16,8 @@
 \usepackage{color}
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
+\usepackage{array}
+\usepackage{longtable}
 %------------------------------------------------------------------------------
 
 % Header and Footer
@@ -155,56 +157,46 @@ Section 2 discusses the overall product description focusing on the product pers
 	\label{fig:example}
 \end{figure}
 
-
-\begin{itemize}
 	\begin{table}[h!]
-    \centering
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabular}{|p{4cm}|p{10cm}|}
-        \hline
-        \textbf{Modules} & \textbf{Functions} \\
-        \hline
-        Algorithm Service & 
-         \begin{minipage}{10cm}\begin{itemize}
-            \item Answer Post Requests based on the drop down (if the forum distributes to it)
-        \end{itemize}\end{minipage} \\
-        \hline
-        Forum Service & 
-        \begin{itemize}
-            \item Accept Inquiry
-            \item Store Inquiry
-            \item Distribute Inquiry responsibility
-            \item Return solution
-        \end{itemize} \\
-        \hline
-        Account Management & 
-        \begin{itemize}
-            \item Create login
-            \item Update Account
-            \item Login
-        \end{itemize} \\
-        \hline
-        AI Service & 
-        \begin{itemize}
-            \item Answer Post Requests based on the dropdown, picture, or description (if the forum distributes to it)
-        \end{itemize} \\
-        \hline
-        Redbook Database & 
-        \begin{minipage}{10cm}\begin{itemize}
-            \item Determine if a deal is good based on car model and year (if the forum distributes to it)
-        \end{itemize}\end{minipage} \\
-        \hline
-        AI Recommendation Service & 
-        \begin{itemize}
-            \item Answer car recommendation request
-            \item Answer depreciation curve request
-            \item Answer deal comparison request
-        \end{itemize} \\
-        \hline
-    \end{tabular}
-    \caption{Modules and their Functions}
-\end{table}
-\end{itemize}
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{|p{4cm}|p{10cm}|}
+			\hline
+			\textbf{Modules} & \textbf{Functions} \\
+			\hline
+			\textbf{Algorithm Service} & Answer Post Requests based on the drop-down (if the forum distributes to it). \\
+			\hline
+			\textbf{Forum Service} & 
+			\begin{itemize}
+				\item Accept Inquiry
+				\item Store Inquiry
+				\item Distribute Inquiry responsibility
+				\item Return solution
+			\end{itemize} \\
+			\hline
+			\textbf{Account Management} & 
+			\begin{itemize}
+				\item Create login
+				\item Update Account
+				\item Login
+			\end{itemize} \\
+			\hline
+			\textbf{AI Service} & Answer Post Requests based on the dropdown, picture, or description (if the forum distributes to it). \\
+			\hline
+			\textbf{Redbook Database} & Determine if a deal is good based on car model and year (if the forum distributes to it). \\
+			\hline
+			\textbf{AI Recommendation Service} & 
+			\begin{itemize}
+				\item Answer car recommendation request
+				\item Answer depreciation curve request
+				\item Answer deal comparison request
+			\end{itemize} \\
+			\hline
+		\end{tabular}
+		\caption{Module Functions}
+		\label{tab:module_functions}
+	\end{table}
+
 \pagebreak
 % End SubSection
 
@@ -247,7 +239,7 @@ Section 2 discusses the overall product description focusing on the product pers
 \item Assume data from external sources is reliable and up-to-date.
 \item Assume external APIs are available and reliable.
 \item This app will only be used within Canada
-\end{itemize}
+\end{enumerate}
 
 Other assumptions that if changed, requirements may need to be updated:
 \begin{enumerate}
