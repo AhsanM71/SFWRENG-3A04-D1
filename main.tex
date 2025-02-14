@@ -148,18 +148,66 @@
 \subsection{Product Functions}
 \label{sub:product_functions}
 % Begin SubSection
+\label{sub:product_functions}
+% Begin SubSection
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{Images/StateDiagram.png}
+	\textbf{\caption{Use Case Diagram}}
+	\label{fig:example}
+\end{figure}
+
+
 \begin{itemize}
-	\item Provide a \emph{summary} of the major functions that the software will perform.
-	\begin{itemize}
-		\item \textbf{Example}: An SRS for an accounting program may use this part to address customer account maintenance, customer statement, and invoice preparation without mentioning the vast amount of detail that each of those functions requires.
-	\end{itemize}
-	\item Functions should be organized in a way that makes the list of functions understandable to the customer or to anyone else reading the document for the first time 
-	\item Present the functions in a list format - each item should be one function, with a brief description of it
-	\item Textual or graphical methods can be used to show the different functions and their relationships
-	\begin{itemize}
-		\item Such a diagram is not intended to show a design of a product, but simply shows the logical relationships among variables
-	\end{itemize} 
+	\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|p{4cm}|p{10cm}|}
+        \hline
+        \textbf{Modules} & \textbf{Functions} \\
+        \hline
+        Algorithm Service & 
+         \begin{minipage}{10cm}\begin{itemize}
+            \item Answer Post Requests based on the drop down (if the forum distributes to it)
+        \end{itemize}\end{minipage} \\
+        \hline
+        Forum Service & 
+        \begin{itemize}
+            \item Accept Inquiry
+            \item Store Inquiry
+            \item Distribute Inquiry responsibility
+            \item Return solution
+        \end{itemize} \\
+        \hline
+        Account Management & 
+        \begin{itemize}
+            \item Create login
+            \item Update Account
+            \item Login
+        \end{itemize} \\
+        \hline
+        AI Service & 
+        \begin{itemize}
+            \item Answer Post Requests based on the dropdown, picture, or description (if the forum distributes to it)
+        \end{itemize} \\
+        \hline
+        Redbook Database & 
+        \begin{minipage}{10cm}\begin{itemize}
+            \item Determine if a deal is good based on car model and year (if the forum distributes to it)
+        \end{itemize}\end{minipage} \\
+        \hline
+        AI Recommendation Service & 
+        \begin{itemize}
+            \item Answer car recommendation request
+            \item Answer depreciation curve request
+            \item Answer deal comparison request
+        \end{itemize} \\
+        \hline
+    \end{tabular}
+    \caption{Modules and their Functions}
+\end{table}
 \end{itemize}
+\pagebreak
 % End SubSection
 
 \subsection{User Characteristics}
@@ -641,25 +689,133 @@
 			\item System notifies the user that the image was not able to be interpreted, and prompts the user with the guidelines for proper image submission (e.g. entire vehicle is within the photo)
 		\end{enumerate}
 
-	\item Business Event Name \#2
-	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
-	\end{enumerate}
-	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
+		\item User requests a car recommendation based on text information provided \#6
+		\begin{enumerate}[{\bf VP1.}]
+		  \item Users \#1 \\
+			\textbf{Main Success Scenario}
+			\begin{enumerate}[1.]
+			  \item User selects ``vehicle recommendation''.
+			  \item User enters relevant information into the text box (age, rough financial status, general location).
+			  \item User presses the ``Submit'' button.
+			  \item System generates car recommendations and approximate prices.
+			  \item System returns results to the user.
+			  \item User saves the query by pressing ``Save information''.
+			\end{enumerate}
+			\textbf{Secondary Scenarios}
+			\begin{enumerate}
+			  \item[5i.] System loses internet connection upon form submission.
+			  \begin{enumerate}
+				\item[5i.1] System is unable to perform the request.
+				\item[5i.2] System fails.
+			  \end{enumerate}
+			  \item[6i.] System is unable to reach the generative AI model.
+			  \begin{enumerate}
+				\item[6i.1] System states an error message ``This service is unavailable at the moment. Please try again later.''
+			  \end{enumerate}
+			  \item[2i.] User provides insufficient textual description.
+			  \begin{enumerate}
+				\item[2i.1] System provides a default recommendation for cars at various price points.
+				\item[2i.2] System notifies the user that the textual input was insufficient.
+			  \end{enumerate}
+			\end{enumerate}
+		  \item Customer Support (DealCheck) \#2
+			\begin{enumerate}
+			  \item[5i.] System should provide an error page to indicate loss of internet connection.
+			  \item[6i.] System provides notification to users that the AI agent was unable to be contacted and recommends trying at another time.
+			\end{enumerate}
+		  \item Marketing (DealCheck) \#3
+			\begin{enumerate}
+			  \item[8i.] System should recommend rechecking the application for specific deals found in the future.
+			\end{enumerate}
+		  \item Car Manufacturers \\ N/A
+		  \item Car Dealerships Staff \\ N/A
+		\end{enumerate}
+		{\bf Global Scenario:}\\
+		\textbf{Precondition:} User already has an existing account. User does not have an ongoing request within the system.\\
+		\textbf{Main Success Scenario}
+		\begin{enumerate}[1.]
+		  \item User selects ``vehicle recommendation''.
+		  \item User enters relevant information into the text box (age, rough financial status, general location).
+		  \item User presses the ``Submit'' button.
+		  \item System consults with the generative AI model.
+		  \item System generates car recommendations and approximate prices.
+		  \item System returns results to the user.
+		  \item User saves the query by pressing ``Save information''.
+		\end{enumerate}
+		\textbf{Secondary Scenarios}
+		\begin{enumerate}
+		  \item[4i.] System loses internet connection upon form submission.
+		  \begin{enumerate}
+			\item[4i.1] System is unable to perform the request.
+			\item[4i.2] System fails.
+		  \end{enumerate}
+		  \item[5i.] System is unable to reach the generative AI model.
+		  \begin{enumerate}
+			\item[5i.1] System states an error message ``This service is unavailable at the moment.''
+		  \end{enumerate}
+		  \item[4i.] User provides insufficient textual description.
+		  \begin{enumerate}
+			\item[4i.1] System provides a default recommendation for cars at various price points.
+			\item[4i.2] System notifies the user that the textual input was insufficient.
+		  \end{enumerate}
+		\end{enumerate}
 
-	\item Business Event Name \#2
-	\begin{enumerate}[{\bf VP1.}]
-		\item Viewpoint Name \#1 \\
-		\textcolor{red}{Insert Scenario Here}
-		\item Viewpoint Name \#2 \\
-		\textcolor{red}{Insert Scenario Here}
-	\end{enumerate}
-	{\bf Global Scenario:}\\
-	\textcolor{red}{Insert Scenario Here}
+		\item User requests a comparison between two or more car deals \#7
+		\begin{enumerate}[{\bf VP1.}]
+		  \item Users \#1 \\
+			\textbf{Main Success Scenario}
+			\begin{enumerate}[1.]
+			  \item User selects ``Compare Deals''.
+			  \item User selects the 2 car deals they want compared.
+			  \item User presses the ``Submit'' button.
+			  \item System determines which car deal is better based on prior valuations.
+			  \item System returns results to the user.
+			\end{enumerate}
+			\textbf{Secondary Scenarios}
+			\begin{enumerate}
+			  \item[3i.] System loses internet connection upon form submission.
+			  \begin{enumerate}
+				\item[3i.1] System is unable to perform the request.
+				\item[3i.2] System fails.
+			  \end{enumerate}
+			  \item[4i.] System is unable to reach the generative AI model.
+			  \begin{enumerate}
+				\item[4i.1] System states an error message ``This service is unavailable at the moment. Please try again later.''
+			  \end{enumerate}
+			\end{enumerate}
+		  \item Customer Support (DealCheck) \#2
+			\begin{enumerate}
+			  \item[3i.] System should provide an error page to indicate loss of internet connection.
+			  \item[4i.] System provides notification to users that the AI agent was unable to be contacted and recommends trying at another time.
+			\end{enumerate}
+		  \item Marketing (DealCheck) \#3 \\ N/A
+		  \item Car Manufacturers \\ N/A
+		  \item Car Dealerships Staff \\ N/A
+		\end{enumerate}
+		{\bf Global Scenario:}\\
+		\textbf{Precondition:} User already has an existing account. User does not have an ongoing request within the system.\\
+		\textbf{Main Success Scenario}
+		\begin{enumerate}[1.]
+		  \item User selects ``Compare Deals''.
+		  \item System displays all stored deal valuation requests.
+		  \item User selects the 2 car deals they want compared.
+		  \item User presses the ``Submit'' button.
+		  \item System consults with the forum and the generative AI model.
+		  \item System determines the better deal of the instances selected.
+		  \item System returns results to the user.
+		\end{enumerate}
+		\textbf{Secondary Scenarios}
+		\begin{enumerate}
+		  \item[5i.] System loses internet connection upon form submission.
+		  \begin{enumerate}
+			\item[5i.1] System is unable to perform the request.
+			\item[5i.2] System fails.
+		  \end{enumerate}
+		  \item[6i.] System is unable to reach the generative AI model.
+		  \begin{enumerate}
+			\item[6i.1] System states an error message ``This service is unavailable at the moment.''
+		  \end{enumerate}
+		\end{enumerate}
 
 	\item Login \#8 \\
 
