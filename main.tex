@@ -1417,7 +1417,7 @@ Other assumptions that if changed, requirements may need to be updated:
     \textbf{Rationale:} Image uploads for AI analysis must be fast, as delays in uploading images can negatively affect the user experience. A 5 second max delay ensures that users don't feel frustrated waiting for their image to be processed.
 
     \item When scraping external data for similar car deals, the system should have an average response time of 3 seconds per request. The system will use asynchronous programming, prioritize essential data collection, schedule scraping during off-peak hours, and utilize rotating proxies to reduce server load. Caching frequently accessed data will minimize unnecessary requests.  \\
-    \textbf{Rationale:} Efficient web scraping is key to maintaining a smooth user experience. Limiting simultaneous requests and using asynchronous programming allows for faster, concurrent data retrieval without overloading external sources. Scheduling scraping tasks during off-peak hours optimizes resource usage, while caching and rotating proxies help reduce server strain and avoid redundant requests, ensuring quicker response times and improved efficiency [2].
+    \textbf{Rationale:} Efficient web scraping is key to maintaining a smooth user experience. Limiting simultaneous requests and using asynchronous programming allows for faster, concurrent data retrieval without overloading external sources. Scheduling scraping tasks during off-peak hours optimizes resource usage, while caching and rotating proxies help reduce server strain and avoid redundant requests, ensuring quicker response times and improved efficiency [4].
 \end{enumerate}
 
 \subsubsection{Safety-Critical Requirements}
@@ -1469,7 +1469,7 @@ Other assumptions that if changed, requirements may need to be updated:
 \label{ssub:scalability_or_extensibility_requirements}
 \begin{enumerate}[{PR-SE}1.]
     \item The code for the system must adhere to SOLID and GRASP Design Principles and make use of appropriate GoF Design Patterns to facilitate scalability and maintainability.  \\
-    \textbf{Rationale:} Following SOLID and GRASP principles and GoF design patterns ensures that the app's code is modular, maintainable, and extensible. This makes it easier to add new features or adapt to future requirements without compromising the codebase [3].
+    \textbf{Rationale:} Following SOLID and GRASP principles and GoF design patterns ensures that the app's code is modular, maintainable, and extensible. This makes it easier to add new features or adapt to future requirements without compromising the codebase [5].
 \end{enumerate}
 
 \subsubsection{Longevity Requirements}
