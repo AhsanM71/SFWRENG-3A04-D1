@@ -157,7 +157,7 @@ DealCheck is a mobile application that will allow users to request from the syst
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-Section 2 discusses the overall product description focusing on the product perspective, product functions,user characteristics, assumptions and dependencies, and apportioning of requirements. Section 3 contains the use case diagram illustrating the scenario of a user requesting a deal check on a car. Section 4 highlights the functional requirements, main business events and viewpoints. Section 5 provides the non-functional requirements talking about look and feel requirements, usability and humanity requirements, performance requirements, operational and environmental requirements, maintainability and support requirements, security requirements, cultural and political requirements and legal requirements. Section 6 holds the division of labour. Lastly, Section 7 discusses the innovative design feature.
+Section 2 discusses the overall product description focusing on the product perspective, product functions,user characteristics, assumptions and dependencies, and apportioning of requirements. Section 3 contains the use case diagram illustrating the scenario of a user requesting a deal check on a car. Section 4 highlights the functional requirements, main business events and viewpoints. Section 5 provides the non-functional requirements regarding look and feel, usability and humanity, performance , operational and environmental considerations, maintainability and support, security, cultural and political, and legal requirements. Section 6 holds the division of labour. Lastly, Section 7 discusses the innovative design feature.
 % End SubSection
 
 % End Section
@@ -171,7 +171,7 @@ Section 2 discusses the overall product description focusing on the product pers
 % Begin SubSection
 DealCheck is a mobile app that will serve as a center for car pricing information. Similar to market products such as AutoTrader and CarGurus [1], DealCheck 
 will offer users the ability to ensure the price of a vehicle is both accurate and fair. The application will achieve this through a variety of sources 
-such as generative artificial intelligence (AI), existing databases of car price information (for example, the Kelley Blue Book)[2], and a custom algorithm 
+such as generative artificial intelligence (AI), existing databases of car price information (for example, the Kelley Blue Book or the RedBook)[2], and a custom algorithm 
 to provide a score for the deal. Users will first login to an account, and then will be able to submit multi-modal information about the vehicle, such as 
 text descriptions, images, and drop-downs. This will allow for a more in-depth analysis, considering factors such as mileage, crash history, and current 
 market data. Users will also be able to view their existing reports and query history in order to access previously-searched-for information quickly. \newline
@@ -250,13 +250,13 @@ Additionally, it will consult, via API, an existing database of car price record
 	The DealCheck app is designed to be accessible and user-friendly for a wide range of users. It has the following expected qualifications for its users:
 \begin{itemize}
     \item \textbf{Education Level:} Basic Literacy Skills\\
-    Users with basic literacy skills in reading and writing should have no trouble navigating and using the app to evaluate car prices and request deal checks.
+    Users with basic literacy skills in reading and writing will be able to navigate and use the app to evaluate car prices and request deal checks.
     
     \item \textbf{Technical Expertise:} Basic Knowledge of Smartphone Usage\\
-    Users who are familiar with basic smartphone functions (such as navigating through apps, selecting options, and inputting text and images) should be able to easily use the app without requiring specialized technical knowledge.
+    Users who are familiar with basic smartphone functions (such as navigating through apps, selecting options, and inputting text and images) will be able to easily use the app without requiring specialized technical knowledge.
     
     \item \textbf{Age Group:} 18+\\
-    The app is aimed at adult users who are interested in buying or selling cars, meaning users are expected to be 18 years old or older. The interface is designed to be simple enough for all adult users to access and understand.
+    The app is aimed at adult users who are interested in buying or selling cars, meaning users are expected to be 18 years old or older. The interface is designed to be simple, such that all adult users can access and understand it.
 \end{itemize}
 % End SubSection
 
@@ -287,7 +287,7 @@ Additionally, it will consult, via API, an existing database of car price record
 
 Other assumptions that if changed, requirements may need to be updated:
 \begin{enumerate}
-\item The app shall work on the latest release of the Android OS.
+\item The app shall work on the latest release of the Android OS (Operating System).
 \item Assume users of the system are looking to evaluate a car deal and not misuse the system.
 \end{enumerate}
 % End SubSection
@@ -365,10 +365,11 @@ Other assumptions that if changed, requirements may need to be updated:
 \end{itemize}
 
 \noindent {\bf Interpretation:} Specify any liberties you took in interpreting business events, if necessary. \\
+N/A
 
 \begin{enumerate}[{\bf {BE}1.}]
 
-    \item User requests deal valuation based on drop-down menu \\    
+    \item Request a deal valuation based on drop down menu input \\    
 	\textbf{Precondition:} User does not have an ongoing request within the system. The user must also be logged into their account on the app. The user must also know the basic information about their car (make, model, year, location).
     \begin{enumerate}[{\bf VP1.}]
       \item User \#1
@@ -433,7 +434,7 @@ Other assumptions that if changed, requirements may need to be updated:
       \end{enumerate}
     \end{enumerate}
 
-\item User requests a deal valuation based on an image and text \#2
+\item Request a deal valuation based on image and required text input \#2
     \begin{enumerate}[{\bf VP1.}]
       \item Users \#1 \\
         \textbf{Main Success Scenario}
@@ -624,9 +625,9 @@ Other assumptions that if changed, requirements may need to be updated:
         	\item [9i.] System should suggest similar vehicles with better historical prices.
 		\end{enumerate}
 
-\item User Requests Depreciation Curve for a Previous Car Deal Report \#4
+\item Request a depreciation curve for a previous car deal report \#4
 
-{\bf Precondition:} User doesn't have an ongoing request within the system. Furthermore, the user has previously requested and saved a car deal report, and the system 
+{\bf Precondition:} User does not have an ongoing request within the system. Furthermore, the user has previously requested and saved a car deal report, and the system 
 	has access to relevant data sources to determine the depreciation data.
 	\begin{enumerate}[{\bf VP1.}]
 		\item User \#1 \\
@@ -754,9 +755,7 @@ Other assumptions that if changed, requirements may need to be updated:
 
 	\item Request a deal valuation based on text, drop down, and image input \#5 \\
 
-	{\bf Precondition:} User does not have an ongoing request within the system. Additionally, 
-	the user has completed the input form fully. This means that an image, 
-	text description, and drop-down text-based inputs have been provided.
+	{\bf Precondition:} User does not have an ongoing request within the system. User already has an existing account. 
 	\begin{enumerate}[{\bf VP1.}]
 		\item User \#1 \\
 		{\bf Main Success Scenario}
@@ -809,16 +808,14 @@ Other assumptions that if changed, requirements may need to be updated:
 			
 			7ii. System should provide users with guidelines for proper image submission.
 		\item Marketing (DealCheck) \#3 \\
-			9i. System should provide suggestions of similar vehicles that have historically better prices.
+			9i. System should provide suggestions of similar vehicles that have historically better prices to increase sales and app usage.
 		\item Car Manufacturers \#4 \\
 			NA
 		\item Car dealership staff \#5 \\
 			NA
 	\end{enumerate}
 	{\bf Global Scenario:}\\
-	{\bf Precondition:} User does not have an ongoing request within the system. Additionally, 
-	the user has completed the input form fully. This means that an image, 
-	text description, and drop-down text-based inputs have been provided.
+	{\bf Precondition:} User does not have an ongoing request within the system. User already has an existing account. 
 
 	{\bf Main Success Scenario}
 		\begin{enumerate}[1.]
@@ -864,7 +861,9 @@ Other assumptions that if changed, requirements may need to be updated:
     		\end{enumerate}
             \end{enumerate}
 
-		\item User requests a car recommendation based on text information provided \#6
+		\item Request a car recommendation based on text information provided \#6
+        
+        {\bf Precondition:} User already has an existing account. User does not have an ongoing request within the system.
 		\begin{enumerate}[{\bf VP1.}]
 		  \item Users \#1 \\
 			\textbf{Main Success Scenario}
@@ -935,7 +934,7 @@ Other assumptions that if changed, requirements may need to be updated:
 		  \end{enumerate}
 		\end{enumerate}
 
-		\item User requests a comparison between two or more car deals \#7
+		\item Request comparison between two or more car deals \#7
 		\begin{enumerate}[{\bf VP1.}]
 		  \item Users \#1 \\
 			\textbf{Main Success Scenario}
@@ -1018,7 +1017,7 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [6i.4] Back to BE8-6
 		\end{enumerate}
 
-		\item [6ii.] System user system is unavailable or down
+		\item [6ii.] User system is unavailable or down
 		\begin{enumerate}
 			\item [6ii.1] System informs user that they cannot be authenticated and to try again later
 			\item [6ii.2] User submit the form at a later time
@@ -1324,19 +1323,19 @@ Other assumptions that if changed, requirements may need to be updated:
 \label{ssub:appearance_requirements}
 \begin{enumerate}[{LF-A}1.]
     \item The system shall use a neutral, professional color scheme that is not tied to any specific car brand. \\
-    \textbf{Rationale:} The app must maintain a consistent and professional appearance regardless of the car brand being evaluated. A neutral color scheme (e.g., soft blues, grays, and whites) helps to provide a cohesive look and ensures the focus remains on the functionality of the app, not any specific brand. This approach avoids overwhelming the user with brand-specific colors and keeps the interface easy to navigate for multiple car brands.
+    \textbf{Rationale:} The app must maintain a consistent and professional appearance regardless of the car brand being evaluated. A neutral color scheme (e.g., soft blues, grays, and whites) helps to provide a cohesive look and ensures the focus remains on the functionality of the app, not any specific brand. This approach avoids overwhelming the user with brand-specific colours and keeps the interface easy to navigate for multiple car brands.
     
     \item The system shall have a clean, modern, and minimalistic design.  \\
     \textbf{Rationale:} A minimalistic approach improves usability, avoids visual clutter, and ensures the user can focus on key actions without unnecessary distractions.
 
     \item The system shall use consistent, easy-to-read fonts across the entire application. \\ 
-    \textbf{Rationale:} Consistent fonts make the app easier to navigate and read, creating a professional and cohesive look that enhances usability. Fonts that may be good options include (Garamond, Oswald, or Open Sans) [3].
+    \textbf{Rationale:} Consistent fonts make the app easier to navigate and read, creating a professional and cohesive look that enhances usability. Fonts that may be good options include Garamond, Oswald, or Open Sans [3].
 
-    \item  Buttons and interactive elements must be visually distinct, use uniform colors, shapes, and must have sufficient contrast with the background. \\ 
+    \item  Buttons and interactive elements must be visually distinct, use uniform colours, shapes, and must have sufficient contrast with the background. \\ 
     \textbf{Rationale:} High contrast improves visibility, making it easier for users to distinguish interactive elements, such as buttons, from the rest of the interface.
 
-    \item The system must avoid using bright or overly saturated colors as background elements on any screen.  \\
-    \textbf{Rationale:} Bright colors could be visually distracting, making it harder for users to focus on content. Neutral or soft colors will keep the interface calm and allow the user to focus on the core tasks.
+    \item The system must avoid using bright or overly saturated colours as background elements on any screen.  \\
+    \textbf{Rationale:} Bright colours could be visually distracting, making it harder for users to focus on content. Neutral or soft colours will keep the interface calm and allow the user to focus on the core tasks.
 \end{enumerate}
 
 \subsubsection{Style Requirements}
@@ -1424,7 +1423,7 @@ Other assumptions that if changed, requirements may need to be updated:
     \textbf{Rationale:} Given that the app fetches car deal information from external sources and processes user input, response times should ideally be under 3 seconds to ensure a seamless user experience. Delays beyond this may cause user frustration, especially when scraping external data, and could lead to abandonment if the delay exceeds 5 seconds.
 
     \item The system must allow users to upload car images (for AI processing) with a maximum upload time of 5 seconds.  \\
-    \textbf{Rationale:} Image uploads for AI analysis must be fast, as delays in uploading images can negatively affect the user experience. A 5 second max delay ensures that users don't feel frustrated waiting for their image to be processed.
+    \textbf{Rationale:} Image uploads for AI analysis must be fast, as delays in uploading images can negatively affect the user experience. A 5 second maximum delay ensures that users don't feel frustrated waiting for their image to be processed.
 
     \item When scraping external data for similar car deals, the system should have an average response time of 3 seconds per request. The system will use asynchronous programming, prioritize essential data collection, schedule scraping during off-peak hours, and utilize rotating proxies to reduce server load. Caching frequently accessed data will minimize unnecessary requests.  \\
     \textbf{Rationale:} Efficient web scraping is key to maintaining a smooth user experience. Limiting simultaneous requests and using asynchronous programming allows for faster, concurrent data retrieval without overloading external sources. Scheduling scraping tasks during off-peak hours optimizes resource usage, while caching and rotating proxies help reduce server strain and avoid redundant requests, ensuring quicker response times and improved efficiency [4].
@@ -1472,7 +1471,7 @@ N/A
 \label{ssub:capacity_requirements}
 \begin{enumerate}[{PR-C}1.]
     \item The system must be able to handle up to 10 simultaneous users querying car deal valuations.  \\
-    \textbf{Rationale:} Given the 3-month development timeline, it's important to focus on ensuring that the system works well with a limited number of users. Handling 10 concurrent users is a reasonable target for an initial MVP (Minimum Viable Product) and will allow you to focus on optimizing the app's core features before scaling it up.
+    \textbf{Rationale:} Given the 3-month development timeline, it's important to focus on ensuring that the system works well with a limited number of users. Handling 10 concurrent users is a reasonable target for an initial MVP (Minimum Viable Product) and will allow for more focus on optimizing the app's core features before scaling.
 \end{enumerate}
 
 \subsubsection{Scalability or Extensibility Requirements}
@@ -1513,7 +1512,7 @@ N/A
 \subsubsection{Release Requirements}
 \label{ssub:release_requirements}
 \begin{enumerate}[{OE-RR}1.]
-    \item The app APK must target Android 14 to be approved for the Google Play store. [6]
+    \item The app APK (Android Package Kit) must target Android 14 to be approved for the Google Play store. [6]
     \item The app APK must also be available for versions back to Android 8.0 (Oreo) so that 95\% of Android users can download the application.[7]
 \end{enumerate}
 
@@ -1549,7 +1548,7 @@ N/A
 \begin{enumerate}[{MS-A}1. ]
 \item The system shall be able to integrate with new car value APIs as they become available.\\
 \textbf{Rationale:} The ability to integrate with additional car value APIs ensures the system remains up-to-date with the latest and most accurate sources of data.
-\item The system shall support multiple operating systems, including iOS, Android, and web platforms.\\
+\item The system shall support multiple operating systems, including iOS, Android, and web platforms. \\
 \textbf{Rationale:} Supporting multiple platforms ensures the app can reach a wider audience and provides a seamless experience regardless of a user's preferred device.
 \end{enumerate}
 % End SubSubSection
@@ -1562,15 +1561,12 @@ N/A
 \label{ssub:access_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-AC}1. ]
-\item The app must allow the user access to the features of the system if and only if the user has been authenticated through the correct credentials.
-    \begin{itemize}
-        \item \textbf{Rationale:} Ensures that only registered users can access the system.
-    \end{itemize}
+\item The app must allow the user access to the features of the system if and only if the user has been authenticated through the correct credentials. \\
+\textbf{Rationale:} Ensures that only registered users can access the system.
 
-\item The app must allow the user access to the user's account information if and only if the user has been authenticated through the correct credentials.
-    \begin{itemize}
-        \item \textbf{Rationale:} Ensures that each user can only access their account and data with the correct credentials of their account.
-    \end{itemize}
+\item The app must allow the user access to the user's account information if and only if the user has been authenticated through the correct credentials. \\
+\textbf{Rationale:} Ensures that each user can only access their account and data with the correct credentials of their account.
+
 \end{enumerate}
 % End SubSubSection
 
@@ -1578,15 +1574,11 @@ N/A
 \label{ssub:integrity_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-INT}1. ]
-\item Data transmitted within the system should be encrypted.
-    \begin{itemize}
-        \item \textbf{Rationale:} Ensures that data is correct and has not been played with before it arrives at the system data storage.
-    \end{itemize}
+\item Data transmitted within the system should be encrypted. \\
+\textbf{Rationale:} Ensures that data is correct and has not been played with before it arrives at the system data storage.
 
-\item Any text input must be verified to avoid any expert result anomalies.
-    \begin{itemize}
-        \item \textbf{Rationale:} Verifies text input is valid for processing without opening any backdoors, or providing inadequate responses.
-    \end{itemize}
+\item Any text input must be verified to avoid any expert result anomalies. \\
+\textbf{Rationale:} Verifies text input is valid for processing without opening any backdoors, or providing inadequate responses
 \end{enumerate}
 % End SubSubSection
 
@@ -1594,20 +1586,14 @@ N/A
 \label{ssub:privacy_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-P}1. ]
-\item The app must provide users with a legally adequate privacy policy, and ensure that users accept the policy before using the mobile application.
-    \begin{itemize}
-        \item \textbf{Rationale:} A requirement of the Google Play Developer Distribution Agreement [8] and the iOS Distribution Requirements[9].
-    \end{itemize}
+\item The app must provide users with a legally adequate privacy policy, and ensure that users accept the policy before using the mobile application. \\
+\textbf{Rationale:} A requirement of the Google Play Developer Distribution Agreement [8] and the iOS Distribution Requirements[9].
 
-\item The app must provide users with a readily available way of deleting their account and data, whether within or outside the mobile application.
-    \begin{itemize}
-        \item \textbf{Rationale:} A requirement of the Google Play Data Deletion Policy [10] and the iOS Account Deletion Requirement [11].
-    \end{itemize}
+\item The app must provide users with a readily available way of deleting their account and data, whether within or outside the mobile application.\\
+\textbf{Rationale:} A requirement of the Google Play Data Deletion Policy [10] and the iOS Account Deletion Requirement [11].
 
-\item The app must protect user posts on the system to only be viewable by the authenticated user. No other authenticated or unauthenticated user can view these posts.
-    \begin{itemize}
-        \item \textbf{Rationale:} To ensure the privacy of the users posts, only the user can view their posts.
-    \end{itemize}
+\item The app must protect user posts on the system to only be viewable by the authenticated user. No other authenticated or unauthenticated user can view these posts. \\
+\textbf{Rationale:} To ensure the privacy of the users posts, only the user can view their posts.
 \end{enumerate}
 % End SubSubSection
 
@@ -1615,15 +1601,11 @@ N/A
 \label{ssub:audit_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-AU}1. ]
-\item The system shall collect user app usage analytics data
-    \begin{itemize}
-        \item \textbf{Rationale:} Collecting user analytics allows detecting/fixing bugs early. Also allows the system to evolve based on user usage and activity.
-    \end{itemize}
+\item The system shall collect user app usage analytics data. \\
+\textbf{Rationale:} Collecting user analytics allows detecting/fixing bugs early. This also allows the system to evolve based on user usage and activity.
 
-\item The app store reviews shall be collected and analyzed on a regular bases
-    \begin{itemize}
-        \item \textbf{Rationale:} Allows the app to stay up to date with user trends and to catch bugs/issues early on.
-    \end{itemize}
+\item The app store reviews shall be collected and analyzed on a regular basis. \\
+\textbf{Rationale:} Allows the app to stay up to date with user trends and to catch bugs/issues early on.
 \end{enumerate}
 % End SubSubSection
 
@@ -1631,15 +1613,11 @@ N/A
 \label{ssub:immunity_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR-IM}1. ]
-\item The app must not accept unexpected/invalid input from the user
-    \begin{itemize}
-        \item \textbf{Rationale:} To avoid any attempts to breach/hack the system (SQL Injection, Code Injection, Remote Code Execution (RCE))
-    \end{itemize}
+\item The app must not accept unexpected/invalid input from the user. \\
+\textbf{Rationale:} To avoid any attempts to breach/hack the system (SQL Injection, Code Injection, Remote Code Execution (RCE)).
     
-\item The app must limit the number of login attempts per IP Address
-    \begin{itemize}
-        \item \textbf{Rationale:} To avoid any attempts to breach/hack a users account
-    \end{itemize}
+\item The app must limit the number of login attempts per IP Address. \\
+\textbf{Rationale:} To avoid any attempts to breach/hack a users account.
 \end{enumerate}
 % End SubSubSection
 
@@ -1679,13 +1657,19 @@ N/A
 \label{ssub:compliance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR-COMP}1. ]
-	\item Any information collected from a user of the application must be kept protected at all times. This requirement is even more elevated when considering the storage of personal information and other highly-sensitive data. Rationale: (Pipeda-1, Accountability) [12]
-	\item The application shall not collect any unneeded information from users, and there shall be a strict set of data collected that will be communicated with the user. Rationale: (Pipeda-2, Purpose Identification) [12]
-	\item The application shall provide users with a comprehensive list of all personal data the application holds. Rationale: (Pipeda-2, Purpose Identification) [12]
-	\item The application shall request that the user agree to the data policy of the application prior to any use of the application.Rationale: (Pipeda-3, Valid, Informed Consent) [12]
-	\item The application shall have a standard for disposal of personal information after a given period of time. Additionally, the application shall limit disclosure of user data to any necessary third parties. Finally, the application shall not disclose data to any non-authorized third parties. Rationale: (Pipeda-5, Limit disclosure, use, retention) [12]
-	\item All personal data with an associated sensitivity risk (e.g. passwords) shall be stored in an encrypted fashion to limit any risk of loss or theft. Rationale: (Pipeda-7, Use appropriate safeguards) [12]
-	\item  The privacy policy of the application shall be explained in clear language and not be of extreme length. There shall be a concise list of all data and connections to other services the application requires that will be provided to all users upon account creation. Rationale: (Pipeda-8, Be open) [12]
+	\item Any information collected from a user of the application must be kept protected at all times. This requirement is even more elevated when considering the storage of personal information and other highly-sensitive data. \\
+    \textbf{Rationale:} (Pipeda-1, Accountability) [12]
+	\item The application shall not collect any unneeded information from users, and there shall be a strict set of data collected that will be communicated with the user. \\
+    \textbf{Rationale:} (Pipeda-2, Purpose Identification) [12]
+	\item The application shall provide users with a comprehensive list of all personal data the application holds. \\\textbf{Rationale:}  (Pipeda-2, Purpose Identification) [12]
+	\item The application shall request that the user agree to the data policy of the application prior to any use of the application.\\
+    \textbf{Rationale:} (Pipeda-3, Valid, Informed Consent) [12]
+	\item The application shall have a standard for disposal of personal information after a given period of time. Additionally, the application shall limit disclosure of user data to any necessary third parties. Finally, the application shall not disclose data to any non-authorized third parties. \\
+    \textbf{Rationale:} (Pipeda-5, Limit disclosure, use, retention) [12]
+	\item All personal data with an associated sensitivity risk (e.g. passwords) shall be stored in an encrypted fashion to limit any risk of loss or theft.\\
+    \textbf{Rationale:}  (Pipeda-7, Use appropriate safeguards) [12]
+	\item  The privacy policy of the application shall be explained in clear language and not be of extreme length. There shall be a concise list of all data and connections to other services the application requires that will be provided to all users upon account creation. \\
+    \textbf{Rationale:}  (Pipeda-8, Be open) [12]
 \end{enumerate}
 % End SubSubSection
 
@@ -1693,10 +1677,14 @@ N/A
 \label{ssub:standards_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR-STD}1. ]
-	\item The application should meet the color contrast, image and media alternatives, and other relevant accessibility requirements as set out by the W3C. [13]
-	\item The application shall conform with the screen reader guidelines set out by Google in their Android instructions in order for accessibility for visually impaired users. [14]
-	\item The application shall follow standard navigation practices for mobile apps - such as a standard back arrow - as outlined by Google in their Android development instructions. This will ensure users are able to easily use the application. [15]
-	\item The application shall conform to Google’s standards for notifications. This includes managing notification priority, ensuring notifications are not used for advertisements, and grouping similar notifications together. [15]
+	\item The application should meet the color contrast, image and media alternatives, and other relevant accessibility requirements as set out by the W3C. [13] \\
+    \textbf{Rationale:}  Standard accessibility practices allow for a wider set of users to use the application easily.
+	\item The application shall conform with the screen reader guidelines set out by Google in their Android instructions in order for accessibility for visually impaired users. [14] \\
+    \textbf{Rationale:}  The application should be accessible to as many users as possible.
+	\item The application shall follow standard navigation practices for mobile apps - such as a standard back arrow - as outlined by Google in their Android development instructions [15]. \\ 
+    \textbf{Rationale:} This will ensure users are able to easily use the application. 
+	\item The application shall conform to Google’s standards for notifications. This includes managing notification priority, ensuring notifications are not used for advertisements, and grouping similar notifications together. [15] \\
+    \textbf{Rationale:} An app that over-uses notifications will lead to users leaving the platform.
 \end{enumerate}
 % End SubSubSection
 % End SubSection
@@ -1709,6 +1697,9 @@ The chosen innovative feature to implement is the AI-powered car recommendation 
 \begin{itemize}
     \item Request car deal comparison valuation
     \item Request depreciation curve from previous car deal reports
+    \item Artificial intelligence-based forecasting of car value into the future
+    \item User collaboration to lower the price of a used vehicle.
+    \item In-app negotiation agent to suggest prices for used vehicles based on car information.
 \end{itemize}
 
 \appendix
@@ -1734,12 +1725,12 @@ Include a Division of Labour sheet which indicates the contributions of each tea
 
 \subsection{Rebecca Di Filippo}
 \begin{itemize}
-    \item Section 1.1: Purpose.
-    \item Section 1.5: Overview.
-    \item Section 2.3: User characteristics.
-    \item Business Event 1: User requests deal check through drop-down.
-    \item Section 5.2: Usability and Humanity Requirements.
-    \item Section 5.7: Cultural and Political Requirements.
+    \item \textbf{Section 1.1:} Purpose.
+    \item \textbf{Section 1.5:} Overview.
+    \item \textbf{Section 2.3:} User characteristics.
+    \item \textbf{Business Event 1:} User requests deal check through drop-down.
+    \item \textbf{Section 5.2:} Usability and Humanity Requirements.
+    \item \textbf{Section 5.7:} Cultural and Political Requirements.
     \begin{center}
         \includegraphics[scale=2]{Images/rebecca.png}
     \end{center}
@@ -1751,8 +1742,8 @@ Include a Division of Labour sheet which indicates the contributions of each tea
     \item \textbf{Section 2.1:} Created the high-level system diagram.
     \item \textbf{Section 4:} Created Business Event 5 - User requests deal valuation based on text, drop down, image.
     \item \textbf{Section 4:} Created Business Event 9 - User requests to login to their account.
-    \item \textbf{Section 5.8:} Compliance Requirements.
-    \item \textbf{Section 5.8:} Standards Requirements.
+    \item \textbf{Section 5.8:} Compliance Requirements
+    \item \textbf{Section 5.7:} Standards Requirements.
     \item Reformatted sections from original Google Docs file to LaTeX and added references.
     \begin{center}
         \includegraphics[scale=0.7]{Images/ethan.png}
@@ -1761,9 +1752,9 @@ Include a Division of Labour sheet which indicates the contributions of each tea
 
 \subsection{Jake Finlay}
 \begin{itemize}
-    \item Section 2.6: Apportioning of Requirements
-    \item Section 5.5: Maintainability and Support Requirements
-    \item Business Event 2: User requests deal valuation based on image and text
+    \item \textbf{Section 2.6:} Apportioning of Requirements
+    \item \textbf{Section 5.5:} Maintainability and Support Requirements
+    \item \textbf{Business Event 2:} User requests deal valuation based on image and text
     \item Reformatted sections from google doc to latex
     \begin{center}
         \includegraphics[scale=0.7]{Images/jake.png}
@@ -1772,10 +1763,10 @@ Include a Division of Labour sheet which indicates the contributions of each tea
 
 \subsection{Omer Karo}
 \begin{itemize}
-    \item {Section 5.4:} Operational and Environmental Requirements
-    \item {Section 2.2:} Product Functions
-    \item {Business Event 6:} User requests a comparison between two or more car deals
-    \item {Business Event 7:} User requests a car recommendation based on text information provided 
+    \item \textbf{{Section 5.4:}} Operational and Environmental Requirements
+    \item \textbf{{Section 2.2:}} Product Functions
+    \item \textbf{{Business Event 6:}} User requests a comparison between two or more car deals
+    \item \textbf{{Business Event 7:}} User requests a car recommendation based on text information provided 
     \begin{center}
         \includegraphics[scale=2]{Images/omer.jpg}
     \end{center}
