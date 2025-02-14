@@ -119,9 +119,10 @@ DealCheck is a mobile application that will allow users to request from the syst
 \subsection{References}
 \label{sub:references}
 \begin{enumerate}
-    \item [\textbf{[1]}] “Kelley Blue Book | New and Used Car Price Values, Expert Car Reviews,” Kelley Blue Book. Available at: \url{https://www.kbb.com/} (accessed Jan. 28, 2025).
 
-    \item [\textbf{[2]}] “What are the best car buying apps in Canada,” Car Deal Canada. Available at: \url{https://www.cardealcanada.ca/best-car-buying-apps-in-canada/} (accessed Feb. 13, 2025).
+	\item [\textbf{[1]}] “What are the best car buying apps in Canada,” Car Deal Canada. Available at: \url{https://www.cardealcanada.ca/best-car-buying-apps-in-canada/} (accessed Feb. 13, 2025).
+
+    \item [\textbf{[2]}] “Kelley Blue Book | New and Used Car Price Values, Expert Car Reviews,” Kelley Blue Book. Available at: \url{https://www.kbb.com/} (accessed Jan. 28, 2025).
 
     \item [\textbf{[3]}] W. L. in R.-B. U. Experience, “Best Font for Online Reading: No Single Answer,” Nielsen Norman Group, Apr. 24, 2022. Available at: \url{https://www.nngroup.com/articles/best-font-for-online-reading/}.
     
@@ -168,9 +169,9 @@ Section 2 discusses the overall product description focusing on the product pers
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-DealCheck is a mobile app that will serve as a center for car pricing information. Similar to market products such as AutoTrader and CarGurus, DealCheck 
+DealCheck is a mobile app that will serve as a center for car pricing information. Similar to market products such as AutoTrader and CarGurus [1], DealCheck 
 will offer users the ability to ensure the price of a vehicle is both accurate and fair. The application will achieve this through a variety of sources 
-such as generative artificial intelligence (AI), existing databases of car price information (for example, the Kelley Blue Book), and a custom algorithm 
+such as generative artificial intelligence (AI), existing databases of car price information (for example, the Kelley Blue Book)[2], and a custom algorithm 
 to provide a score for the deal. Users will first login to an account, and then will be able to submit multi-modal information about the vehicle, such as 
 text descriptions, images, and drop-downs. This will allow for a more in-depth analysis, considering factors such as mileage, crash history, and current 
 market data. Users will also be able to view their existing reports and query history in order to access previously-searched-for information quickly. \newline
@@ -1422,7 +1423,7 @@ Other assumptions that if changed, requirements may need to be updated:
 
 \subsubsection{Safety-Critical Requirements}
 \label{ssub:safety_critical_requirements}
-\textbf{N/A}
+N/A
 
 
 \subsubsection{Precision or Accuracy Requirements}
@@ -1669,13 +1670,13 @@ N/A
 \label{ssub:compliance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR-COMP}1. ]
-	\item Any information collected from a user of the application must be kept protected at all times. This requirement is even more elevated when considering the storage of personal information and other highly-sensitive data. Rationale: (Pipeda-1, Accountability)
-	\item The application shall not collect any unneeded information from users, and there shall be a strict set of data collected that will be communicated with the user. Rationale: (Pipeda-2, Purpose Identification)
-	\item The application shall provide users with a comprehensive list of all personal data the application holds. Rationale: (Pipeda-2, Purpose Identification)
-	\item The application shall request that the user agree to the data policy of the application prior to any use of the application.Rationale: (Pipeda-3, Valid, Informed Consent)
-	\item The application shall have a standard for disposal of personal information after a given period of time. Additionally, the application shall limit disclosure of user data to any necessary third parties. Finally, the application shall not disclose data to any non-authorized third parties. Rationale: (Pipeda-5, Limit disclosure, use, retention)
-	\item All personal data with an associated sensitivity risk (e.g. passwords) shall be stored in an encrypted fashion to limit any risk of loss or theft. Rationale: (Pipeda-7, Use appropriate safeguards)
-	\item  The privacy policy of the application shall be explained in clear language and not be of extreme length. There shall be a concise list of all data and connections to other services the application requires that will be provided to all users upon account creation. Rationale: (Pipeda-8, Be open)
+	\item Any information collected from a user of the application must be kept protected at all times. This requirement is even more elevated when considering the storage of personal information and other highly-sensitive data. Rationale: (Pipeda-1, Accountability) [12]
+	\item The application shall not collect any unneeded information from users, and there shall be a strict set of data collected that will be communicated with the user. Rationale: (Pipeda-2, Purpose Identification) [12]
+	\item The application shall provide users with a comprehensive list of all personal data the application holds. Rationale: (Pipeda-2, Purpose Identification) [12]
+	\item The application shall request that the user agree to the data policy of the application prior to any use of the application.Rationale: (Pipeda-3, Valid, Informed Consent) [12]
+	\item The application shall have a standard for disposal of personal information after a given period of time. Additionally, the application shall limit disclosure of user data to any necessary third parties. Finally, the application shall not disclose data to any non-authorized third parties. Rationale: (Pipeda-5, Limit disclosure, use, retention) [12]
+	\item All personal data with an associated sensitivity risk (e.g. passwords) shall be stored in an encrypted fashion to limit any risk of loss or theft. Rationale: (Pipeda-7, Use appropriate safeguards) [12]
+	\item  The privacy policy of the application shall be explained in clear language and not be of extreme length. There shall be a concise list of all data and connections to other services the application requires that will be provided to all users upon account creation. Rationale: (Pipeda-8, Be open) [12]
 \end{enumerate}
 % End SubSubSection
 
@@ -1683,13 +1684,12 @@ N/A
 \label{ssub:standards_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR-STD}1. ]
-	\item The application should meet the color contrast, image and media alternatives, and other relevant accessibility requirements as set out by the W3C. [SOURCE]
-	\item The application shall conform with the screen reader guidelines set out by Google in their Android instructions in order for accessibility for visually impaired users.
-	\item The application shall follow standard navigation practices for mobile apps - such as a standard back arrow - as outlined by Google in their Android development instructions. This will ensure users are able to easily use the application.
-	\item The application shall conform to Google’s standards for notifications. This includes managing notification priority, ensuring notifications are not used for advertisements, and grouping similar notifications together.
+	\item The application should meet the color contrast, image and media alternatives, and other relevant accessibility requirements as set out by the W3C. [13]
+	\item The application shall conform with the screen reader guidelines set out by Google in their Android instructions in order for accessibility for visually impaired users. [14]
+	\item The application shall follow standard navigation practices for mobile apps - such as a standard back arrow - as outlined by Google in their Android development instructions. This will ensure users are able to easily use the application. [15]
+	\item The application shall conform to Google’s standards for notifications. This includes managing notification priority, ensuring notifications are not used for advertisements, and grouping similar notifications together. [15]
 \end{enumerate}
 % End SubSubSection
-
 % End SubSection
 
 % End Section
