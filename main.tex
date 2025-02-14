@@ -130,9 +130,9 @@ DealCheck is a mobile application that will allow users to request from the syst
     
     \item [\textbf{[5]}] R. Lai, “The SOLID Principles: Writing Scalable \& Maintainable Code,” Medium, Jun. 28, 2023. Available at: \url{https://forreya.medium.com/the-solid-principles-writing-scalable-maintainable-code-13040ada3bca} (accessed Feb. 02, 2025).
 
-    \item [\textbf{[6]}] “Android Distribution Chart – Updated on May 2024,” Composables UI, 2024. Available at: \url{https://composables.com/android-distribution-chart}.
+    \item [\textbf{[6]}] “Target API level requirements for Google Play apps - Play Console Help,” support.google.com. Available at: \url{https://support.google.com/googleplay/android-developer/answer/11926878?hl=en}.
 
-    \item [\textbf{[7]}] “Target API level requirements for Google Play apps - Play Console Help,” support.google.com. Available at: \url{https://support.google.com/googleplay/android-developer/answer/11926878?hl=en}.
+    \item [\textbf{[7]}] “Android Distribution Chart – Updated on May 2024,” Composables UI, 2024. Available at: \url{https://composables.com/android-distribution-chart}.
     
     \item [\textbf{[8]}] “Google Play,” Play.google, 2024. Available at: \url{https://play.google/developer-distribution-agreement.html}.
     
@@ -199,7 +199,10 @@ Additionally, it will consult, via API, an existing database of car price record
 			\hline
 			\textbf{Modules} & \textbf{Functions} \\
 			\hline
-			\textbf{Algorithm Service} & Answer Post Requests based on the drop-down (if the forum distributes to it). \\
+			\textbf{Point System Algorithm Service} & 
+            \begin{itemize}
+                \item Answer Post Requests based on the drop-down (if the forum distributes to it).
+            \end{itemize} \\
 			\hline
 			\textbf{Forum Service} & 
 			\begin{itemize}
@@ -216,9 +219,15 @@ Additionally, it will consult, via API, an existing database of car price record
 				\item Login
 			\end{itemize} \\
 			\hline
-			\textbf{AI Service} & Answer Post Requests based on the dropdown, picture, or description (if the forum distributes to it). \\
+			\textbf{AI Service} &
+            \begin{itemize}
+                \item Answer Post Requests based on the dropdown, picture, or description (if the forum distributes to it).
+            \end{itemize} \\
 			\hline
-			\textbf{Redbook Database} & Determine if a deal is good based on car model and year (if the forum distributes to it). \\
+			\textbf{Redbook Database} & 
+            \begin{itemize}
+                \item Determine if a deal is good based on car model and year (if the forum distributes to it).
+            \end{itemize} \\
 			\hline
 			\textbf{AI Recommendation Service} & 
 			\begin{itemize}
@@ -1492,7 +1501,7 @@ N/A
 
 \subsubsection{Requirements for Interfacing with Adjacent Systems}
 \label{ssub:interfacing_adjacent_systems}
-\begin{enumerate}[{IF-}1.]
+\begin{enumerate}[{OE-RIAS}1.]
     \item The app must have efficient and reliable access to the OpenAI API to be able to complete the AI recommendation. 
     \item The app must have efficient and reliable access to the Autotrader API to be able to complete the API recommendation.
 \end{enumerate}
@@ -1503,9 +1512,9 @@ N/A
 
 \subsubsection{Release Requirements}
 \label{ssub:release_requirements}
-\begin{enumerate}[{RL-}1.]
-    \item The app APK must target Android 14 to be approved for the Google Play store.
-    \item The app APK must also be available for versions back to Android 8.0 (Oreo) so that 95% of Android users can download the application.
+\begin{enumerate}[{OE-RR}1.]
+    \item The app APK must target Android 14 to be approved for the Google Play store. [6]
+    \item The app APK must also be available for versions back to Android 8.0 (Oreo) so that 95\% of Android users can download the application.[7]
 \end{enumerate}
 
 \subsection{Maintainability and Support Requirements}
@@ -1763,9 +1772,12 @@ Include a Division of Labour sheet which indicates the contributions of each tea
 
 \subsection{Omer Karo}
 \begin{itemize}
-    \item Test
+    \item {Section 5.4:} Operational and Environmental Requirements
+    \item {Section 2.2:} Product Functions
+    \item {Business Event 6:} User requests a comparison between two or more car deals
+    \item {Business Event 7:} User requests a car recommendation based on text information provided 
     \begin{center}
-        \includegraphics[scale=2]{Images/signature.png}
+        \includegraphics[scale=2]{Images/omer.jpg}
     \end{center}
 \end{itemize}
 
