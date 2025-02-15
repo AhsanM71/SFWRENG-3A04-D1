@@ -380,7 +380,7 @@ Other assumptions that if changed, requirements may need to be updated:
         \begin{enumerate}[1.]
           \item User opens the DealCheck application.
           \item User selects “Check New Vehicle”.
-          \item User enters relevant drop-down information (make, model, year, location).
+          \item System requests user to enter dropdown menu fields (make, model, year, location).
           \item User enters their own guess for the deal in the guess check text box.
           \item User presses the ‘Submit’ button.
           \item System consults with the points-based algorithm.
@@ -414,7 +414,7 @@ Other assumptions that if changed, requirements may need to be updated:
     \begin{enumerate}[{\bf 1.}]
       \item User opens the DealCheck application.
       \item User selects “Check New Vehicle”.
-      \item User enters relevant drop-down information (make, model, year, location).
+      \item System requests user to enter dropdown menu fields (make, model, year, location).
       \item User enters their own guess for the deal in the guess check text box.
       \item User presses the ‘Submit’ button.
       \item System consults with the points-based algorithm.
@@ -546,7 +546,7 @@ Other assumptions that if changed, requirements may need to be updated:
         \begin{enumerate}[1.]
             \item User opens the DealCheck application.
             \item User selects to start a new deal check request.
-            \item System requests user to enter dropdown menu fields.
+            \item System requests user to enter mandatory dropdown menu fields.
             \item System requests user to enter optional fields:
             \begin{itemize}
                 \item Text Description.
@@ -767,6 +767,7 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item User logs in to account
 			\item User selects “Check New Vehicle”
 			\item User enters relevant drop-down information (make, model, year, location)
+			\item User enters their own guess for the deal in the guess check text box
 			\item User uploads image of vehicle
 			\item User provides textual description of any issues with the vehicle as well as any additional relevant information not requested via the drop-downs.
 			\item User presses the ‘Submit’ button
@@ -826,6 +827,7 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item User logs in to account
 			\item User selects “Check New Vehicle”
 			\item User enters relevant drop-down information (make, model, year, location)
+                \item User enters their own guess for the deal in the guess check text box
 			\item User uploads image of vehicle
 			\item User provides textual description of any issues with the vehicle as well as any additional relevant information not requested via the drop-downs.
 			\item User presses the ‘Submit’ button
@@ -1017,14 +1019,12 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [6i.1] System informs user that the device has lost connection to the internet
 			\item [6i.2] System requests to check connection and try again
 			\item [6i.3] User tries to submit the registration form again
-			\item [6i.4] Back to BE8-6
 		\end{enumerate}
 
 		\item [6ii.] User system is unavailable or down
 		\begin{enumerate}
 			\item [6ii.1] System informs user that they cannot be authenticated and to try again later
 			\item [6ii.2] User submit the form at a later time
-			\item [6ii.3] Back to BE8-6
 		\end{enumerate}
 
 		\item [7i.] Submitted username already exists
@@ -1033,7 +1033,6 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [7i.2] System requests user to enter another username
 			\item [7i.3] User enters a new username
 			\item [7i.4] User resubmits the registration form
-			\item [7i.5] Back to BE8-7
 		\end{enumerate}
 
 		\item [7ii.] Submitted email already exists
@@ -1042,7 +1041,6 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [7ii.2] System requests user to enter another email
 			\item [7ii.3] User enters a new email
 			\item [7ii.4] User resubmits the registration form
-			\item [7ii.5] Back to BE8-7
 		\end{enumerate}
 	\end{enumerate}
 
@@ -1077,14 +1075,12 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [6i.1] System informs user that the device has lost connection to the internet
 			\item [6i.2] System requests to check connection and try again
 			\item [6i.3] User tries to submit the registration form again
-			\item [6i.4] Back to BE8-6
 		\end{enumerate}
 
 		\item [6ii.] System user system is unavailable or down
 		\begin{enumerate}
 			\item [6ii.1] System informs user that they cannot be authenticated and to try again later
 			\item [6ii.2] User submit the form at a later time
-			\item [6ii.3] Back to BE8-6
 		\end{enumerate}
 
 		\item [7i.] Submitted username already exists
@@ -1093,7 +1089,6 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [7i.2] System requests user to enter another username
 			\item [7i.3] User enters a new username
 			\item [7i.4] User resubmits the registration form
-			\item [7i.5] Back to BE8-7
 		\end{enumerate}
 
 		\item [7ii.] Submitted email already exists
@@ -1102,7 +1097,6 @@ Other assumptions that if changed, requirements may need to be updated:
 			\item [7ii.2] System requests user to enter another email
 			\item [7ii.3] User enters a new email
 			\item [7ii.4] User resubmits the registration form
-			\item [7ii.5] Back to BE8-7
 		\end{enumerate}
 		
 		\item [7iii.] User Account given unique id for the purpose of tracing any possible issues.
