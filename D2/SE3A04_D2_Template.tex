@@ -10,6 +10,7 @@
 \usepackage{fancyhdr}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage{float}
 %\usepackage{extarrows}
 %\usepackage{setspace}
 %------------------------------------------------------------------------------
@@ -125,24 +126,150 @@ This section should provide an overview of the overall architectural design of y
 \section{Class Responsibility Collaboration (CRC) Cards}
 \label{sec:class_responsibility_collaboration_crc_cards}
 % Begin Section
-This section should contain all of your CRC cards.
+This section contains all CRC cards.
 
 \begin{itemize}
-	\item Provide a CRC Card for each identified class
-	\item Please use the format outlined in tutorial, i.e., 
-	\begin{table}[ht]
-		\centering
-		\begin{tabular}{|p{5cm}|p{5cm}|}
-		\hline 
-		 \multicolumn{2}{|l|}{\textbf{Class Name:}} \\
-		\hline
-		\textbf{Responsibility:} & \textbf{Collaborators:} \\
-		\hline
-		\vspace{1in} & \\
-		\hline
-		\end{tabular}
-	\end{table}
-	
+    \item Provide a CRC Card for each identified class.
+    \item Please use the format outlined in the tutorial, i.e., 
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: Experts Service (Controller)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Experts Process Management Controller & Experts Process Management \\
+        Knows AI Expert & AI Expert \\
+        Knows External API Service Expert & External API Service Expert \\
+        Knows Point System Algorithm Expert & Point System Algorithm Expert \\
+        Handles interaction between the process manager and the experts & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: AI Expert (Controller)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Experts Service & Experts Service \\
+        Knows AI API & AI API \\
+        Processes AI queries & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: AI API (Boundary)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows AI Expert & AI Expert \\
+        Handles AI queries & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: External API Service Expert (Controller)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Experts Service & Experts Service \\
+        Knows Redbook API & Redbook API \\
+        Processes external API requests & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: Redbook API (Boundary)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows External API Service Expert & External API Service Expert \\
+        Handles requests to the Redbook API & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: Point System Algorithm (Controller)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Experts Service & Experts Service \\
+        Handles point calculations & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: Deal Report Management (Controller)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Account Management & Account Management \\
+        Knows Experts Process Management & Experts Process Management \\
+        Knows Request Information & Request Information \\
+        Knows View Car Deal Report & View Car Deal Report \\
+        Knows Save Car Deal Report & Save Car Deal Report \\
+        Handles deal reports & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: View Car Deal Report (Boundary)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Request Information & Request Information \\
+        Knows Deal Report Management & Deal Report Management \\
+        Handles click event of “View Deal Report” & \\
+        Displays deal report information & \\
+        \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline 
+         \multicolumn{2}{|l|}{\textbf{Class Name: Save Car Deal Report (Boundary)}} \\
+        \hline
+        \textbf{Responsibility:} & \textbf{Collaborators:} \\
+        \hline
+        Knows Request Information & Request Information \\
+        Knows Deal Report Management & Deal Report Management \\
+        Handles click event of “Save Deal Report” & \\
+        Saves deal report information & \\
+        \hline
+        \end{tabular}
+    \end{table}
+
 \end{itemize}
 % End Section
 
@@ -151,6 +278,23 @@ This section should contain all of your CRC cards.
 \label{sec:division_of_labour}
 % Begin Section
 Include a Division of Labour sheet which indicates the contributions of each team member. This sheet must be signed by all team members.
+\subsection{Jake Finlay}
+\begin{itemize}
+    \item Came up with some classes for the initial Analysis Class Diagram
+	\item Contributed 9 Class Responsibility Cards
+	\begin{itemize}
+		\item Experts Service
+		\item Point System Algorithm Expert
+		\item External API Service Expert
+		\item Redbook API
+		\item AI Expert
+		\item AI API
+		\item Deal Report Management
+		\item View Car Deal Report
+		\item Save Car Deal Report
+	\end{itemize}
+	\item Helped with conversion to Latex
+\end{itemize}
 % End Section
 
 
