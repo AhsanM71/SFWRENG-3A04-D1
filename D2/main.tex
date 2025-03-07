@@ -76,7 +76,7 @@ This section should provide an brief overview of the entire document.
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-This document provides a high level overview of the DealCheck system architecture, including high level design considerations of the system, as well as design considerations for various subsystems. This document is intended for internal DealCheck stakeholders, including project managers, software developers, domain experts, and DealCheck team members/investors. It is recommended that DealCheck deliverable 1 is read prior, and the reader has some basic software technical knowledge.
+This document provides a high level overview of the DealCheck system architecture, including high level design considerations of the system, as well as design considerations for various subsystems. This document is intended for internal DealCheck stakeholders, including project managers, software developers, domain experts, and DealCheck team members/investors. It is recommended that DealCheck deliverable 1 is read prior to this, and the reader has some basic software technical knowledge.
 % End SubSection
 
 \subsection{System Description}
@@ -84,7 +84,7 @@ This document provides a high level overview of the DealCheck system architectur
 % Begin SubSection
 The overall DealCheck system follows a Blackboard (BB) style architecture, with various subsystems adopting either a BB or repository style design architecture.
 The BB architecture supports multiple agents or "experts" that contribute toward the evaluation of car deals, with each agent operating independently to add insights to the shared Blackboard, which acts as the central repository of knowledge.
-Additionally, the repository style design architecture is used for subsystems that require concurrent access to data, particularly in areas like account management. This architecture is specialized for handling high-complexity data processing, ensuring that user account information and car evaluation reports are securely and efficiently managed in DealCheck.
+Additionally, the repository style design architecture is used for subsystems that require concurrent access to data, particularly in areas like account management. This architecture is specialized for handling high-complexity data processing, ensuring that user account information and car valuation reports are securely and efficiently managed in DealCheck.
 % End SubSection
 
 \subsection{Overview}
@@ -197,20 +197,7 @@ The Car Recommendation Service subsystem is our innovative feature, responsible 
 This section should contain all of your CRC cards.
 
 \begin{itemize}
-	\item Provide a CRC Card for each identified class
-	\item Please use the format outlined in tutorial, i.e., 
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{|p{6cm}|p{6cm}|}
-		\hline 
-		 \multicolumn{2}{|l|}{\textbf{Class Name:}} \\
-		\hline
-		\textbf{Responsibility:} & \textbf{Collaborators:} \\
-		\hline
-		\vspace{1in} & \\
-		\hline
-		\end{tabular}
-	\end{table}
+	\item Below are all CRC cards for the DealCheck application.
         \begin{table}[H]
             \centering
             \begin{tabular}{|p{6cm}|p{6cm}|}
@@ -402,7 +389,8 @@ This section should contain all of your CRC cards.
                 \hline
                 \textbf{Responsibility:} & \textbf{Collaborators:} \\
                 \hline
-                Handles deal valuation requests & Experts Process Manager \\
+                Handles deal valuation requests & Experts Process Management \\
+                Knows Expert Process Manager & \\
                 \hline
             \end{tabular}
         \end{table}
@@ -414,7 +402,8 @@ This section should contain all of your CRC cards.
                 \hline
                 \textbf{Responsibility:} & \textbf{Collaborators:} \\
                 \hline
-                Handles deal valuation responses & Experts Process Manager \\
+                Handles deal valuation responses & Experts Process Management \\
+                Knows Expert Process Manager & \\
                 \hline
             \end{tabular}
         \end{table}
@@ -430,7 +419,7 @@ This section should contain all of your CRC cards.
                 Knows View Car Recommendation & View Car Recommendation \\
                 Knows Request Car Depreciation Curve & Request Car Depreciation Curve \\
                 Knows View Car Depreciation Curve & View Car Depreciation Curve \\
-                Knows AI Car Recommendation service & AI Car Recommendation service \\
+                Knows Extended AI Service & Extended AI Service \\
                 Knows Car Recommendation Information & Car Recommendation Information \\
                 Knows Request Information & Request Information \\
                 Handles Car Recommendations Requests &  \\
@@ -447,6 +436,7 @@ This section should contain all of your CRC cards.
                 \textbf{Responsibility:} & \textbf{Collaborators:} \\
                 \hline
                 Handles Car Depreciation Curve Requests From External AI & Car Recommendation Service \\
+                Knows Car Recommendation Service & \\
                 \hline
             \end{tabular}
         \end{table}
@@ -458,9 +448,8 @@ This section should contain all of your CRC cards.
             \hline
             \textbf{Responsibility} & \textbf{Collaborators} \\
             \hline
-            Know the car recommendation database & Car Recommendation Service \\
-            Process the interaction with car recommendation database & AI Car Recommendation Service \\
-            Process the data interaction with car recommendation service & \\
+            Stores scenario-based car recommendations & Car Recommendation Service \\
+            Process the data interaction with car recommendation service passively & Extended AI Service\\
             \hline
             \end{tabular}
         \end{table}
@@ -472,14 +461,19 @@ This section should contain all of your CRC cards.
             \hline
             \textbf{Responsibility} & \textbf{Collaborators} \\
             \hline
-            Knows user account information & Edit Account\\
+            Knows Account Error & Edit Account\\
             Processes user authentication requests (login, logout, registration) & Account Success\\
             Processes user data requests (view, edit) & Account Error\\
             Handles account error handling & View Account\\
-            & Account Information \\
-            & Registration\\
-            & Login\\
-            & Logout\\
+            Knows Account Information & Account Information \\
+            Knows View Account & Registration\\
+            Knows Account Success & Login\\
+            Knows Login & Logout\\
+            Knows Logout & \\
+            Knows Registration & \\
+            Knows Edit Account & \\
+            Knows Car Recommendation Service & \\
+            Knows Deal Report Management & \\
             \hline
             \end{tabular}
         \end{table}
@@ -491,7 +485,7 @@ This section should contain all of your CRC cards.
             \hline
             \textbf{Responsibility} & \textbf{Collaborators} \\
             \hline
-            Knows user account information & Account Management\\
+            Knows Account Management & Account Management\\
             Processes logout requests by the user & \\
             \hline
             \end{tabular}
@@ -504,7 +498,7 @@ This section should contain all of your CRC cards.
             \hline
             \textbf{Responsibility} & \textbf{Collaborators} \\
             \hline
-            Knows user account information & Account Management\\
+            Knows Account Management & Account Management\\
             Handles successful user account interactions (successful login/logout/registration) & \\
             \hline
             \end{tabular}
@@ -536,7 +530,7 @@ This section should contain all of your CRC cards.
             \hline
             Handle scenario-based car recommendation request \newline
             Knows Car Recommendation Service Controller \newline
-            Implicit request from external AI Car Recommendation Service & Car Recommendation Service Controller \\ 
+            Handles implicit request from external Extended AI Service & Car Recommendation Service Controller \\ 
             \hline
             \end{tabular}
             \label{tab:crc_card}
@@ -564,12 +558,13 @@ This section should contain all of your CRC cards.
         \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
         \begin{tabular}{|p{6cm}|p{6cm}|} 
         \hline
-        \multicolumn{2}{|c|}{\textbf{Class Name: AI Car Recommendation Service (Boundary)}} \\ 
+        \multicolumn{2}{|c|}{\textbf{Class Name: Extended AI Service (Boundary)}} \\ 
         \hline
         \textbf{Responsibility} & \textbf{Collaborators} \\ 
         \hline
-        Knows Car Recommendation Service Controller \newline
+        Knows Car Recommendation Service Controller & \\
         Handles AI car recommendation queries based on user scenario & Car Recommendation Service Controller \\ 
+        Knows Car Recommendation Information & Car Recommendation Information \\
         \hline
         \end{tabular}
         \label{tab:crc_card}
@@ -584,9 +579,10 @@ This section should contain all of your CRC cards.
         \hline
         \textbf{Responsibility} & \textbf{Collaborators} \\ 
         \hline
-        Knows Request Database & View Car Deal Report \\
-        Knows Car Deal Report & Save Car Deal Report \\
-        Knows Car Recommendations & Car Recommendation Service \\
+        Stores Car Deal Reports & View Car Deal Report \\
+        Stores Depreciation Curves & Save Car Deal Report \\
+         & Deal Report Management \\
+         & Car Recommendation Service \\
         \hline
         \end{tabular}
         \label{tab:crc_card}
@@ -597,16 +593,15 @@ This section should contain all of your CRC cards.
         \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
         \begin{tabular}{|p{6cm}|p{6cm}|} 
         \hline
-        \multicolumn{2}{|c|}{\textbf{Class Name: Experts Process Management (Controller}} \\ 
+        \multicolumn{2}{|c|}{\textbf{Class Name: Experts Process Management (Controller)}} \\ 
         \hline
         \textbf{Responsibility} & \textbf{Collaborators} \\ 
         \hline
-        Knows the status of expert decisions & Experts Service \\
-        Knows the results of expert decisions & Response Handler \\ 
-        Knows deal report management controller & Requests Intake \\
-        Knows expert service controller & \\
-        Knows list of requests& \\
-        Knows Request Database & \\
+        Knows Requests Intake & Requests Intake \\
+        Knows Response Handler & Response Handler \\
+        Knows Experts Service & Experts Service \\
+        Knows Deal Report Management & Deal Report Management \\
+        Handles storing and distribution of Deal Report Requests & \\
         \hline
         \end{tabular}
         \label{tab:crc_card}
@@ -622,10 +617,7 @@ This section should contain all of your CRC cards.
         \textbf{Responsibility} & \textbf{Collaborators} \\ 
         \hline
         Handles login error events & Account Management \\
-        Handles password error events & \\
-        Handles data security error events & \\
-        Knows routines to notify the user of the error(s) & \\
-        Knows account management controller & \\
+        Knows Account Management& \\
         \hline
         \end{tabular}
         \label{tab:crc_card}
@@ -636,13 +628,12 @@ This section should contain all of your CRC cards.
         \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
         \begin{tabular}{|p{6cm}|p{6cm}|} 
         \hline
-        \multicolumn{2}{|c|}{\textbf{Class Name: Request Information (Boundary)}} \\ 
+        \multicolumn{2}{|c|}{\textbf{Class Name: Edit Account (Boundary)}} \\ 
         \hline
         \textbf{Responsibility} & \textbf{Collaborators} \\ 
         \hline
-        Handles click-event on "Edit Profile" button & Account Management \\
-        Knows Account Management Controller & \\
-        Knows which profile fields are modifiable & \\
+        Knows Account Management& Account Management \\
+        Handles click event for "Edit Account" & \\
         \hline
         \end{tabular}
         \label{tab:crc_card}
@@ -662,7 +653,7 @@ This section should contain all of your CRC cards.
     \begin{itemize}
         \item View Car Depreciation Curve
         \item Request Car Recommendation
-        \item AI Car Recommendation Service
+        \item Extended AI Service
         \item View Car Recommendation
     \end{itemize}
     \item Suggested changes to the Analysis Class Diagram.
@@ -674,7 +665,7 @@ This section should contain all of your CRC cards.
 \subsection{Rebecca Di Filippo}
 \begin{itemize}
     \item Wrote Section 1.1: Purpose of Document
-    \item Wrote Section 1.2: System Description
+    \item Wrote Section 1.2:  System Description
     \item Wrote Section 1.3: Overview of Document
     \item Contributed 4 Class Responsibility Cards
     \begin{itemize}
@@ -684,7 +675,7 @@ This section should contain all of your CRC cards.
         \item View Account
     \end{itemize}
     \begin{center}
-        \includegraphics[scale=0.7]{rebecca.png}
+        \includegraphics[scale=1.2]{rebecca.png}
     \end{center}
 \end{itemize}
 
@@ -724,7 +715,7 @@ This section should contain all of your CRC cards.
     \end{itemize}
     \item Helped with conversion to Latex
     \begin{center}
-        \includegraphics[scale=0.7]{jake.png}
+        \includegraphics[scale=0.6]{jake.png}
     \end{center}
 \end{itemize}
 
@@ -740,10 +731,10 @@ This section should contain all of your CRC cards.
         \item Car Recommendation service
         \item Request Car Depreciation Curve 
     \end{itemize}
-    \begin{center}
-        \includegraphics[scale=0.1]{omer.jpg}
-    \end{center}
     \item Helped with conversion to Latex
+    \begin{center}
+        \includegraphics[scale=0.2]{omer.jpg}
+    \end{center}
 \end{itemize}
 
 \subsection{Abdallah Alqashqish}
@@ -762,7 +753,6 @@ This section should contain all of your CRC cards.
             \item Logout (Boundary).
             \item Account Success (Boundary).
         \end{itemize}
-    \item Reviewed Class Responsibility Cards to ensure that they match Analysis Class Diagram.
     \begin{center}
         \includegraphics[scale=0.1]{abdallah.jpg}
     \end{center}
