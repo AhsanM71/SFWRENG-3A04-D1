@@ -1,11 +1,11 @@
 @startuml be3
-actor User
-boundary "Request Intake" as Intake
-control "Experts Process Management Controller" as Controller
-control "Experts Service" as Service
-control "Point Algorithm Expert" as Algorithm
-control "AI Expert" as AI
-entity "AI API" as AI_API
+participant User
+participant "Request Intake" as Intake
+participant "Experts Process Management Controller" as Controller
+participant "Experts Service" as Service
+participant "Point Algorithm Expert" as Algorithm
+participant "AI Expert" as AI
+participant "AI API" as AI_API
 activate User
 activate Intake
 activate Controller

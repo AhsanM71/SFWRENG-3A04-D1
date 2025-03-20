@@ -1,11 +1,12 @@
-@startuml be3
-actor User
-boundary "Request Intake" as Intake
-control "Experts Process Management Controller" as Controller
-control "Experts Service" as Service
-control "Point Algorithm Expert" as Algorithm
-control "AI Expert" as AI
-entity "AI API" as AI_API
+@startuml be5
+participant User
+participant "Request Intake" as Intake
+participant "Experts Process Management Controller" as Controller
+participant "Experts Service" as Service
+participant "Point Algorithm Expert" as Algorithm
+participant "AI Expert" as AI
+participant "AI API" as AI_API
+
 activate User
 activate Intake
 activate Controller
@@ -17,7 +18,7 @@ activate AI_API
 alt User fills inputs
     User -> Intake: Fill In Drop Down Menus
     User -> Intake: Provide a textual description
-    User -> Intake: Provide an image
+    User -> Intake: Upload an image
     User -> Intake: Enter a deal guess
     User -> Intake: Press "Submit"
     Intake -> Controller: Request valuation
@@ -30,6 +31,7 @@ alt User fills inputs
     Controller -> Service: Request AI evaluation
     Service -> AI: Forward AI request
     AI -> AI: Format query
+    AI -> AI_API: Upload the image
     AI -> AI_API: Query external AI API
     AI_API --> AI: Return AI response
     AI --> Service: Forward AI response

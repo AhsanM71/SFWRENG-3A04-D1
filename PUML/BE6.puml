@@ -1,35 +1,27 @@
-@startuml
-
-actor User
-boundary "Request Car Recommendation"
-control "Car Recommendation Service"
-control "Extended AI Service"
-entity "Car Recommendation information"
-boundary "View Car Recommendation"
-
-
+@startuml be6
+participant User
+participant "Request Car Recommendation"
+participant "Car Recommendation Service"
+participant "Extended AI Service"
+participant "Car Recommendation Information"
 
 activate User
+activate "Request Car Recommendation"
 activate "Car Recommendation Service"
 activate "Extended AI Service"
-activate "Request Car Recommendation"
-activate "View Car Recommendation"
-activate "Car Recommendation information"
+activate "Car Recommendation Information"
 
 User -> "Request Car Recommendation": Input text information
 User -> "Request Car Recommendation": Request Car Recommendation
-"Request Car Recommendation"->"Car Recommendation Service": Transfer user request
-"Car Recommendation Service"->"Extended AI Service": Request car recommendation
-"Extended AI Service"->"Extended AI Service": Create car recommendation
-"Extended AI Service"->"Car Recommendation information": Send car recommendation
-"Car Recommendation information"->"Car Recommendation information": save car recommendation
-"Car Recommendation Service"<--"Car Recommendation information": Return car Recommendation
-"Car Recommendation Service"->"Car Recommendation Service": Compile result
-"Car Recommendation Service"->"View Car Recommendation": Transfer car recommendation
-"View Car Recommendation"->User: Display result
-
-
-
-
+"Request Car Recommendation" -> "Car Recommendation Service": Transfer user request
+"Car Recommendation Service" -> "Extended AI Service": Request car recommendation
+"Extended AI Service" -> "Extended AI Service": Create car recommendation
+"Extended AI Service" -> "Car Recommendation Information": Send car recommendation
+"Car Recommendation Information" -> "Car Recommendation Information": Save car recommendation
+"Car Recommendation Information" --> "Extended AI Service": Return success result
+"Car Recommendation Service" <-- "Extended AI Service": Return car recommendation
+"Car Recommendation Service" -> "Car Recommendation Service": Compile result
+"Car Recommendation Service" -> "Request Car Recommendation": Return result
+"Request Car Recommendation" -> User: Display result
 
 @enduml

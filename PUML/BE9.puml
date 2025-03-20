@@ -1,30 +1,32 @@
 @startuml be9
-actor User
-boundary "Login" as Login
-control "Account Management" as Controller
-entity "Account Information" as AccountInfo
+
+participant User
+participant "Login"
+participant "Account Management"
+participant "Account Information"
 
 activate User
-activate Login
-activate Controller
-activate AccountInfo
+activate "Login"
+activate "Account Management"
+activate "Account Information"
 
-User -> Login: Enter Username & Password
-User -> Login: Press "Login"
-Login -> Controller: Request login
-Controller -> AccountInfo: Validate credentials
+User -> "Login": Enter Username & Password
+User -> "Login": Press "Login"
+"Login" -> "Account Management": Request login
+"Account Management" -> "Account Information": Validate credentials
+
 alt User enters correct credentials
-    AccountInfo --> Controller: Return valid result
-    Controller --> Login: Return success response
-    Login --> User: Grant access & display homepage
+    "Account Information" --> "Account Management": Return valid result
+    "Account Management" --> "Login": Return success response
+    "Login" --> User: Grant access & display homepage
 else User enters incorrect credentials
-    AccountInfo --> Controller: Return invalid result
-    Controller --> Login: Return failure response
-    Login --> User: Display login error
+    "Account Information" --> "Account Management": Return invalid result
+    "Account Management" --> "Login": Return failure response
+    "Login" --> User: Display login error
 end
 
 alt Internet connection lost
-    Login -> User: Show error page and recommend retry
+    "Login" -> User: Show error page and recommend retry
 end
 
 @enduml

@@ -1,39 +1,31 @@
-@startuml
+@startuml be8
 
-actor User
-boundary Registration
-control "Account Management"
-entity "Account information"
-boundary "Account Success"
-boundary "Account error"
-boundary "View account"
+participant User
+participant Registration
+participant "Account Management"
+participant "Account Information"
 
 activate User
 activate "Account Management"
 activate Registration
-activate "Account Success"
-activate "Account error"
-activate "Account information"
-activate "View account"
+activate "Account Information"
 
+User -> Registration: Enter credentials
+Registration -> "Account Management": Request account creation
+"Account Management" -> "Account Information": Validate credentials
 
-
-User->Registration: Input personal information
-Registration -> "Account Management": Send personal information
-"Account Management"->"Account information"
-"Account information" -> "Account information"
-"Account information" -> "Account information": Check for existing account
-alt user does not have an existing account
-"Account information" -> "Account information": Save new account information
-"Account Management"<--"Account information" : Transfer success message
-"Account Management" -> "Account Success": Transfer success message
-"Account Success" -> User: Display sucess message
-"Account Management" -> "View account": call View Account
-"View account" -> User: Display account
-else
-"Account Management"<--"Account information" : Transfer error message
-"Account Management" -> "Account error": Transfer error message
-"Account error" -> User: Display error message
-
+alt User does not have an existing account
+    "Account Information" --> "Account Management": Return success message
+    "Account Management" -> "Account Management": Create account
+    "Account Management" -> "Account Information": Request to save credentials
+    "Account Information" -> "Account Information": Save credentials
+    "Account Management" <-- "Account Information": Return success message
+    "Account Management" --> "Registration": Return account
+    "Registration" --> User: Display success message
+else User already has an account
+    "Account Management" <-- "Account Information": Return error message
+    "Account Management" --> "Registration": Return error message
+    "Registration" --> User: Display error message
 end
+
 @enduml
