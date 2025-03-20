@@ -123,7 +123,20 @@ Additionally, the repository style design architecture is used for subsystems th
 \label{sub:system_architecture}
 % Begin SubSection
 
-\indent \indent DealCheck will utilize a Data-Centered architecture, namely the Blackboard architecture style. The system’s core functionality is accessed through the System Controller, via the Client Access Agent. The Client Access Agent will control the user interface of the application. The System Controller will act as the central ‘data store’ used in Blackboard architecture, while each of the subsystems described below will act as the ‘knowledge sources’. These include the Car Recommendation Agent, the User Accounts Agent, and the Car Deal Checker Agent. \\
+\indent \indent The DealCheck System will adopt a Data-Centered architecture, specifically the Blackboard architecture style. The system’s core 
+functionality is managed through the Request Controller, which is accessed via the Client Access. The Client Access is responsible for controlling 
+the application's user interface. The DealCheck Request Database will act as the central ‘data store’ used in Blackboard architecture, while each 
+of the subsystems described below will interact with the main DealCheck System to accomplish the extra functionalities of the application \\
+
+\noindent
+The core system of DealCheck comprises of three knowledge sources, also referred to as experts: \\
+\begin{itemize}
+    \item \textbf{AI Consultation Management}
+    \item \textbf{Book API Management}
+    \item \textbf{Points Algorithm Management}
+\end{itemize}
+\noindent
+These components collectively perform the primary function of the application—determining whether a car deal is favorable. \\
 
 \noindent The following table summarizes the purpose and architectural style of each subsystem:
 \FloatBarrier
@@ -135,7 +148,7 @@ Additionally, the repository style design architecture is used for subsystems th
     \hline
     Account Management        & Users manage, modify, and create account-related data.                                 & Repository                   \\
     \hline
-    Deal Report Management    & Users query the system for information on a car deal as well as view and save results. & Blackboard                   \\
+    DealCheck System    & Users query the system for information on a car deal as well as view and save results. & Blackboard                   \\
     \hline
     Recommendation Management & Users obtain recommendations on car purchases.                                         & Blackboard                   \\
     \hline
@@ -149,19 +162,19 @@ Further subsystem descriptions are provided in Section 3.2 of this document. \\
 This system will also employ four databases:
 \begin{itemize}
   \item The \textbf{Account Database} will hold user information such as usernames and passwords.
-  \item The \textbf{Recommendation Request Database} and \textbf{DealCheck Request Database} will store records from user queries in their respective systems.
-  \item The \textbf{System Data Store} will act as the central data store for the entire application.
+  \item The \textbf{Recommendation Request Database} will store records from user queries for car recommendations.
+  \item The \textbf{DealCheck Request Database} will act as the central data store for the entire application.
 \end{itemize}
 
-DealCheck’s architecture utilizes both the Repository and Blackboard systems. For the overall system, the Blackboard architecture is used since it will allow for separation of application components (see the above subsystems) that may each independently work within the application. The system data store will also store application wide data, including user interface information and user request information. This central data store will invoke the correct subsystems based on the request. \\
+DealCheck’s architecture utilizes both the Repository and Blackboard systems. For the overall system, the Blackboard architecture is used since it will allow for separation of application components (see the above subsystems) that may each independently work within the application. The DealCheck Request Database will also store application wide data, including user interface information and user request information. This central data store will invoke the correct subsystems based on the request. \\
 
-Blackboard is also used in the information request management subsystem. This is because there is not one universally correct answer for the valuation of a vehicle. Therefore, multiple knowledge sources must be consulted and integrated together to provide a quality response. This aligns with the Blackboard style, where the data store is active and calls upon the relevant knowledge sources to answer a query. This was chosen over other architectural systems such as Batch Sequential and Repository due to the problem’s structure. Rating of a vehicle deal is non-deterministic and yields the best results when multiple agents are consulted, therefore Blackboard is the optimal choice.\\
+The DealCheck System is a blackboard architecture because there is not one universally correct answer for the valuation of a vehicle. Therefore, multiple knowledge sources must be consulted and integrated together to provide a quality response. This aligns with the Blackboard style, where the data store is active and calls upon the relevant knowledge sources to answer a query. This was chosen over other architectural systems such as Batch Sequential and Repository due to the problem’s structure. Rating of a vehicle deal is non-deterministic and yields the best results when multiple agents are consulted, therefore Blackboard is the optimal choice.\\
 
 The second architecture style used in this application is Repository. This style is frequently used in database management systems, where frequent modification to data is required. This is similar to the needs of the Account Management System. Additionally, the data store is passive rather than active, which is suitable for the account management system which will only be modified by the clients accessing. The repository style was chosen over other data-centered architectures such as blackboard, which is more suited for solving non-deterministic problems. This is not the case, therefore the repository is used. Data Flow architectures were also not selected since this system’s activities are not a series of transformations on data sets. Returning to the benefits of the repository, a key strength is its well-suitedness for applications needing data integrity. This is a top priority of an account management system, since sensitive data such as usernames and passwords must be secure and maintain a high level of integrity.\\
 
-We considered using Batch Sequential from the data flow architecture to handle car deal requests, where a user submits a request and DealCheck processes it through the Deal Report Management system. However, this approach was not suitable since the system requires real-time responses, whereas batch processing introduces delays. Users expect instant feedback on deal evaluations, and waiting for a batch cycle would be impractical. Additionally, Batch Sequential has low throughput due to its rigid, sequential processing steps, making it inefficient for an application with multiple users.\\
+We considered using Batch Sequential from the data flow architecture to handle car deal requests, where a user submits a request and DealCheck processes it through the main system. However, this approach was not suitable since the system requires real-time responses, whereas batch processing introduces delays. Users expect instant feedback on deal evaluations, and waiting for a batch cycle would be impractical. Additionally, Batch Sequential has low throughput due to its rigid, sequential processing steps, making it inefficient for an application with multiple users.\\
 
-Another alternative we explored was Pipes and Filters for the Deal Report Management subsystem. However, this architecture lacks the flexibility needed for non-deterministic car deal evaluations. Since different deals may require varying types of analysis depending on the input and expert consulted, a fixed sequence of steps would not be ideal. Pipes and Filters work best for structured data transformations, whereas DealCheck's subsystems require dynamic data integration from multiple sources, which this architecture is not well-suited for.\\
+Another alternative we explored was Pipes and Filters for the DealCheck main system. However, this architecture lacks the flexibility needed for non-deterministic car deal evaluations. Since different deals may require varying types of analysis depending on the input and expert consulted, a fixed sequence of steps would not be ideal. Pipes and Filters work best for structured data transformations, whereas DealCheck's subsystems require dynamic data integration from multiple sources, which this architecture is not well-suited for.\\
 
 We also considered the Process-Control architecture but ultimately eliminated it because it is designed for continuous monitoring and real-time feedback loops, such as temperature regulation systems. Since DealCheck operates on user-initiated queries, rather than ongoing system monitoring, Process-Control was unnecessary for this application.\\
 % End SubSection
@@ -170,13 +183,13 @@ We also considered the Process-Control architecture but ultimately eliminated it
 \label{sub:subsystems}
 % Begin SubSection
 
-Dealcheck’s primary system has been subdivided into three subsystems: Account Management, Deal Report Management, and Car Recommendation Service. \\
+Dealcheck’s primary system has been subdivided into three subsystems: Account Management, Main DealCheck System, and Car Recommendation. \\
 
 Account Management will serve as the center for all related information and queries to account details. This will include storing information such as usernames and passwords. Functions of this system will primarily be for modification of this information, for example, a function to reset a user’s password. \\
 
-The Deal Report Management subsystem serves as the core functionality of the DealCheck app, enabling users to view previous car deal reports, save new reports, and request car deal evaluations. It interacts with the Account Management subsystem to retrieve a user's past queries by linking their account information with the app's query history. Additionally, it interacts with the Account Management subsystem to save car deal reports to the corresponding user accounts. This subsystem also handles car deal evaluation requests, collaborating with controllers like Experts Process Management to process requests, select the appropriate experts based on user input, and generate detailed car deal reports. Finally, this subsystem saves the results of the user's car deal evaluation request in its request information entity, which acts as a gateway to its database. \\
+The DealCheck main System will serve as the core functionality of the DealCheck app, enabling users to view previous car deal reports, save new reports, and request car deal evaluations. It interacts with the Account Management subsystem to retrieve a user's past queries by linking their account information with the app's query history. Additionally, it interacts with the Account Management subsystem to save car deal reports to the corresponding user accounts. This main system also handles car deal evaluation requests, collaborating with controllers like Request Controller to process requests, select the appropriate experts based on user input, and generate detailed car deal reports. Finally, this main system saves the results of the user's car deal evaluation request in the DealCheck Reqeust Database. \\
 
-The Car Recommendation Service subsystem is our innovative feature, responsible for handling user requests related to car recommendations and depreciation curves, displaying results, and generating these insights. It collaborates with the Account Management subsystem to authenticate users and grant access to its functionalities. When a user requests car recommendations based on their specific scenario, the subsystem uses an AI API Service to generate personalized suggestions. Additionally, it stores AI-generated car recommendations in the car recommendation information entity, which serves as a gateway to its database. The subsystem also leverages the request information entity within the Deal Report Management subsystem to access past car deal reports, track previously evaluated vehicles, generate depreciation curves, and link them to the corresponding car deals.
+The Car Recommendation Service subsystem is our innovative feature, responsible for handling user requests related to car recommendations and depreciation curves, displaying results, and generating these insights. It collaborates with the Account Management subsystem to authenticate users and grant access to its functionalities. When a user requests car recommendations based on their specific scenario, the subsystem uses an AI API Service to generate personalized suggestions. Additionally, it stores AI-generated car recommendations in the car recommendation information entity, which serves as a gateway to its database. The subsystem also uses the DealCheck Request Database connected with the main DealCheck System to access past car deal reports, track previously evaluated vehicles, generate depreciation curves, and link them to the corresponding car deals.
 
 % End SubSection
 
