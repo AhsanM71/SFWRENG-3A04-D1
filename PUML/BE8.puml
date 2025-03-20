@@ -1,0 +1,39 @@
+@startuml
+
+actor User
+boundary Registration
+control "Account Management"
+entity "Account information"
+boundary "Account Success"
+boundary "Account error"
+boundary "View account"
+
+activate User
+activate "Account Management"
+activate Registration
+activate "Account Success"
+activate "Account error"
+activate "Account information"
+activate "View account"
+
+
+
+User->Registration: Input personal information
+Registration -> "Account Management": Send personal information
+"Account Management"->"Account information"
+"Account information" -> "Account information"
+"Account information" -> "Account information": Check for existing account
+alt user does not have an existing account
+"Account information" -> "Account information": Save new account information
+"Account Management"<--"Account information" : Transfer success message
+"Account Management" -> "Account Success": Transfer success message
+"Account Success" -> User: Display sucess message
+"Account Management" -> "View account": call View Account
+"View account" -> User: Display account
+else
+"Account Management"<--"Account information" : Transfer error message
+"Account Management" -> "Account error": Transfer error message
+"Account error" -> User: Display error message
+
+end
+@enduml

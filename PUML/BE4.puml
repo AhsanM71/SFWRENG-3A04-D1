@@ -1,0 +1,48 @@
+@startuml
+actor User
+boundary "Request Car Depreciation Curve"
+control "Car Recommendation Service"
+entity "Request Information"
+boundary "View Car Deal Report"
+control "Extended AI Service"
+boundary "View Car Depreciation Curve"
+
+
+
+activate User
+activate "Car Recommendation Service"
+activate "Extended AI Service"
+activate "Request Car Depreciation Curve"
+activate "View Car Depreciation Curve"
+activate "Request Information"
+activate  "View Car Deal Report"
+
+
+User -> "Request Car Depreciation Curve": Request depreciation curve for existing deal
+"Request Car Depreciation Curve"->"Car Recommendation Service": Transfer user request
+"Car Recommendation Service"-> "Request Information": Request information of existing deal
+"Request Information"->"View Car Deal Report": Find specific deal information
+alt User has a previous deal valuation
+"Request Information"<--"View Car Deal Report": Return specific deal information
+"Car Recommendation Service"<-- "Request Information": Return information of existing deal
+"Car Recommendation Service"->"Extended AI Service": Request depreciation curve calculation
+"Extended AI Service"->"Extended AI Service": Compute Depreciation Curve
+"Car Recommendation Service"<--"Extended AI Service": Return depreciation curve calculation
+"Car Recommendation Service"->"Car Recommendation Service": Compile result
+"Car Recommendation Service"->"View Car Depreciation Curve": Transfer result
+
+"View Car Depreciation Curve"->User:Display result
+
+
+else user does not have an existing deal valuation
+"Request Information"<--"View Car Deal Report": Return error message
+"Car Recommendation Service"<-- "Request Information": Return error message
+"Car Recommendation Service"->"View Car Depreciation Curve": Transfer error
+User<-"View Car Depreciation Curve": Display Error message
+
+
+end
+
+
+
+@enduml
