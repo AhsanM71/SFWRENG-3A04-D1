@@ -176,7 +176,7 @@ Account Management will serve as the center for all related information and quer
 
 The Deal Report Management subsystem serves as the core functionality of the DealCheck app, enabling users to view previous car deal reports, save new reports, and request car deal evaluations. It interacts with the Account Management subsystem to retrieve a user's past queries by linking their account information with the app's query history. Additionally, it interacts with the Account Management subsystem to save car deal reports to the corresponding user accounts. This subsystem also handles car deal evaluation requests, collaborating with controllers like Experts Process Management to process requests, select the appropriate experts based on user input, and generate detailed car deal reports. Finally, this subsystem saves the results of the user's car deal evaluation request in its request information entity, which acts as a gateway to its database. \\
 
-The Car Recommendation Service subsystem is our innovative feature, responsible for handling user requests related to car recommendations and depreciation curves, displaying results, and generating these insights. It collaborates with the Account Management subsystem to authenticate users and grant access to its functionalities. When a user requests car recommendations based on their specific scenario, the subsystem uses an Extended AI Service to generate personalized suggestions. Additionally, it stores AI-generated car recommendations in the car recommendation information entity, which serves as a gateway to its database. The subsystem also leverages the request information entity within the Deal Report Management subsystem to access past car deal reports, track previously evaluated vehicles, generate depreciation curves, and link them to the corresponding car deals.
+The Car Recommendation Service subsystem is our innovative feature, responsible for handling user requests related to car recommendations and depreciation curves, displaying results, and generating these insights. It collaborates with the Account Management subsystem to authenticate users and grant access to its functionalities. When a user requests car recommendations based on their specific scenario, the subsystem uses an AI API Service to generate personalized suggestions. Additionally, it stores AI-generated car recommendations in the car recommendation information entity, which serves as a gateway to its database. The subsystem also leverages the request information entity within the Deal Report Management subsystem to access past car deal reports, track previously evaluated vehicles, generate depreciation curves, and link them to the corresponding car deals.
 
 % End SubSection
 
@@ -283,7 +283,7 @@ Below are all of the CRC cards for the DealCheck application.
   \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
   \begin{tabular}{|p{7.5cm}|p{7.5cm}|}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Class Name: AI API (Boundary)}} \\
+    \multicolumn{2}{|l|}{\textbf{Class Name: AI API (Entity)}} \\
     \hline
     \textbf{Responsibility:} & \textbf{Collaborators:}           \\
     \hline
@@ -312,7 +312,7 @@ Below are all of the CRC cards for the DealCheck application.
   \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
   \begin{tabular}{|p{7.5cm}|p{7.5cm}|}
     \hline
-    \multicolumn{2}{|l|}{\textbf{Class Name: Redbook API (Boundary)}} \\
+    \multicolumn{2}{|l|}{\textbf{Class Name: Redbook API (Entity)}} \\
     \hline
     \textbf{Responsibility:}            & \textbf{Collaborators:}     \\
     \hline
@@ -321,6 +321,22 @@ Below are all of the CRC cards for the DealCheck application.
     \hline
   \end{tabular}
 \end{table}
+
+\begin{table}[H]
+  \centering
+  \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
+  \begin{tabular}{|p{7.5cm}|p{7.5cm}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Class Name: Point System Algorithm Logic (Entity)}} \\
+    \hline
+    \textbf{Responsibility:}            & \textbf{Collaborators:}     \\
+    \hline
+    Knows point system algorithm expert & Point System Algorithm Expert \\
+    Handles deal check requests without text or image& \\
+    \hline
+  \end{tabular}
+\end{table}
+
 \begin{table}[H]
   \centering
   \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
@@ -362,7 +378,6 @@ Below are all of the CRC cards for the DealCheck application.
     \hline
     \textbf{Responsibility:}                  & \textbf{Collaborators:}        \\
     \hline
-    Knows Request Information                 & Request Information            \\
     Knows Deal Report Management              & Deal Report Management         \\
     Handles click event of “View Deal Report” &                                \\
     Displays deal report information          &                                \\
@@ -378,7 +393,6 @@ Below are all of the CRC cards for the DealCheck application.
     \hline
     \textbf{Responsibility:}                  & \textbf{Collaborators:}        \\
     \hline
-    Knows Request Information                 & Request Information            \\
     Knows Deal Report Management              & Deal Report Management         \\
     Handles click event of “Save Deal Report” &                                \\
     Saves deal report information             &                                \\
@@ -426,7 +440,6 @@ Below are all of the CRC cards for the DealCheck application.
     Knows View Car Recommendation           & View Car Recommendation                  \\
     Knows Request Car Depreciation Curve    & Request Car Depreciation Curve           \\
     Knows View Car Depreciation Curve       & View Car Depreciation Curve              \\
-    Knows Extended AI Service               & Extended AI Service                      \\
     Knows Car Recommendation Information    & Car Recommendation Information           \\
     Knows Request Information               & Request Information                      \\
     Handles Car Recommendations Requests    &                                          \\
@@ -434,6 +447,7 @@ Below are all of the CRC cards for the DealCheck application.
     \hline
   \end{tabular}
 \end{table}
+
 \begin{table}[H]
   \centering
   \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
@@ -458,7 +472,7 @@ Below are all of the CRC cards for the DealCheck application.
     \textbf{Responsibility}                                                & \textbf{Collaborators}     \\
     \hline
     Stores scenario-based car recommendations                              & Car Recommendation Service \\
-    Process the data interaction with car recommendation service passively & Extended AI Service        \\
+    Process the data interaction with car recommendation service passively &  \\
     \hline
   \end{tabular}
 \end{table}
@@ -542,7 +556,7 @@ Below are all of the CRC cards for the DealCheck application.
     \hline
     Knows Car Recommendation Service Controller                & Car Recommendation Service Controller \\
     Handle scenario-based car recommendation request           &                                       \\
-    Handles implicit request from external Extended AI Service &                                       \\
+    Handles implicit request from external AI API Service &                                       \\
     \hline
   \end{tabular}
   \label{tab:crc_card}
@@ -570,31 +584,12 @@ Below are all of the CRC cards for the DealCheck application.
   \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
   \begin{tabular}{|p{7.5cm}|p{7.5cm}|}
     \hline
-    \multicolumn{2}{|c|}{\textbf{Class Name: Extended AI Service (Boundary)}}                            \\
-    \hline
-    \textbf{Responsibility}                                      & \textbf{Collaborators}                \\
-    \hline
-    Knows Car Recommendation Service Controller                  & Car Recommendation Service Controller \\
-    Handles AI car recommendation queries based on user scenario & Car Recommendation Information        \\
-    Knows Car Recommendation Information                         &                                       \\
-    \hline
-  \end{tabular}
-  \label{tab:crc_card}
-\end{table}
-
-\begin{table}[H]
-  \centering
-  \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
-  \begin{tabular}{|p{7.5cm}|p{7.5cm}|}
-    \hline
     \multicolumn{2}{|c|}{\textbf{Class Name: Request Information (Entity)}} \\
     \hline
     \textbf{Responsibility}    & \textbf{Collaborators}                     \\
     \hline
-    Stores Car Deal Reports    & View Car Deal Report                       \\
-    Stores Depreciation Curves & Save Car Deal Report                       \\
-                               & Deal Report Management                     \\
-                               & Car Recommendation Service                 \\
+    Stores Car Deal Reports    & Deal Report Management \\
+    Stores Depreciation Curves & Car Recommendation Service \\
     \hline
   \end{tabular}
   \label{tab:crc_card}
@@ -667,7 +662,7 @@ Below are all of the CRC cards for the DealCheck application.
         \begin{itemize}
           \item View Car Depreciation Curve
           \item Request Car Recommendation
-          \item Extended AI Service
+          \item AI Service
           \item View Car Recommendation
         \end{itemize}
   \item Suggested changes to the Analysis Class Diagram.
