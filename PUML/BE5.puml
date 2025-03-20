@@ -17,6 +17,7 @@ activate AI_API
 alt User fills inputs
     User -> Intake: Fill In Drop Down Menus
     User -> Intake: Provide a textual description
+    User -> Intake: Provide an image
     User -> Intake: Enter a deal guess
     User -> Intake: Press "Submit"
     Intake -> Controller: Request valuation
