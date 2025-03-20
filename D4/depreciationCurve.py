@@ -19,27 +19,17 @@ def multiturn_generate_content():
     return output1
 
 def get_text(model_output):
-    # Access the 'candidates' list
     candidates = model_output.candidates
-
-    # Ensure candidates list is not empty
     if candidates:
-        # Print the first candidate to inspect its structure
         print("First candidate:", candidates[0])
-
-        # If 'content' is inside the candidate, access it (based on the structure found)
-        # Assuming candidate objects have a 'content' field (or similar)
         candidate = candidates[0]
 
-        # Check if the candidate is an object with an attribute 'content' or similar
         if hasattr(candidate, 'content'):
             content = candidate.content
-            print("Content:", content)  # Print content to inspect it
+            print("Content:", content) 
 
             if hasattr(content, 'parts'):
-                input_string = content.parts[0].text  # Adjust based on actual structure
-
-                # Use regex to extract the Python code block
+                input_string = content.parts[0].text 
                 code = re.search(r'```python\n(.*?)```', input_string, re.DOTALL)
 
                 if code:
@@ -54,7 +44,7 @@ def get_text(model_output):
         return "No candidates found."
 
 
-msg4_text1 = """Write a Python script to generate a depreciation curve for the 2024 Toyota Corolla using Matplotlib. Choose logical X and Y values. Example:
+msg4_text1 = """Write a Python script to generate and save a depreciation curve using plt.savefig for the 2024 Toyota Corolla using Matplotlib. Choose logical X and Y values. Don't use plt.show() Example:
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -70,7 +60,7 @@ plt.title(\"Depreciation Curve for 2024 Honda Civic\")
 plt.grid(True)
 plt.xticks(years)
 plt.legend()
-plt.show()"""
+plt.savefig('test.png')"""
 
 generation_config = {
     "max_output_tokens": 8192,
