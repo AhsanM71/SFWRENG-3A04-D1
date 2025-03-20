@@ -1,0 +1,30 @@
+@startuml be9
+actor User
+boundary "Login" as Login
+control "Account Management" as Controller
+entity "Account Information" as AccountInfo
+
+activate User
+activate Login
+activate Controller
+activate AccountInfo
+
+User -> Login: Enter Username & Password
+User -> Login: Press "Login"
+Login -> Controller: Request login
+Controller -> AccountInfo: Validate credentials
+alt User enters correct credentials
+    AccountInfo --> Controller: Return valid result
+    Controller --> Login: Return success response
+    Login --> User: Grant access & display homepage
+else User enters incorrect credentials
+    AccountInfo --> Controller: Return invalid result
+    Controller --> Login: Return failure response
+    Login --> User: Display login error
+end
+
+alt Internet connection lost
+    Login -> User: Show error page and recommend retry
+end
+
+@enduml

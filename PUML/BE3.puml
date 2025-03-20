@@ -1,0 +1,49 @@
+@startuml be3
+actor User
+boundary "Request Intake" as Intake
+control "Experts Process Management Controller" as Controller
+control "Experts Service" as Service
+control "Point Algorithm Expert" as Algorithm
+control "AI Expert" as AI
+entity "AI API" as AI_API
+activate User
+activate Intake
+activate Controller
+activate Service
+activate Algorithm
+activate AI
+activate AI_API
+
+alt User fills inputs
+    User -> Intake: Fill In Drop Down Menus
+    User -> Intake: Provide a textual description
+    User -> Intake: Enter a deal guess
+    User -> Intake: Press "Submit"
+    Intake -> Controller: Request valuation
+    Controller -> Service: Request point system evaluation
+    Service -> Algorithm: Request point calculation
+    Algorithm -> Algorithm: Calculate points
+    Algorithm --> Service: Return point calculation
+    Service -> Service: Form point system evaluation
+    Service --> Controller: Return point system evaluation
+    Controller -> Service: Request AI evaluation
+    Service -> AI: Forward AI request
+    AI -> AI: Format query
+    AI -> AI_API: Query external AI API
+    AI_API --> AI: Return AI response
+    AI --> Service: Forward AI response
+    Service -> Service: Form AI evaluation
+    Service --> Controller: Return AI evaluation
+    Controller -> Controller: Compile results
+    Controller --> Intake: Return results
+    Intake --> User: Display results and indicate correctness
+else User does not fill inputs
+    User -> Intake: Attempt submission
+    Intake --> User: Display error and guidelines
+end
+
+alt Internet connection lost
+    Intake -> User: Show error page and recommend retry
+end
+
+@enduml
