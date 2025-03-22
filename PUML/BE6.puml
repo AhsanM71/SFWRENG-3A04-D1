@@ -13,15 +13,19 @@ activate "Car Recommendation Information"
 
 User -> "Request Car Recommendation": Input text information
 User -> "Request Car Recommendation": Request Car Recommendation
-"Request Car Recommendation" -> "Car Recommendation Service": Transfer user request
-"Car Recommendation Service" -> "Extended AI Service": Request car recommendation
-"Extended AI Service" -> "Extended AI Service": Create car recommendation
-"Extended AI Service" -> "Car Recommendation Information": Send car recommendation
-"Car Recommendation Information" -> "Car Recommendation Information": Save car recommendation
-"Car Recommendation Information" --> "Extended AI Service": Return success result
-"Car Recommendation Service" <-- "Extended AI Service": Return car recommendation
-"Car Recommendation Service" -> "Car Recommendation Service": Compile result
-"Car Recommendation Service" -> "Request Car Recommendation": Return result
-"Request Car Recommendation" -> User: Display result
+alt
+  "Request Car Recommendation" -> "Car Recommendation Service": Transfer user request
+  "Car Recommendation Service" -> "Extended AI Service": Request car recommendation
+  "Extended AI Service" -> "Extended AI Service": Create car recommendation
+  "Extended AI Service" -> "Car Recommendation Information": Send car recommendation
+  "Car Recommendation Information" -> "Car Recommendation Information": Save car recommendation
+  "Car Recommendation Information" --> "Extended AI Service": Return success result
+  "Car Recommendation Service" <-- "Extended AI Service": Return car recommendation
+  "Car Recommendation Service" -> "Car Recommendation Service": Compile result
+  "Car Recommendation Service" -> "Request Car Recommendation": Return result
+  "Request Car Recommendation" -> User: Display result
+else Internet connection lost
+    "Request Car Recommendation" -> User: Show error page and recommend retry
+end
 
 @enduml

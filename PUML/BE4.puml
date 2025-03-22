@@ -25,6 +25,8 @@ alt User has a previous deal valuation
 else User does not have an existing deal valuation
     "Car Recommendation Service" <-- "Request Information": Return error message
     User <-- "Car Recommendation Service": Display Error message
+else Internet connection lost
+    "Request Car Depreciation Curve" -> User: Show error page and recommend retry
 end
 
 @enduml

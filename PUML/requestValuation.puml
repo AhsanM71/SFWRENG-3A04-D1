@@ -1,0 +1,75 @@
+@startuml request
+participant User
+participant "Request Intake"
+participant "Experts Process Management Controller"
+participant "Experts Service"
+participant "Point Algorithm Expert"
+participant "External API Service Expert"
+participant "AI Expert"
+
+activate User
+activate "Request Intake"
+activate "Experts Process Management Controller"
+activate "Experts Service"
+activate "Point Algorithm Expert"
+activate "External API Service Expert"
+activate "AI Expert"
+
+alt "User Fills Inputs"
+    User -> "Request Intake": Fill in Drop Down Menu
+    User -> "Request Intake": Fill in Description (optional)
+    User -> "Request Intake": Fill in Image Input (optional)
+    User -> "Request Intake": Enter a Deal Guess
+    User -> "Request Intake": Press "Submit"
+    "Request Intake" -> "Experts Process Management Controller": Request Valuation
+
+    alt "Only Drop Down is Filled"
+        "Experts Process Management Controller" -> "Experts Service": Request point system evaluation
+        "Experts Service" -> "Point Algorithm Expert": Request point calculation
+        "Point Algorithm Expert" -> "Point Algorithm Expert": Calculate points
+        "Experts Service" <-- "Point Algorithm Expert": Return point calculation
+        "Experts Service" -> "Experts Service": Form point system evaluation
+        "Experts Process Management Controller" <-- "Experts Service": Return point system evaluation
+    else "Drop Down + Description Filled"
+        "Experts Process Management Controller" -> "Experts Service": Request external API system evaluation
+        "Experts Service" -> "External API Service Expert": Request API value lookup
+        "External API Service Expert" -> "External API Service Expert": Get API value
+        "Experts Service" <-- "External API Service Expert": Return API value
+        "Experts Service" -> "Experts Service": Form API system evaluation
+        "Experts Process Management Controller" <-- "Experts Service": Return external API system evaluation
+    else "Drop Down + Image Filled"
+        "Experts Process Management Controller" -> "Experts Service": Request AI expert evaluation
+        "Experts Service" -> "AI Expert": Request AI response
+        "AI Expert" -> "AI Expert": Compute AI response
+        "Experts Service" <-- "AI Expert": Return AI response
+        "Experts Service" -> "Experts Service": Form AI system evaluation
+        "Experts Process Management Controller" <-- "Experts Service": Return AI expert evaluation
+    else "All Inputs Filled"
+        "Experts Process Management Controller" -> "Experts Service": Request evaluations from all experts
+        "Experts Service" -> "Point Algorithm Expert": Request point calculation
+        "Point Algorithm Expert" -> "Point Algorithm Expert": Calculate points
+        "Experts Service" <-- "Point Algorithm Expert": Return point calculation
+
+        "Experts Service" -> "External API Service Expert": Request API value lookup
+        "External API Service Expert" -> "External API Service Expert": Get API value
+        "Experts Service" <-- "External API Service Expert": Return API value
+
+        "Experts Service" -> "AI Expert": Request AI response
+        "AI Expert" -> "AI Expert": Compute AI response
+        "Experts Service" <-- "AI Expert": Return AI response
+        
+        "Experts Service" -> "Experts Service": Perform majority vote
+        "Experts Process Management Controller" <-- "Experts Service": Return final evaluation
+    end
+    
+    "Experts Process Management Controller" -> "Experts Process Management Controller": Compile results
+    "Request Intake" <-- "Experts Process Management Controller": Send result
+    User <-- "Request Intake": Display results and indicate correctness
+else "User Does Not Fill Inputs"
+    User -> "Request Intake": Attempt submission
+    User <-- "Request Intake": Display error and guidelines
+else "Internet Connection Lost"
+    User <-- "Request Intake": Show error page and recommend retry
+end
+
+@enduml

@@ -23,9 +23,7 @@ else User enters incorrect credentials
     "Account Information" --> "Account Management": Return invalid result
     "Account Management" --> "Login": Return failure response
     "Login" --> User: Display login error
-end
-
-alt Internet connection lost
+else Internet connection lost
     "Login" -> User: Show error page and recommend retry
 end
 

@@ -26,6 +26,8 @@ else User already has an account
     "Account Management" <-- "Account Information": Return error message
     "Account Management" --> "Registration": Return error message
     "Registration" --> User: Display error message
+else Internet connection lost
+    "Registration" -> User: Show error page and recommend retry
 end
 
 @enduml
