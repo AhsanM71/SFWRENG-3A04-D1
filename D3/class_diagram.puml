@@ -1,0 +1,513 @@
+@startuml
+
+hide empty members
+skinparam dpi 300
+skinparam linetype polyline
+skinparam nodesep 20
+skinparam ranksep 20
+scale 0.1
+
+title "DealCheck System Class Diagram"
+
+package "Deal Check Feature" {
+    class Car {
+        - id: Integer
+        - make: String
+        - model: String
+        - year: Integer
+        - mileage: Double
+        ---
+        + <<Create>> Car(id: Integer, make: String, model: String,
+          year: Integer, mileage: Double)
+        ---
+        + getId(): Integer
+        + getMake(): String
+        + getModel(): String
+        + getYear(): Integer
+        + getMileage(): Double
+    }
+
+    interface BlackBoardController<T> {
+        + handleRequest(request: T): T
+    }
+
+    interface BlackBoard<T> {
+        + handleRequest(request: T): T
+    }
+
+    abstract Expert<T> {
+        - queue: Queue<T>
+        ---
+        + evaluateRequest(request: T): T
+    }
+
+    class DealCheckExpertBlackboardController implements BlackBoardController<DealCheckData> {
+        - expertsService: DealCheckExpertsService
+        ---
+        + <<Create>> DealCheckExpertBlackboardController(expertsService: DealCheckExpertsService)
+        ---
+        + handleRequest(request: DealCheckData): DealCheckData
+    }
+
+    class DealCheckRouter {
+        - blackboard: BlackBoard<DealCheckData>
+        - dealCheckDAO: DealCheckDAO
+        ---
+        <<Create>> DealCheckRouter(blackboard: BlackBoard<DealCheckData>, dealCheckDAO: DealCheckDAO)
+        ---
+        + requestDealCheck(request: DealCheckData): DealCheckData
+        + getDealCheck(dealCheckId: Integer): DealCheckData
+        + saveDealCheck(dealCheck: DealCheckData): Void
+    }
+
+    class DealCheckBlackBoard implements BlackBoard<DealCheckData> {
+        - controller: BlackBoardController<DealCheckData>
+        - expertsService: DealCheckExpertsService
+        - dealCheckDAO: DealCheckDAO
+        ---
+        <<Create>> DealCheckBlackBoard(dealCheckDAO: DealCheckDAO)
+        ---
+        + handleRequest(request: DealCheckData): DealCheckData
+    }
+
+    class DealCheckExpertsService {
+        - experts: HashMap<DealCheckExpertType, Expert<DealCheckData>>
+        ---
+        + getExpertResponse(expert: DealCheckExpertType, request: DealCheckData): DealCheckData
+    }
+
+    class AIExpert extends Expert<DealCheckData> {
+        - queue: Queue<DealCheckData>
+        - aiAPI: API<String, String>
+        ---
+        + evaluateRequest(request: DealCheckData): DealCheckData
+    }
+
+    class PointSystemExpert extends Expert<DealCheckData> {
+        - queue: Queue<DealCheckData>
+        ---
+        + evaluateRequest(request: DealCheckData): DealCheckData
+    }
+
+    class ExternalAPIExpert extends Expert<DealCheckData> {
+        - queue: Queue<DealCheckData>
+        - externalAPI: API<JSON, JSON>
+        ---
+        + evaluateRequest(request: DealCheckData): DealCheckData
+    }
+
+    enum DealCheckExpertType {
+        AI_EXPERT,
+        EXTERNAL_API_EXPERT,
+        POINT_ALGORITHM_EXPERT
+    }
+
+    class DealCheckData {
+        - id: Integer
+        - userId: UUID
+        - car: Car
+        - price: Double
+        - description: String
+        - imgSrc: String
+        - estimate: DealCheckStatus
+        - result: DealCheckStatus
+        ---
+        + <<Create>> DealCheckData(id: Integer, userId: UUID, car: Car,
+          price: Double, description: String, imgSrc: String,
+          estimate: DealCheckStatus, result: DealCheckStatus)
+        ---
+        + getId(): Integer
+        + getUserId(): UUID
+        + getCar(): Car
+        + getPrice(): Double
+        + getDescription(): String
+        + getImgSrc(): String
+        + getEstimate(): DealCheckStatus
+        + getResult(): DealCheckStatus
+    }
+
+    enum DealCheckStatus {
+        FAIR_DEAL
+        UNFAIR_DEAL
+    }
+
+    class DealCheckDAO {
+        - dealCheck: DealCheckData
+        - userId: UUID
+        ---
+        ---
+        + getDealCheckData(id: Integer): DealCheckData
+        + getUserDealCheckData(userId: UUID): List<DealCheckData>
+        + updateDealCheckData(dealCheck: DealCheckData): DealCheckData
+        + deleteDealCheckData(id: Integer): Boolean
+        + addDealCheckData(dealCheck: DealCheckData): Boolean
+    }
+
+    DealCheckBlackBoard *-- BlackBoardController
+    DealCheckBlackBoard *-- DealCheckExpertsService
+    DealCheckBlackBoard o-- DealCheckDAO
+
+    DealCheckDAO *-- DealCheckData
+    DealCheckData *-- Car
+    DealCheckData *-- DealCheckStatus
+
+    DealCheckExpertsService *-- Expert
+    DealCheckExpertsService --> DealCheckExpertType
+    DealCheckExpertBlackboardController o-- DealCheckExpertsService
+    DealCheckExpertBlackboardController --> DealCheckExpertType
+}
+
+package "Car Recommendation Feature" {
+    class Car {
+        - id: Integer
+        - make: String
+        - model: String
+        - year: Integer
+        - mileage: Double
+        ---
+        + <<Create>> Car(id: Integer, make: String, model: String,
+          year: Integer, mileage: Double)
+        ---
+        + getId(): Integer
+        + getMake(): String
+        + getModel(): String
+        + getYear(): Integer
+        + getMileage(): Double
+    }
+
+    interface BlackBoardController<T> {
+        + handleRequest(request: T): T
+    }
+
+    interface BlackBoard<T> {
+        + handleRequest(request: T): T
+    }
+
+    abstract Expert<T> {
+        - queue: Queue<T>
+        ---
+        + evaluateRequest(request: T): T
+    }
+
+    class CarRecommendationBlackboardController implements BlackBoardController<CarRecommendationInformation> {
+        - RecommendationAIExpert: Expert<CarRecommendationInformation>
+        ---
+        + <<Create>> CarRecommendationBlackboardController(RecommendationAIExpert: Expert<CarRecommendationInformation>)
+        ---
+        + handleRequest(request: CarRecommendationInformation): CarRecommendationInformation
+    }
+
+    class CarRecommendationBlackBoard implements BlackBoard<CarRecommendationInformation> {
+        - controller: BlackBoardController<CarRecommendationInformation>
+        - RecommendationAIExpert: Expert<CarRecommendationInformation>
+        - carRecommendationDAO: CarRecommendationDAO
+        ---
+        <<Create>> CarRecommendationBlackBoard(carRecommendationDAO: CarRecommendationDAO)
+        ---
+        + handleRequest(request: CarRecommendationInformation): CarRecommendationInformation
+    }
+
+    class RecommendationAIExpert extends Expert<CarRecommendationInformation> {
+        - queue: Queue<CarRecommendationInformation>
+        - aiAPI: API<String, String>
+        ---
+        + evaluateRequest(request: CarRecommendationInformation): CarRecommendationInformation
+        - generateScenarioBasedRecommendation(input): String
+        - generateDepreciationCurve(carModel): Image
+    }
+
+    class CarRecommendationInformation {
+        - id: Integer
+        - userId: UUID
+        - description: String
+        - carRecommendation: String
+        - car: Car
+        - depreciationCurveSrc: String
+        ---
+        + <<Create>> DealCheckData(id: Integer, userId: UUID, description: String,
+        carRecommendation: String, car: Car, depreciationCurve: String)
+        ---
+        + getId(): Integer
+        + getUserId(): UUID
+        + getCar(): Car
+        + getDescription(): String
+        + getCarRecommendation(): String
+        + getDepreciationCurveSrc(): String
+    }
+
+    class CarRecommendationDAO {
+        - dealCheck: CarRecommendationInformation
+        - userId: UUID
+        ---
+        + getCarRecommendationInformation(id: Integer): CarRecommendationInformation
+        + getUserCarRecommendationInformation(userId: UUID): List<CarRecommendationInformation>
+        + updateCarRecommendationInformation(carRecommendation: CarRecommendationInformation): CarRecommendationInformationDealCheckData
+        + deleteCarRecommendationInformation(id: Integer): Boolean
+        + addCarRecommendationInformation(carRecommendation: CarRecommendationInformation): Boolean
+    }
+
+    class CarRecommendationRouter {
+        - blackboard: BlackBoard<CarRecommendationInformation>
+        - carRecommendationDAO: CarRecommendationDAO
+        ---
+        <<Create>> CarRecommendationRouter(blackboard: BlackBoard<CarRecommendationInformation>, carRecommendationDAO: CarRecommendationDAO)
+        ---
+        + requestCarRecommendation(request: CarRecommendationInformation): CarRecommendationInformation
+        + getCarRecommendation(carRecommendationId: Integer): CarRecommendationInformation
+        + saveCarRecommendation(carRecommendation: CarRecommendationInformation): Void
+    }
+
+    CarRecommendationRouter o-- CarRecommendationBlackBoard
+    CarRecommendationRouter o-- CarRecommendationDAO
+
+    CarRecommendationBlackBoard *-- BlackBoardController
+    CarRecommendationBlackBoard *-- RecommendationAIExpert
+    CarRecommendationBlackBoard o-- CarRecommendationDAO
+
+    CarRecommendationDAO *-- CarRecommendationInformation
+    CarRecommendationInformation *-- Car
+
+    CarRecommendationBlackboardController o-- RecommendationAIExpert
+}
+
+package "API Package" {
+    interface API<T, R> {
+        + {static} getAPI(type: APIType): API<T, R>
+        ---
+        + sendRequest(request: T): R
+    }
+
+    enum APIType {
+        AI_API
+        EXTERNAL_API
+    }
+
+    class AIAPI implements API<String, String> {
+        + sendRequest(request: String): String
+    }
+
+    class ExternalAPI implements API<JSON, JSON> {
+        + sendRequest(request: JSON): JSON
+    }
+}
+
+package "Deal Check Client" {
+    interface DealCheckPage {
+        + displayPage(): Void
+    }
+
+    class RequestCarDealCheckPage {
+        - dealCheck: DealCheckData
+        ---
+        + displayPage(): Void
+    }
+
+    class ResponseHandlerCarDealCheckPage {
+        - dealCheck: DealCheckData
+        ---
+        + displayPage(): Void
+    }
+
+    class ViewCarDealCheckPage implements DealCheckPage {
+        - dealCheck: DealCheckData
+        ---
+        + displayPage(): Void
+    }
+
+    class SaveCarDealCheckPage implements DealCheckPage {
+        - dealCheck: DealCheckData
+        ---
+        + displayPage(): Void
+    }
+
+    RequestCarDealCheckPage ..|> DealCheckPage
+    ResponseHandlerCarDealCheckPage ..|> DealCheckPage
+}
+
+package "Car Recommendation Client" {
+    interface DisplayCarRecommendationServicePage {
+        + displayPage(): Void
+    }
+
+    class CarRecommendationPage implements DisplayCarRecommendationServicePage {
+        - carRecommendation: CarRecommendationInformation
+        ---
+        + displayPage(): Void
+    }
+
+    class CarDepreciationCurve {
+        - carRecommendation: CarRecommendationInformation
+        ---
+        + displayPage(): Void
+    }
+
+    class CarRecommendationSuccess {
+        - carRecommendation: CarRecommendationInformation
+        ---
+        + displayMessage(): Void
+    }
+
+    class CarRecommendationError {
+        - carRecommendation: CarRecommendationInformation
+        ---
+        + displayMessage(): Void
+    }
+
+    class CarDepreciationCurveSuccess implements DisplayCarRecommendationServiceMessage {
+        - carRecommendation: CarRecommendationInformation
+        ---
+        + displayMessage(): Void
+    }
+
+    class CarDepreciationCurveError implements DisplayCarRecommendationServiceMessage {
+        - carRecommendation: CarRecommendationInformation
+        ---
+        + displayMessage(): Void
+    }
+    interface DisplayCarRecommendationServiceMessage {
+        + displayMessage(): Void
+    }
+
+    CarRecommendationError ..|> DisplayCarRecommendationServiceMessage
+    CarRecommendationSuccess ..|> DisplayCarRecommendationServiceMessage
+    CarDepreciationCurve ..|> DisplayCarRecommendationServicePage
+}
+
+package "Account Management Package" {
+    class AccountManagementRouter {
+        - accountManagement: AccountManagement
+        ---
+        + login(username, password): boolean
+        + createAccount(username, password, email, phoneNumber): User
+        + retrieveAccount(userId: UUID): User
+        + editAccount(username, password, email, phoneNumber): User
+        + logout(username): boolean
+    }
+
+    class AccountManagement {
+        - accountEditor: EditAccount
+        - accountLogin: AccountLogin
+        - accountLogout: AccountLogout
+        - accountRegistration: RegistrationSystem
+        - accountRetriever: AccountRetriever
+        - accountInformationDAO: AccountInformationDAO
+        ---
+        + login(username, password): boolean
+        + createAccount(username, password, email, phoneNumber): User
+        + retrieveAccount(userId: UUID): User
+        + editAccount(username, password, email, phoneNumber): User
+        + logout(username): boolean
+    }
+
+    class AccountLogin {
+        + login(username, password): boolean
+    }
+
+    class AccountLogout {
+        + logout(username): boolean
+    }
+
+    class EditAccount {
+        + editAccount(username, password, email, phoneNumber): User
+    }
+
+    class RegistrationSystem {
+        + createAccount(username, password, email, phoneNumber): User
+    }
+
+    class AccountRetriever {
+        + retrieveAccount(userId: UUID): User
+    }
+
+    class User {
+        - userId: UUID
+        - username: String
+        - password: String
+        - email: String
+        - phoneNumber: String
+        ---
+        + <<Create>> User(username: String, password: String, email: String, phoneNumber: String)
+    }
+
+    class AccountInformationDAO {
+        - users: List<User>
+        ---
+        + addAccountInfo(user: User): Void
+        + retrieveAccountInfo(userId: UUID)
+        + updateAccountInfo(user: User)
+    }
+
+    AccountInformationDAO *-- User
+    AccountManagement o-- AccountInformationDAO
+    AccountManagement *-- AccountLogin
+    AccountManagement *-- AccountLogout
+    AccountManagement *-- AccountRetriever
+    RegistrationSystem --* AccountManagement
+    EditAccount --* AccountManagement
+    AccountManagementRouter o-- AccountManagement
+}
+
+package "Account Management Client" {
+    interface DisplayAccountMessages {
+        + displayMessage(): Void
+    }
+
+    class AccountSuccess implements DisplayAccountMessages {
+        - user: User
+        ---
+        + displayMessage(): Void
+    }
+
+    class AccountError {
+        - user: User
+        ---
+        + displayMessage(): Void
+    }
+
+    interface DisplayAccountPages {
+        + displayPage(): Void
+    }
+
+    class CreateAccountPage implements DisplayAccountPages {
+        - user: User
+        ---
+        + displayPage(): Void
+    }
+
+    class LoginPage implements DisplayAccountPages {
+        - user: User
+        ---
+        + displayPage(): Void
+    }
+
+    class LogoutPage {
+        - user: User
+        ---
+        + displayPage(): Void
+    }
+
+    AccountError ..|> DisplayAccountMessages
+    LogoutPage ..|> DisplayAccountPages
+}
+
+AIExpert o-- API
+ExternalAPIExpert o-- API
+
+DealCheckPage --> DealCheckRouter
+DealCheckRouter o-- DealCheckBlackBoard
+DealCheckRouter o-- DealCheckDAO
+DealCheckRouter --> AccountManagementRouter
+CarRecommendationRouter --> AccountManagementRouter
+
+RecommendationAIExpert o-- API
+
+API --> APIType
+
+CarRecommendationRouter <-- DisplayCarRecommendationServicePage
+DisplayCarRecommendationServiceMessage --> CarRecommendationRouter
+
+DisplayAccountPages --> AccountManagementRouter
+AccountManagementRouter <-- DisplayAccountMessages
+
+
+@enduml
